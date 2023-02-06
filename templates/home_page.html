@@ -1,0 +1,404 @@
+{% load static %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ybeauty.kz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static  'css/style4.css'%}" rel="stylesheet">
+    <link href="{% static 'css/all.css'%}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static  'css/style4.css'%}" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Cormorant', serif;
+        }
+        body{
+            background-color: white;
+            padding: 0;
+            margin: 0;
+        }
+        .img{
+            width: 100%;
+            height: 300px;
+        }
+        @media screen  and (max-width: 760px){
+            .img{
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+{% include "navbar.html" %}
+{#    <header class="header">#}
+{#        <div class="head-inner">#}
+{#            <div class="head-logo">#}
+{#                <img src="{% static 'img/head-logo.webp' %}" alt="">#}
+{#            </div>#}
+{#            <div class="head-menu">#}
+{#                <a href="">Домашняя страница</a>#}
+{#                <a href="">Про нас </a>#}
+{#                <a href="">Категории</a>#}
+{#                <a href="" class="head-button">Связаться с нами</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </header>#}
+    {% include "carousel.html" %}
+    <h1 style="font-size: 46px; font-family: Impact; margin-top: 8%; margin-left: 10%; margin-bottom: 80px">Тут должен быть текст на счет категории </h1>
+    <div class="row px-xl-5">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden" >
+                    <img class="img" src="{% static 'img/c1.png' %}" width="100%" alt="">
+                </div>
+                 <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h3 font-weight-bolder">Full-service replacement</p></a>
+                        <p class="h6" style="margin-top: 10%">Choose Renewal by Andersen® for full-service replacement windows and doors.</p>
+                        <a style="border-radius: 50px; margin-top: 3%" class="btn btn-outline-dark" href=""> Смотреть еще </a>
+                 </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    <img class="img" src="{% static 'img/c2.jpg' %}" width="100%" alt="">
+                </div>
+                <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h3 font-weight-bolder">Retractable screen doors</p></a>
+                        <p class="h6" style="margin-top: 10%">Enjoy fresh air with the LuminAire® Retractable Screen Door.</p>
+                        <a style="border-radius: 50px; margin-top: 3%" class="btn btn-outline-dark" href=""> Смотреть еще </a>
+                 </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    <img class="img" src="{% static 'img/c3.jpg' %}" width="100%" alt="">
+                </div>
+                <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h3 font-weight-bolder">Storm doors</p></a>
+                        <p class="h6" style="margin-top: 10%">Freshen up your entryway with an Andersen® storm door.</p>
+                        <a style="border-radius: 50px; margin-top: 3%" class="btn btn-outline-dark" href=""> Смотреть еще </a>
+                 </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    <img class="img" src="{% static 'img/c4.jpg' %}" width="100%" alt="">
+                </div>
+                <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h3 font-weight-bolder">Need a part?</p></a>
+                        <p class="h6" style="margin-top: 10%">Shop for Andersen® replacement parts and accessories.</p>
+                        <a style="border-radius: 50px; margin-top: 3%" class="btn btn-outline-dark" href=""> Смотреть еще </a>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Featured Start -->
+{#     <div class="container-fluid pt-5">#}
+{#        <div class="row px-xl-5 pb-3">#}
+{#            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">#}
+{#                <div class="d-flex align-items-center bg-light mb-4" style=" padding: 30px;">#}
+{#                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>#}
+{#                    <h5 class="font-weight-semi-bold m-0">Качество Продукта</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">#}
+{#                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">#}
+{#                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>#}
+{#                    <h5 class="font-weight-semi-bold m-0">Доставка по всему Казахстану</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">#}
+{#                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">#}
+{#                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>#}
+{#                    <h5 class="font-weight-semi-bold m-0">Возврата в течении 14 дней</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">#}
+{#                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">#}
+{#                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>#}
+{#                    <h5 class="font-weight-semi-bold m-0">24/7 Поддержка</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <!-- Featured End -->
+
+
+    <!-- Parfumes Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Профиль ПВХ PROPLEX</span></h2>
+        <div class="row px-xl-5">
+            {% for item in object_list %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Парфюмы' 'Женский'%}"> Смотреть еще </a>
+    </div>
+
+    </div>
+    <!-- Products End -->
+
+
+    <!-- Skin Care Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Профиль</span></h2>
+        <div class="row px-xl-5">
+            {% for item in object_list2 %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Уход за Кожей' 'Лицо'%}"> Смотреть еще </a>
+    </div>
+    <!-- Products End -->
+
+    <!-- Hair Care Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">W-100</span></h2>
+       <div class="row px-xl-5">
+            {% for item in object_list3 %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Уход за Волосами' 'Кондиционер'%}"> Смотреть еще </a>
+    </div>
+    <!-- Products End -->
+
+    <!-- Decorative  Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">VHS</span></h2>
+        <div class="row px-xl-5">
+            {% for item in object_list4 %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+            <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Декоративная Косметика' 'None'%}"> Смотреть еще </a>
+    </div>
+    <!-- Products End -->
+
+    <!-- Skin Care Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Стеклопакет</span></h2>
+        <div class="row px-xl-5">
+            {% for item in object_list5 %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+            <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Подарочный Набор' 'Женский'%}"> Смотреть еще </a>
+    </div>
+    <!-- Products End -->
+
+    <!-- Skin Care Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Комплектующие</span></h2>
+        <div class="row px-xl-5">
+            {% for item in object_list6 %}
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Для Дома' 'Бахуры'%}"> Смотреть еще </a>
+    </div>
+    <!-- Products End -->
+
+    {% include "footer.html" %}
+</body>
+
+</html>

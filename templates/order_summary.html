@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Ybeauty.kz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static  'css/style4.css'%}" rel="stylesheet">
+    <style>
+        body{
+            background-color: white;
+        }
+        *{
+            font-family: 'Cormorant', serif;
+        }
+        .img{
+            width: 100%;
+            height: 100px;
+        }
+        @media screen  and (max-width: 760px){
+            .img{
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+{#    {% for object in objects %}#}
+{#    {% for item in object.items.all %}#}
+{#        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">#}
+{#            <div class="product-item bg-light mb-4">#}
+{#                <div class="product-img position-relative overflow-hidden">#}
+{#                    <img class="img" style="height: 100px" src="{{ item.item.image.url }}" alt="">#}
+{#                    <div class="product-action">#}
+{#                        <a class="btn btn-outline-dark btn-square" href="{{ item.item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>#}
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="text-center py-4" style="word-break: break-word;">#}
+{#                    <a class="text-decoration-none" href="{{ item.item.get_absolute_url }}"><p class="h6">{{ item.item.title }}</p></a>#}
+{##}
+{#                    <div class="d-flex align-items-center justify-content-center mt-2">#}
+{#                        <h5>{{ item.item.get_price }}₸</h5>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#    {% endfor %}#}
+    <div class="container" style="width: 100%">
+
+    <div class="table-responsive text-nowrap">
+    <h2 style="margin-top: 30px">Ваш заказ</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Товар</th>
+            <th scope="col">Цена</th>
+        </tr>
+        </thead>
+        <body>
+        {% for object in objects %}
+        {% for order_item in object.items.all %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td style="display: grid; word-wrap: break-word;" >
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                    <div class="bg-light mb-4">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img" src="{{ order_item.item.image.url }}" alt="">
+                        </div>
+                        <div class="text-center py-4" style="word-break: break-word;">
+                            <a class="text-decoration-none" href="{{ order_item.item.get_absolute_url }}"><p class="h6">{{ order_item.item.title }}</p></a>
+                        </div>
+{#                        <div style="word-wrap: break-word; width: 200px">#}
+{#                            <a style="word-wrap: break-word; width: 200px">{{ order_item.item.description }}</a>#}
+{#                        </div>#}
+
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="align-items: center; justify-items: center">
+                    <h5>₸{{ order_item.get_total_item_price }}</h5>
+                    <div style="margin: 20px 0 20px 0">
+                        <a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
+                        {{ order_item.quantity }}
+                        <a href="{% url 'core:add-to-cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+                    </div>
+                    <div>
+                        <a style='color: red;'href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan='5'>Your cart is empty</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-primary float-right' onclick="" href='/'>Continue shopping</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% if object.coupon %}
+        <tr>
+            <td colspan="4"><b>Coupon</b></td>
+            <td><b>-₸{{ object.coupon.amount }}</b></td>
+        </tr>
+        {% endif %}
+        {% if object.get_total %}
+        <tr>
+            <td colspan="4"><h3>К оплате : {{ object.get_total }}₸</h3></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Перейти к оплате</a>
+            <a class='btn btn-primary float-right' href='/'>Продолжить покупки</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </body>
+    </table>
+
+    </div>
+
+    </div>
+</body>
+{% include "footer.html" %}
+
+
