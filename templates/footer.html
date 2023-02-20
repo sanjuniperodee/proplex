@@ -20,11 +20,16 @@
 
             </div>
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Мой профиль</h5>
-                <p class="mb-2">Зарегестрироваться</p>
-                <p class="mb-2">Вход</p>
-                <p class="mb-2">Мои Закладки</p>
-                <p class="mb-2">Моя корзина</p>
+                {% load static %}
+
+{#                <h5 class="text-secondary text-uppercase mb-4"> Мы в 2Gis </h5>#}
+                <h1 class="text-secondary text-uppercase mb-4">Мы в <img src="{% static 'img/logo.svg' %}"></h1>
+                <div id="map" style="width:100%; height:70%"></div>
+{#                <h5 class="text-secondary text-uppercase mb-4">Мой профиль</h5>#}
+{#                <p class="mb-2">Зарегестрироваться</p>#}
+{#                <p class="mb-2">Вход</p>#}
+{#                <p class="mb-2">Мои Закладки</p>#}
+{#                <p class="mb-2">Моя корзина</p>#}
 
             </div>
         </div>
@@ -53,3 +58,16 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script type="text/javascript">
+    var map;
+
+    DG.then(function () {
+        map = DG.map('map', {
+            center: [54.98, 82.89],
+            zoom: 13
+        });
+
+        DG.marker([54.98, 82.89]).addTo(map).bindPopup('Здесь мы находимся');
+    });
+</script>
