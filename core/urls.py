@@ -5,6 +5,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('carousel', carousel, name='carousel'),
+    path('dashboards', dashboards, name='dashboard'),
     path('', home, name='home'),
     path('filter/<str:ctg>/<str:ctg2>', home1, name='home1'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),

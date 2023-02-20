@@ -215,6 +215,20 @@ def home(request):
 def carousel(request):
     return render(request, 'carousel.html')
 
+def dashboards(request):
+    headers = {
+        'SS-Token': 'b859f200c0ed4ba491f9a4185f6fb64f'
+    }
+    result = requests.get('https://api.survey-studio.com/projects/17169/counters', headers=headers)
+    response = result.json()
+    context = {
+        'men': response['body'][9]['quota'],
+        'woman': response['body'][10]['quota']
+
+    }
+    # print(response['body'][9]['quota'])
+    return render(request, 'dashboards.html', context)
+
 
 
 @login_required
