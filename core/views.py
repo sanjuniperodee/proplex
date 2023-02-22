@@ -149,7 +149,7 @@ def home1(request, ctg, ctg2):
             brandy = request.POST.getlist('scales')
             if len(brandy) == 1:
                 print('aaaa')
-                return redirect("http://www.ybeauty.kz/filter/" + ctg + "/" + brandy[0])
+                return redirect("http://167.71.92.211:8000//filter/" + ctg + "/" + brandy[0])
             object_list = []
             i = 0
             for brand in brandy:
