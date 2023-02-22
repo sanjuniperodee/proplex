@@ -85,7 +85,7 @@ class CheckoutView(View):
                 gmail_user = '87779571856b@gmail.com'
                 gmail_app_password = 'mpxmpwvfpxonbbjv'
                 sent_from = gmail_user
-                sent_to = ['87082420482b@gmail.com']
+                sent_to = ['Proplex-kz@mail.ru']
                 sent_subject = "Hey Friends!"
                 sent_body = ("Hey, what's up? friend!\n\n"
                              "I hope you have been well!\n"
