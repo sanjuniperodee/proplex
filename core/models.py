@@ -140,10 +140,7 @@ class Order(models.Model):
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100, null=True)
-    apartment_address = models.CharField(max_length=100, null=True)
-    country = CountryField(multiple=False,null=True)
-    zip = models.CharField(max_length=100)
-    address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
+    comments = models.CharField(max_length=255, null=True)
     phone_number = models.CharField(max_length=50)
 
     def __str__(self):

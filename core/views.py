@@ -1,6 +1,7 @@
 import os
 import random
 import string
+import smtplib
 import urllib.request
 import subprocess
 import stripe
@@ -65,65 +66,52 @@ class CheckoutView(View):
             order = Order.objects.get(user=self.request.user, payment=False)
             if form.is_valid():
                 print("User is entering a new shipping address")
-                shipping_address1 = form.cleaned_data.get(
+                shipping_address = form.cleaned_data.get(
                     'shipping_address')
-                shipping_address2 = form.cleaned_data.get(
-                    'shipping_address2')
-                shipping_country = form.cleaned_data.get(
-                    'shipping_country')
-                shipping_zip = form.cleaned_data.get('shipping_zip')
-                phone_number = form.cleaned_data.get('phone_number')
-                if is_valid_form([shipping_address1, shipping_country, shipping_zip, phone_number]):
+                phone_number = form.cleaned_data.get(
+                    'phone_number')
+                comment = form.cleaned_data.get(
+                    'comment')
+                if is_valid_form([shipping_address, comment, phone_number]):
                     shipping_address = Address(
-                        phone_number = phone_number,
+                        phone_number=phone_number,
+                        comment=comment,
                         user=self.request.user,
-                        street_address=shipping_address1,
-                        apartment_address=shipping_address2,
-                        country=shipping_country,
-                        zip=shipping_zip,
                         address_type='S'
                     )
                     shipping_address.save()
                     order.shipping_address = shipping_address
                     order.save()
+                gmail_user = '87779571856b@gmail.com'
+                gmail_app_password = 'mpxmpwvfpxonbbjv'
+                sent_from = gmail_user
+                sent_to = ['87082420482b@gmail.com']
+                sent_subject = "Hey Friends!"
+                sent_body = ("Hey, what's up? friend!\n\n"
+                             "I hope you have been well!\n"
+                             "\n"
+                             "Cheers,\n"
+                             "Jay\n")
 
-                subprocess.call("php core\\smt.php " + str(order.id) + " " + str(int(order.get_total())), shell=True)
-                print(os.path.exists("core\\testfile.txt"))
+                email_text = """\
+                From: %s
+                To: %s
+                Subject: %s
 
-                content = ""
-                with open("core\\testfile.txt") as f:
-                    content = f.readlines()
-                data = {
-                    'pg_order_id': order.id,
-                    'pg_merchant_id': "545774",
-                    'pg_amount': int(order.get_total()),
-                    'pg_description': "test",
-                    'pg_salt': "ybeauty",
-                    'pg_sig': content,
-                    'pg_success_url': 'http://127.0.0.1:8000/successPayment/',
-                    'pg_failure_url': 'http://127.0.0.1:8000/checkout/',
-                    'pg_success_url_method': 'GET',
-                    'pg_failure_url_method': 'GET',
-                }
-                print(data)
-                result = requests.post('https://api.paybox.money/init_payment.php', params=data)
-                sg = ""
-                result = str(result.text)
-                smt = ""
-                print(result.__sizeof__())
-                print(result)
-                for i in range(10, result.__sizeof__()):
-                    # print(i)
-                    smt+=result[i]
-                    print(smt)
-                    if result[i] == 'l' and result[i+1] == '>':
-                        print('gfdsgdfg')
-                        i += 2
-                        while result[i] != '<':
-                            sg += result[i]
-                            i+=1
-                        break
-                return redirect(sg)
+                %s
+                """ % (sent_from, ", ".join(sent_to), sent_subject, sent_body)
+                text = order.items
+                try:
+                    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                    server.ehlo()
+                    server.login(gmail_user, gmail_app_password)
+                    server.sendmail(sent_from, sent_to, email_text)
+                    server.close()
+
+                    print('Email sent!')
+                except Exception as exception:
+                    print("Error: %s!\n\n" % exception)
+                return  redirect("/")
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")

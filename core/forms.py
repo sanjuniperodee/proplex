@@ -6,14 +6,8 @@ from .models import *
 
 class CheckoutForm(forms.Form):
     shipping_address = forms.CharField(required=False)
-    shipping_address2 = forms.CharField(required=False)
+    comment = forms.CharField(required=False)
     phone_number = forms.CharField(required=False)
-    shipping_country = CountryField(blank_label='(select country)').formfield(
-        required=False,
-        widget=CountrySelectWidget(attrs={
-            'class': 'custom-select d-block w-100',
-        }))
-    shipping_zip = forms.CharField(required=False)
 
 
 class CouponForm(forms.Form):
