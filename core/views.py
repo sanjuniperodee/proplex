@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
@@ -129,11 +130,6 @@ def SuccesPayment(request):
     messages.success(request, "Your order was successful!")
     return redirect("/")
 
-class HomeView(ListView):
-    model = Item
-    paginate_by = 10
-    template_name = "home.html"
-
 
 @csrf_exempt
 def home1(request, ctg, ctg2):
@@ -144,12 +140,15 @@ def home1(request, ctg, ctg2):
     else:
         object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
         brands = Brand.objects.filter(category__title=ctg, category__subcategory__title=ctg2)
+    if request.method == "GET":
+        print("I'm here mfs")
+
     if request.method == 'POST':
         if ctg2 == 'all':
             brandy = request.POST.getlist('scales')
             if len(brandy) == 1:
                 print('aaaa')
-                return redirect("http://167.71.92.211:8000//filter/" + ctg + "/" + brandy[0])
+                return redirect("core:home1", ctg=ctg, ctg2=brandy[0])
             object_list = []
             i = 0
             for brand in brandy:
@@ -179,14 +178,15 @@ def home1(request, ctg, ctg2):
     return render(request, 'shopping_page.html', context)
 
 
+
 @csrf_exempt
 def home(request):
-    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Парфюмы').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Кожей').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='Уход за Волосами').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='Декоративная Косметика').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='Подарочный Набор').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Для Дома').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Профиль ПВХ Proplex').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='Профиль').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='W-100').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='Стеклопакет').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие ').order_by('title'), 4).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
         'object_list': page_obj,
@@ -197,8 +197,64 @@ def home(request):
         'object_list6': page_obj6
 
     }
+    if request.method == 'POST':
+        slug = request.POST.get('slug')
+        # print("dfgdf" + " " + slug)
+        item = get_object_or_404(Item, slug=slug)
+        order_item, created = OrderItem.objects.get_or_create(
+            item=item,
+            user=request.user,
+            ordered=False
+        )
+        order_qs = Order.objects.filter(user=request.user, payment=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.items.filter(item__slug=item.slug).exists():
+                order_item.quantity += 1
+                order_item.save()
+            else:
+                order.items.add(order_item)
+        else:
+            ordered_date = timezone.now()
+            order = Order.objects.create(
+                user=request.user, ordered_date=ordered_date)
+            order.items.add(order_item)
     return render(request, 'home_page.html', context)
 
+
+@login_required
+def add_to_cart1(request):
+    print("im here")
+    slug = str(request.POST.get('slug'))
+    print(request.POST)
+    item = get_object_or_404(Item, slug=slug)
+    order_item, created = OrderItem.objects.get_or_create(
+        item=item,
+        user=request.user,
+        ordered=False
+    )
+    order_qs = Order.objects.filter(user=request.user, payment=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        # check if the order item is in the order
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item.quantity += 1
+            order_item.save()
+            messages.info(request, "This item quantity was updated.")
+            # return redirect("core:order-summary")
+        else:
+            order.items.add(order_item)
+            messages.info(request, "This item was added to your cart.")
+            # return redirect("core:order-summary")
+
+    else:
+        ordered_date = timezone.now()
+        order = Order.objects.create(
+            user=request.user, ordered_date=ordered_date)
+        order.items.add(order_item)
+        messages.info(request, "core:order-summary")
+        # return redirect("/")
+    return JsonResponse({'data': '123'})
 
 def carousel(request):
     return render(request, 'carousel.html')
@@ -260,13 +316,14 @@ def add_to_cart(request, slug):
             order.items.add(order_item)
             messages.info(request, "This item was added to your cart.")
             return redirect("core:order-summary")
+
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "This item was added to your cart.")
-        return redirect("core:order-summary")
+        messages.info(request, "core:order-summary")
+        return redirect("/")
 
 
 @login_required
@@ -279,7 +336,7 @@ def remove_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
-        if order.items.fiaddlter(item__slug=item.slug).exists():
+        if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(
                 item=item,
                 user=request.user,

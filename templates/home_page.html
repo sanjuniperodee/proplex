@@ -23,12 +23,13 @@
     <link href="{% static  'css/style4.css'%}" rel="stylesheet">
     <style>
         *{
-            font-family: 'Cormorant', serif;
+            font-family: Lato;
+            padding: 0;
+            margin: 0;
+            {#font-family: 'Cormorant', serif;#}
         }
         body{
             background-color: white;
-            padding: 0;
-            margin: 0;
         }
         .img{
             width: 100%;
@@ -188,7 +189,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -232,7 +234,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -274,7 +277,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -316,7 +320,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -358,7 +363,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -400,7 +406,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <a style="border-radius: 15px" class="btn btn-outline-dark" href="{{ item.get_add_to_cart_url }}"><i class="fa fa-shopping-cart"></i></a>
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
@@ -410,6 +417,34 @@
     <div class="d-flex align-items-center justify-content-center">
         <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Комплектующие' 'all'%}"> Смотреть еще </a>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    const buttons = document.querySelectorAll('button[type="button"]');
+    {#console.log(buttons)#}
+    let arr = []
+    for(let i = 0 ; i < buttons.length ; i++) {
+        arr.push(buttons[i]['value'])
+    }
+    console.log(arr)
+    for(let i = 1; i < buttons.length ; i++) {
+        buttons[i].addEventListener('click',function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'{% url "core:add-to-cart1" %}',
+                data:
+                {
+                    slug:arr[i],
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                dataType:'json',
+                success:function(){
+                    alert("Добавлено в корзину " + arr[i]);
+                }
+            })
+        });
+    }
+    </script>
     <!-- Products End -->
 
     {% include "footer.html" %}
