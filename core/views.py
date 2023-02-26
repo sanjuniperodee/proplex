@@ -195,36 +195,15 @@ def home(request):
         'object_list4': page_obj4,
         'object_list5': page_obj5,
         'object_list6': page_obj6
-
     }
-    if request.method == 'POST':
-        slug = request.POST.get('slug')
-        # print("dfgdf" + " " + slug)
-        item = get_object_or_404(Item, slug=slug)
-        order_item, created = OrderItem.objects.get_or_create(
-            item=item,
-            user=request.user,
-            ordered=False
-        )
-        order_qs = Order.objects.filter(user=request.user, payment=False)
-        if order_qs.exists():
-            order = order_qs[0]
-            if order.items.filter(item__slug=item.slug).exists():
-                order_item.quantity += 1
-                order_item.save()
-            else:
-                order.items.add(order_item)
-        else:
-            ordered_date = timezone.now()
-            order = Order.objects.create(
-                user=request.user, ordered_date=ordered_date)
-            order.items.add(order_item)
+
     return render(request, 'home_page.html', context)
 
 
 @login_required
 def add_to_cart1(request):
     print("im here")
+    print(request.POST)
     slug = str(request.POST.get('slug'))
     print(request.POST)
     item = get_object_or_404(Item, slug=slug)

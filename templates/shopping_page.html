@@ -275,29 +275,35 @@
     <script type="text/javascript">
     const buttons = document.querySelectorAll('button[type="button"]');
     {#console.log(buttons)#}
-    let arr = []
-    for(let i = 0 ; i < buttons.length ; i++) {
-        arr.push(buttons[i]['value'])
-    }
-    console.log(arr)
     for(let i = 1; i < buttons.length ; i++) {
-        buttons[i].addEventListener('click',function(e){
-            e.preventDefault();
-            $.ajax({
-                type:'POST',
-                url:'{% url "core:add-to-cart1" %}',
-                data:
-                {
-                    slug:arr[i],
-                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-                },
-                dataType:'json',
-                success:function(){
-                    alert("Добавлено в корзину " + arr[i]);
-                }
-            })
-        });
+        if(buttons[i].id == 'add_to_card'){
+            console.log(buttons[i]['value'])
+            buttons[i].addEventListener('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "core:add-to-cart1" %}',
+                    data:
+                    {
+                        slug:buttons[i]['value'],
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType:'json',
+                    success:function(){
+                        alert("Добавлено в корзину " + buttons[i]['value']);
+                    }
+                })
+            });
+        }
     }
-    </script>
+</script>
+<script type="text/javascript">
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+</script>
 
 </html>
