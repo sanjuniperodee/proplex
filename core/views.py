@@ -1,4 +1,12 @@
 import os
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from pathlib import Path
+
+import pandas as pd
+import openpyxl
 import random
 import string
 import smtplib
@@ -48,7 +56,7 @@ def is_valid_form(values):
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
-            order = Order.objects.get(user=self.request.user, payment=False)
+            order = get_object_or_404(Order, user=self.request.user, payment=False)
             form = CheckoutForm()
             context = {
                 'form': form,
@@ -64,7 +72,15 @@ class CheckoutView(View):
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
         try:
-            order = Order.objects.get(user=self.request.user, payment=False)
+            order = get_object_or_404(Order, user=self.request.user, payment=False)
+            items = order.items.get_queryset()
+            print(items)
+            df = pd.DataFrame(columns=['Title', 'Quantity', 'Sum'])
+            # pd.concat([df([item.item.title, item.quantity, item.get_final_price()], columns=['Title', 'Quantity', 'Sum']) for item in items],
+            #           ignore_index=True)
+            for item in items:
+                df1 = pd.DataFrame({'Title': [item.item.title], 'Quantity': [item.quantity], 'Sum': [item.get_final_price()]})
+                df = df.append(df1, ignore_index=True)
             if form.is_valid():
                 print("User is entering a new shipping address")
                 shipping_address = form.cleaned_data.get(
@@ -76,43 +92,42 @@ class CheckoutView(View):
                 if is_valid_form([shipping_address, comment, phone_number]):
                     shipping_address = Address(
                         phone_number=phone_number,
-                        comment=comment,
+                        comments=comment,
                         user=self.request.user,
-                        address_type='S'
                     )
                     shipping_address.save()
                     order.shipping_address = shipping_address
                     order.save()
                 gmail_user = '87779571856b@gmail.com'
-                gmail_app_password = 'mpxmpwvfpxonbbjv'
+                gmail_app_password = 'iwhbelgfpxbnrmcv'
                 sent_from = gmail_user
-                sent_to = ['Proplex-kz@mail.ru']
-                sent_subject = "Hey Friends!"
-                sent_body = ("Hey, what's up? friend!\n\n"
-                             "I hope you have been well!\n"
-                             "\n"
-                             "Cheers,\n"
-                             "Jay\n")
-
-                email_text = """\
-                From: %s
-                To: %s
-                Subject: %s
-
-                %s
-                """ % (sent_from, ", ".join(sent_to), sent_subject, sent_body)
-                text = order.items
+                sent_to = '87082420482b@gmail.com'
+                email_text = "новый заказ"
+                message = MIMEMultipart()
+                message['From'] = sent_from
+                message['To'] = sent_to
+                message['Subject'] = 'A test mail sent by Python. It has an attachment.'
+                message.attach(MIMEText(email_text, 'plain'))
+                df.to_excel("core\\output.xlsx")
+                part = MIMEBase('application', "octet-stream")
+                with open("core\\output.xlsx", 'rb') as file:
+                    part.set_payload(file.read())
+                encoders.encode_base64(part)
+                part.add_header('Content-Disposition',
+                                'attachment; filename={}'.format(Path("core\\output.xlsx").name))
+                message.attach(part)
+                text = message.as_string()
                 try:
                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
                     server.ehlo()
                     server.login(gmail_user, gmail_app_password)
-                    server.sendmail(sent_from, sent_to, email_text)
+                    server.sendmail(sent_from, sent_to, text)
                     server.close()
 
                     print('Email sent!')
                 except Exception as exception:
                     print("Error: %s!\n\n" % exception)
-                return  redirect("/")
+                return redirect("/")
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")
@@ -202,10 +217,7 @@ def home(request):
 
 @login_required
 def add_to_cart1(request):
-    print("im here")
-    print(request.POST)
     slug = str(request.POST.get('slug'))
-    print(request.POST)
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
@@ -215,28 +227,21 @@ def add_to_cart1(request):
     order_qs = Order.objects.filter(user=request.user, payment=False)
     if order_qs.exists():
         order = order_qs[0]
-        # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
-            # return redirect("core:order-summary")
         else:
             order.items.add(order_item)
             messages.info(request, "This item was added to your cart.")
-            # return redirect("core:order-summary")
-
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
         messages.info(request, "core:order-summary")
-        # return redirect("/")
     return JsonResponse({'data': '123'})
 
-def carousel(request):
-    return render(request, 'carousel.html')
 
 def dashboards(request):
     headers = {

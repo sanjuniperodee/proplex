@@ -6,7 +6,7 @@ from .models import *
 
 class CheckoutForm(forms.Form):
     shipping_address = forms.CharField(required=False)
-    comment = forms.CharField(required=False)
+    comments = forms.CharField(required=False)
     phone_number = forms.CharField(required=False)
 
 
