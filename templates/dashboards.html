@@ -66,7 +66,10 @@
             <canvas id="Internet" height="200px"></canvas>
         </div>
     </div>
-
+    <div class="chartBox" style="width: 100%; height: 200px">
+        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>
+        <canvas id="NumberOfSims"></canvas>
+    </div>
 
 
 
@@ -91,34 +94,34 @@
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: 'Мужчины',
-        data: [18, 12, 6, 9],
+        data: [{{ucell_men}}, {{ beeline_men }}, {{ uzmobile_men }}, {{ mobiuz_men }}],
         backgroundColor: [
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
         ],
         borderColor: [
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
-          'rgba(102, 204, 153, 1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
         ],
         borderWidth: 1
       },{
         label: 'Женщины',
-        data: [10, 23, 14, 2],
-        backgroundColor: [
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+        data: [{{ucell_woman}}, {{beeline_woman}}, {{ uzmobile_woman }}, {{ mobiuz_woman }}],
+          backgroundColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
         ],
         borderColor: [
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
         ],
         borderWidth: 1
       }]
@@ -155,12 +158,74 @@
     const chartVersion = document.getElementById('chartVersion');
     chartVersion.innerText = Chart.version;
     </script>
+    <script>
+    const data7 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        label: '1 Сим',
+        data: [{{ucell1sim}}, {{ beeline1sim }}, {{ uzmobile1sim }}, {{ mobiuz1sim }}],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '2 Сим',
+        data: [{{ucell2sim}}, {{ beeline2sim }}, {{ uzmobile2sim }}, {{ mobiuz2sim}}],
+        backgroundColor: [
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+        ],
+        borderColor: [
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const config7 = {
+      type: 'bar',
+      data: data7,
+      options: {
+        plugins: {
+          stacked100: {
+              enable: true,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart7 = new Chart(
+      document.getElementById('NumberOfSims'),
+      config7
+    );
+    </script>
 <script>
     const data1 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: '16-19',
-        data: [18, 12, 6, 9],
+        data: [{{ucell_16_19}}, {{beeline_16_19}}, {{ uzmobile_16_19 }}, {{mobiuz_16_19}}],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -176,7 +241,7 @@
         borderWidth: 1
       },{
         label: '20-24',
-        data: [10, 23, 14, 2],
+        data: [{{ ucell_20_24 }}, {{beeline_20_24}}, {{uzmobile_20_24}}, {{mobiuz_20_24}}],
         backgroundColor: [
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
@@ -192,7 +257,7 @@
         borderWidth: 1
       },{
         label: '25-34',
-        data: [10, 23, 14, 2],
+        data: [{{ ucell_25_34 }}, {{beeline_25_34}}, {{uzmobile_25_34}}, {{mobiuz_25_34}}],
         backgroundColor: [
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
@@ -208,7 +273,7 @@
         borderWidth: 1
       },{
         label: '35-44',
-        data: [10, 23, 14, 2],
+        data: [{{ucell_35_44}}, {{beeline_35_44}}, {{uzmobile_35_44}}, {{mobiuz_35_44}}],
         backgroundColor: [
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
@@ -224,7 +289,7 @@
         borderWidth: 1
       },{
         label: '45-54',
-        data: [10, 23, 14, 2],
+        data: [{{ucell_45_54}}, {{beeline_45_54}}, {{ uzmobile_45_54 }}, {{mobiuz_45_54}}],
         backgroundColor: [
           'rgba(191, 191, 191,1)',
           'rgba(191, 191, 191,1)',
@@ -240,7 +305,7 @@
         borderWidth: 1
       },{
         label: '55+',
-        data: [10, 23, 14, 2],
+        data: [{{ ucell_55 }}, {{ beeline_55 }}, {{uzmobile_55}}, {{ mobiuz_55 }}],
         backgroundColor: [
           'rgba(0, 0, 0,1)',
           'rgba(0, 0, 0,1)',
@@ -286,7 +351,7 @@
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: 'Областной центр',
-        data: [18, 12, 6, 9],
+        data: [{{ucell_center}}, {{beeline_center}}, {{ uzmobile_center }}, {{ mobiuz_center }}],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -302,7 +367,7 @@
         borderWidth: 1
       },{
         label: 'Город',
-        data: [10, 23, 14, 2],
+        data: [{{ucell_city}}, {{beeline_city}}, {{ uzmobile_city }}, {{ mobiuz_city }}],
         backgroundColor: [
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
@@ -318,7 +383,7 @@
         borderWidth: 1
       },{
         label: 'ПГТ',
-        data: [10, 23, 14, 2],
+        data: [{{ucell_pgt}}, {{beeline_pgt}}, {{ uzmobile_pgt }}, {{mobiuz_pgt}}],
         backgroundColor: [
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
@@ -334,7 +399,7 @@
         borderWidth: 1
       },{
         label: 'Село',
-        data: [10, 23, 14, 2],
+        data: [{{ucell_village}}, {{beeline_village}}, {{ uzmobile_village }}, {{mobiuz_village}}],
         backgroundColor: [
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
@@ -380,7 +445,7 @@
     const data3 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [18, 12, 6, 9],
+        data: ['{{ucell_work}}', '{{ beeline_work }}', '{{ uzmobile_work }}', '{{mobiuz_work}}'],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -412,7 +477,7 @@
     const data4 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [18, 12, 6, 9],
+        data: [{{ucell_conversations}}, {{beeline_conversations}}, {{ uzmobile_conversations }}, {{ mobiuz_conversations }}],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -444,7 +509,7 @@
     const data5 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [18, 12, 6, 9],
+        data: [{{ ucell_calls }}, {{beeline_calls}}, {{ uzmobile_calls }}, {{ mobiuz_calls }}],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -476,7 +541,7 @@
     const data6 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [18, 12, 6, 9],
+        data: [{{ ucell_internet }}, {{beeline_internet}}, {{uzmobile_internet}}, {{mobiuz_internet}}],
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',

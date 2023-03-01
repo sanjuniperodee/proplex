@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 from email import encoders
@@ -6,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
+import pandas
 import pandas as pd
 import openpyxl
 import random
@@ -218,13 +220,28 @@ def home(request):
 
 @login_required
 def add_to_cart1(request):
-    slug = str(request.POST.get('slug'))
-    item = get_object_or_404(Item, slug=slug)
-    order_item, created = OrderItem.objects.get_or_create(
-        item=item,
-        user=request.user,
-        ordered=False
-    )
+    with open('core\\Mika.csv', encoding="utf-16") as f:
+        reader = csv.reader(f, delimiter='\t')
+        i = 0
+        for row in reader:
+            i+=1
+            item = Item(title=row[2],
+                        slug='item' + str(i),
+                        image='https://media.istockphoto.com/id/92450205/photo/sunsplashed-window.jpg?s=612x612&w=0&k=20&c=dTuhETbiWnoxAR1Ek5ROlj0liKxBazb14d9rsfe4XTc=',
+                        acrtiul=row[3],
+                        category=Category.objects.filter(title=row[0], subcategory__title=row[1])[0],
+                        price=100,
+                        description="Норма упаковки:" + row[5]
+                        )
+            item.save()
+    return JsonResponse({'data': '123'})
+    # slug = str(request.POST.get('slug'))
+    # item = get_object_or_404(Item, slug=slug)
+    # order_item, created = OrderItem.objects.get_or_create(
+    #     item=item,
+    #     user=request.user,
+    #     ordered=False
+    # )
     order_qs = Order.objects.filter(user=request.user, payment=False)
     if order_qs.exists():
         order = order_qs[0]
@@ -258,29 +275,85 @@ def dashboards(request):
     }
     result = requests.post('https://api.survey-studio.com/projects/counters', data=json.dumps(payload), headers=header)
     response = result.json()
-    ucell_all = 0
-    beeline_all = 0
-    mobiuz_all = 0
-    uzmobile_all = 0
-    for i in range(2, 29):
-        if i % 2 == 0:
-            ucell_all += response['body'][0]['counters'][i]['value']
-    for i in range(31, 58):
-        if i % 2 != 0:
-            beeline_all += response['body'][0]['counters'][i]['value']
-    for i in range(60, 87):
-        if i % 2 == 0:
-            mobiuz_all += response['body'][0]['counters'][i]['value']
-    for i in range(89, 116):
-        if i % 2 != 0:
-            uzmobile_all += response['body'][0]['counters'][i]['value']
     context = {
-        'ucell_all': ucell_all,
-        'beeline_all': beeline_all,
-        'mobiuz_all': mobiuz_all,
-        'uzmobile_all': uzmobile_all
+        'ucell_all': response['body'][0]['counters'][1]['value'],
+        'beeline_all': response['body'][0]['counters'][30]['value'],
+        'mobiuz_all': response['body'][0]['counters'][59]['value'],
+        'uzmobile_all': response['body'][0]['counters'][88]['value'],
+        'ucell_men': response['body'][0]['counters'][140]['value'],
+        'ucell_woman': response['body'][0]['counters'][141]['value'],
+        'beeline_men': response['body'][0]['counters'][142]['value'],
+        'beeline_woman': response['body'][0]['counters'][143]['value'],
+        'mobiuz_men': response['body'][0]['counters'][144]['value'],
+        'mobiuz_woman': response['body'][0]['counters'][145]['value'],
+        'uzmobile_men': response['body'][0]['counters'][146]['value'],
+        'uzmobile_woman': response['body'][0]['counters'][147]['value'],
+        'ucell_16_19': response['body'][0]['counters'][154]['value'],
+        'ucell_20_24': response['body'][0]['counters'][155]['value'],
+        'ucell_25_34': response['body'][0]['counters'][156]['value'],
+        'ucell_35_44': response['body'][0]['counters'][157]['value'],
+        'ucell_45_54': response['body'][0]['counters'][158]['value'],
+        'ucell_55': response['body'][0]['counters'][159]['value'],
+        'beeline_16_19': response['body'][0]['counters'][160]['value'],
+        'beeline_20_24': response['body'][0]['counters'][161]['value'],
+        'beeline_25_34': response['body'][0]['counters'][162]['value'],
+        'beeline_35_44': response['body'][0]['counters'][163]['value'],
+        'beeline_45_54': response['body'][0]['counters'][164]['value'],
+        'beeline_55': response['body'][0]['counters'][165]['value'],
+        'mobiuz_16_19': response['body'][0]['counters'][166]['value'],
+        'mobiuz_20_24': response['body'][0]['counters'][167]['value'],
+        'mobiuz_25_34': response['body'][0]['counters'][168]['value'],
+        'mobiuz_35_44': response['body'][0]['counters'][169]['value'],
+        'mobiuz_45_54': response['body'][0]['counters'][170]['value'],
+        'mobiuz_55': response['body'][0]['counters'][171]['value'],
+        'uzmobile_16_19': response['body'][0]['counters'][172]['value'],
+        'uzmobile_20_24': response['body'][0]['counters'][173]['value'],
+        'uzmobile_25_34': response['body'][0]['counters'][174]['value'],
+        'uzmobile_35_44': response['body'][0]['counters'][175]['value'],
+        'uzmobile_45_54': response['body'][0]['counters'][175]['value'],
+        'uzmobile_55': response['body'][0]['counters'][177]['value'],
+        'ucell_center': response['body'][0]['counters'][182]['value'],
+        'ucell_city': response['body'][0]['counters'][183]['value'],
+        'ucell_pgt': response['body'][0]['counters'][184]['value'],
+        'ucell_village': response['body'][0]['counters'][185]['value'],
+        'beeline_center': response['body'][0]['counters'][186]['value'],
+        'beeline_city': response['body'][0]['counters'][187]['value'],
+        'beeline_pgt': response['body'][0]['counters'][188]['value'],
+        'beeline_village': response['body'][0]['counters'][189]['value'],
+        'mobiuz_center': response['body'][0]['counters'][190]['value'],
+        'mobiuz_city': response['body'][0]['counters'][191]['value'],
+        'mobiuz_pgt': response['body'][0]['counters'][192]['value'],
+        'mobiuz_village': response['body'][0]['counters'][193]['value'],
+        'uzmobile_center': response['body'][0]['counters'][194]['value'],
+        'uzmobile_city': response['body'][0]['counters'][195]['value'],
+        'uzmobile_pgt': response['body'][0]['counters'][196]['value'],
+        'uzmobile_village': response['body'][0]['counters'][197]['value'],
+        'ucell_work': response['body'][0]['counters'][198]['value'],
+        'beeline_work': response['body'][0]['counters'][199]['value'],
+        'mobiuz_work': response['body'][0]['counters'][200]['value'],
+        'uzmobile_work': response['body'][0]['counters'][201]['value'],
+        'ucell_conversations': response['body'][0]['counters'][202]['value'],
+        'beeline_conversations': response['body'][0]['counters'][203]['value'],
+        'mobiuz_conversations': response['body'][0]['counters'][204]['value'],
+        'uzmobile_conversations': response['body'][0]['counters'][205]['value'],
+        'ucell_calls': response['body'][0]['counters'][206]['value'],
+        'beeline_calls': response['body'][0]['counters'][207]['value'],
+        'mobiuz_calls': response['body'][0]['counters'][208]['value'],
+        'uzmobile_calls': response['body'][0]['counters'][209]['value'],
+        'ucell_internet': response['body'][0]['counters'][210]['value'],
+        'beeline_internet': response['body'][0]['counters'][211]['value'],
+        'mobiuz_internet': response['body'][0]['counters'][212]['value'],
+        'uzmobile_internet': response['body'][0]['counters'][213]['value'],
+        'ucell1sim': response['body'][0]['counters'][214]['value'],
+        'ucell2sim': response['body'][0]['counters'][215]['value'],
+        'beeline1sim': response['body'][0]['counters'][216]['value'],
+        'beeline2sim': response['body'][0]['counters'][217]['value'],
+        'mobiuz1sim': response['body'][0]['counters'][218]['value'],
+        'mobiuz2sim': response['body'][0]['counters'][219]['value'],
+        'uzmobile1sim': response['body'][0]['counters'][220]['value'],
+        'uzmobile2sim': response['body'][0]['counters'][221]['value'],
     }
-    print(context)
+    # print(context)
     return render(request, 'dashboards.html', context)
 
 

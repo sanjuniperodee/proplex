@@ -21,7 +21,7 @@ class SubCategory(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=30)
-    subcategory = models.ForeignKey(SubCategory, on_delete=True, default=None)
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title + " " + self.subcategory.title
@@ -39,17 +39,18 @@ class UserProfile(models.Model):
 
 class Brand(models.Model):
     title = models.CharField(max_length=15)
-    category = models.ForeignKey(Category, null=True, on_delete=True, default=None)
+    category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
 
 
 class Item(models.Model):
+    acrtiul = models.TextField(max_length=100, default="NONE")
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=True, default=None)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
     slug = models.SlugField()
     description = models.TextField(default="NONE")
     description1 = models.TextField(default="NONE")
