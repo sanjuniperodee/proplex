@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartBox {
+        width: 45%;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+      }
+    </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+
+<body>
+    <div>
+        <h1>Выборка</h1>
+        <h3>{{ ucell_all }}</h3>
+        <h3>{{ beeline_all }}</h3>
+        <h3>{{ mobiuz_all }}</h3>
+        <h3>{{ uzmobile_all }}</h3>
+    </div>
+
+    <div style="display: flex; justify-content: space-around">
+        <div class="chartBox">
+            <h1>Пол абонентов</h1>
+            <canvas id="SexGroup" height="200px"></canvas>
+        </div>
+        <div class="chartBox">
+            <h1>Возрастные группы</h1>
+            <canvas id="YearGroup" height="200px"></canvas>
+        </div>
+    </div>
+    <div class="chartBox" style="width: 100%; height: 200px">
+        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>
+        <canvas id="CityType"></canvas>
+    </div>
+    <div style="display: flex; justify-content: space-around">
+        <div class="chartBox">
+            <h1>Для связи на работе</h1>
+            <canvas id="Work" height="200px"></canvas>
+        </div>
+        <div class="chartBox">
+            <h1>Для общения (личный номер)</h1>
+            <canvas id="Conversations" height="200px"></canvas>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-around">
+        <div class="chartBox">
+            <h1>Для звонков</h1>
+            <canvas id="Calls" height="200px"></canvas>
+        </div>
+        <div class="chartBox">
+            <h1>Для интернета</h1>
+            <canvas id="Internet" height="200px"></canvas>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+    <script>
+    Chart.register(ChartjsPluginStacked100.default);
+    // setup
+    const data = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        label: 'Мужчины',
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'Женщины',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        plugins: {
+          stacked100: {
+              enable: true,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+          x: {
+              barThickness: 10,
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('SexGroup'),
+      config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+    </script>
+<script>
+    const data1 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        label: '16-19',
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderColor: [
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '20-24',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+        ],
+        borderColor: [
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '25-34',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '35-44',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+        ],
+        borderColor: [
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '45-54',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+        ],
+        borderColor: [
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+          'rgba(191, 191, 191,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: '55+',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+        ],
+        borderColor: [
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+          'rgba(0, 0, 0,1)',
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const config1 = {
+      type: 'bar',
+      data: data1,
+      options: {
+        plugins: {
+          stacked100: {
+              enable: true,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart1 = new Chart(
+      document.getElementById('YearGroup'),
+      config1
+    );
+    </script>
+<script>
+    const data2 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        label: 'Областной центр',
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ],
+        borderColor: [
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+          'rgba(195, 255, 104,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'Город',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+        ],
+        borderColor: [
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+          'rgba(239, 207, 227,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'ПГТ',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderColor: [
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+          'rgba(102, 204, 153, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'Село',
+        data: [10, 23, 14, 2],
+        backgroundColor: [
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+        ],
+        borderColor: [
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+          'rgba(227, 61, 148, 1)',
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const config2 = {
+      type: 'bar',
+      data: data2,
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          stacked100: {
+              enable: true,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart2 = new Chart(
+      document.getElementById('CityType'),
+      config2
+    );
+    </script>
+<script>
+    const data3 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ]},]
+    };
+
+    // config
+    const config3 = {
+      type: 'bar',
+      data: data3,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart3 = new Chart(
+      document.getElementById('Work'),
+      config3
+    );
+    </script>
+<script>
+    const data4 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ]},]
+    };
+
+    // config
+    const config4 = {
+      type: 'bar',
+      data: data4,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart4 = new Chart(
+      document.getElementById('Conversations'),
+      config4
+    );
+    </script>
+<script>
+    const data5 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ]},]
+    };
+
+    // config
+    const config5 = {
+      type: 'bar',
+      data: data5,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart5 = new Chart(
+      document.getElementById('Calls'),
+      config5
+    );
+    </script>
+<script>
+    const data6 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        data: [18, 12, 6, 9],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ]},]
+    };
+
+    // config
+    const config6 = {
+      type: 'bar',
+      data: data6,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart6 = new Chart(
+      document.getElementById('Internet'),
+      config6
+    );
+    </script>
+</body>
+</html>

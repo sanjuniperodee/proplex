@@ -46,13 +46,11 @@ class Brand(models.Model):
 
 
 class Item(models.Model):
-    volume = models.IntegerField(default=100)
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=True, default=None)
     slug = models.SlugField()
-    brand = models.ForeignKey(Brand, null=True, on_delete=True)
     description = models.TextField(default="NONE")
     description1 = models.TextField(default="NONE")
     description2 = models.TextField(default="NONE")
