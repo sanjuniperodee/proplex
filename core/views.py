@@ -222,6 +222,14 @@ def home(request):
 def add_to_cart1(request):
     with open('core\\Mika.csv', encoding="utf-16") as f:
         reader = csv.reader(f, delimiter='\t')
+        for row in reader:
+            sub = SubCategory(title=row[1])
+            if len(SubCategory.objects.filter(title=row[1])) == 0:
+                sub.save()
+        for row in reader:
+            if len(Category(subcategory=SubCategory.objects.filter(title=row[1]), title=row[0])) == 0:
+                Category(subcategory=SubCategory.objects.filter(title=row[1])[0], title=row[0]).save()
+
         i = 0
         for row in reader:
             i+=1
@@ -242,23 +250,23 @@ def add_to_cart1(request):
     #     user=request.user,
     #     ordered=False
     # )
-    order_qs = Order.objects.filter(user=request.user, payment=False)
-    if order_qs.exists():
-        order = order_qs[0]
-        if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
-            order_item.save()
-            messages.info(request, "This item quantity was updated.")
-        else:
-            order.items.add(order_item)
-            messages.info(request, "This item was added to your cart.")
-    else:
-        ordered_date = timezone.now()
-        order = Order.objects.create(
-            user=request.user, ordered_date=ordered_date)
-        order.items.add(order_item)
-        messages.info(request, "core:order-summary")
-    return JsonResponse({'data': '123'})
+    # order_qs = Order.objects.filter(user=request.user, payment=False)
+    # if order_qs.exists():
+    #     order = order_qs[0]
+    #     if order.items.filter(item__slug=item.slug).exists():
+    #         order_item.quantity += 1
+    #         order_item.save()
+    #         messages.info(request, "This item quantity was updated.")
+    #     else:
+    #         order.items.add(order_item)
+    #         messages.info(request, "This item was added to your cart.")
+    # else:
+    #     ordered_date = timezone.now()
+    #     order = Order.objects.create(
+    #         user=request.user, ordered_date=ordered_date)
+    #     order.items.add(order_item)
+    #     messages.info(request, "core:order-summary")
+    # return JsonResponse({'data': '123'})
 
 
 def dashboards(request):
