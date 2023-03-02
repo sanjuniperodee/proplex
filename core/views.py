@@ -223,25 +223,20 @@ def add_to_cart1(request):
     with open('core\\Mika.csv', encoding="utf-16") as f:
         reader = csv.reader(f, delimiter='\t')
         for row in reader:
-            sub = SubCategory(title=row[1])
-            if len(SubCategory.objects.filter(title=row[1])) == 0:
-                sub.save()
-        for row in reader:
-            if len(Category(subcategory=SubCategory.objects.filter(title=row[1]), title=row[0])) == 0:
+            if len(Category.objects.filter(subcategory_tilte=row[1], title=row[0])) == 0:
                 Category(subcategory=SubCategory.objects.filter(title=row[1])[0], title=row[0]).save()
-
-        i = 0
-        for row in reader:
-            i+=1
-            item = Item(title=row[2],
-                        slug='item' + str(i),
-                        image='https://media.istockphoto.com/id/92450205/photo/sunsplashed-window.jpg?s=612x612&w=0&k=20&c=dTuhETbiWnoxAR1Ek5ROlj0liKxBazb14d9rsfe4XTc=',
-                        acrtiul=row[3],
-                        category=Category.objects.filter(title=row[0], subcategory__title=row[1])[0],
-                        price=100,
-                        description="Норма упаковки:" + row[5]
-                        )
-            item.save()
+        # i = 0
+        # for row in reader:
+        #     i+=1
+        #     item = Item(title=row[2],
+        #                 slug='item' + str(i),
+        #                 image='https://media.istockphoto.com/id/92450205/photo/sunsplashed-window.jpg?s=612x612&w=0&k=20&c=dTuhETbiWnoxAR1Ek5ROlj0liKxBazb14d9rsfe4XTc=',
+        #                 acrtiul=row[3],
+        #                 category=Category.objects.filter(title=row[0], subcategory__title=row[1])[0],
+        #                 price=100,
+        #                 description="Норма упаковки:" + row[5]
+        #                 )
+        #     item.save()
     return JsonResponse({'data': '123'})
     # slug = str(request.POST.get('slug'))
     # item = get_object_or_404(Item, slug=slug)
