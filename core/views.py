@@ -220,7 +220,7 @@ def home(request):
 
 @login_required
 def add_to_cart1(request):
-    with open('core/Mika.csv', encoding="utf-16") as f:
+    # with open('core/Mika.csv', encoding="utf-16") as f:
     #     reader = csv.reader(f, delimiter='\t')
     #     i = 0
     #     for row in reader:
