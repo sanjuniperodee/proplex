@@ -69,12 +69,9 @@ let configg = {
       lengthPercentage: 80,
       color: 'rgba(0, 0, 0, 1)'
     },
-    valueLabel: {
-      display: false
-    },
     plugins: {
       datalabels: {
-        display: true,
+        display: false,
         formatter:  function (value, context) {
           return context.chart.data.labels[context.dataIndex];
         },
@@ -101,7 +98,7 @@ console.log(sum1)
 let configg1 = {
   type: 'gauge',
   data: {
-    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    labels: ['Критики', 'Нейтралы', 'Промоутеры', 'Very good'],
     datasets: [{
       data: [sum1,
           sum1 + sum1*3/10,
@@ -113,9 +110,6 @@ let configg1 = {
     }]
   },
   options: {
-      legend: {
-          display: false //This will do the task
-      },
     responsive: true,
     title: {
       display: true,
@@ -137,7 +131,7 @@ let configg1 = {
     },
     plugins: {
       datalabels: {
-        display: true,
+        display: false,
         formatter:  function (value, context) {
           return context.chart.data.labels[context.dataIndex];
         },
@@ -177,9 +171,6 @@ let configg2 = {
     }]
   },
   options: {
-    legend: {
-          display: false //This will do the task
-    },
     responsive: true,
     title: {
       display: true,
@@ -201,7 +192,7 @@ let configg2 = {
     },
     plugins: {
       datalabels: {
-        display: true,
+        display: false,
         formatter:  function (value, context) {
           return context.chart.data.labels[context.dataIndex];
         },
@@ -240,9 +231,6 @@ let configg3 = {
     }]
   },
   options: {
-    legend: {
-          display: false //This will do the task
-    },
     responsive: true,
     title: {
       display: true,
@@ -264,7 +252,7 @@ let configg3 = {
     },
     plugins: {
       datalabels: {
-        display: true,
+        display: false,
         formatter:  function (value, context) {
           return context.chart.data.labels[context.dataIndex];
         },
