@@ -204,7 +204,7 @@ def home(request):
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 4).get_page(request.GET.get('page'))
     page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='стеклопакет').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие ').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 4).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
         'object_list': page_obj,
