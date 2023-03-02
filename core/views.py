@@ -220,10 +220,10 @@ def home(request):
 
 @login_required
 def add_to_cart1(request):
-    with open('core\\Mika.csv', encoding="utf-16") as f:
+    with open('core/Mika.csv', encoding="utf-16") as f:
         reader = csv.reader(f, delimiter='\t')
         for row in reader:
-            if len(Category.objects.filter(subcategory_tilte=row[1], title=row[0])) == 0:
+            if len(Category.objects.filter(subcategory__title=row[1], title=row[0])) == 0:
                 Category(subcategory=SubCategory.objects.filter(title=row[1])[0], title=row[0]).save()
         # i = 0
         # for row in reader:
