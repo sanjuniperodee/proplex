@@ -221,44 +221,44 @@ def home(request):
 @login_required
 def add_to_cart1(request):
     with open('core/Mika.csv', encoding="utf-16") as f:
-        reader = csv.reader(f, delimiter='\t')
-        i = 0
-        for row in reader:
-            i+=1
-            item = Item(title=row[2],
-                        slug='item' + str(i),
-                        image='https://media.istockphoto.com/id/92450205/photo/sunsplashed-window.jpg?s=612x612&w=0&k=20&c=dTuhETbiWnoxAR1Ek5ROlj0liKxBazb14d9rsfe4XTc=',
-                        acrtiul=row[3],
-                        category=Category.objects.filter(title=row[0], subcategory__title=row[1])[0],
-                        price=100,
-                        description="Норма упаковки:" + row[5]
-                        )
-            item.save()
-    return JsonResponse({'data': '123'})
-    # slug = str(request.POST.get('slug'))
-    # item = get_object_or_404(Item, slug=slug)
-    # order_item, created = OrderItem.objects.get_or_create(
-    #     item=item,
-    #     user=request.user,
-    #     ordered=False
-    # )
-    # order_qs = Order.objects.filter(user=request.user, payment=False)
-    # if order_qs.exists():
-    #     order = order_qs[0]
-    #     if order.items.filter(item__slug=item.slug).exists():
-    #         order_item.quantity += 1
-    #         order_item.save()
-    #         messages.info(request, "This item quantity was updated.")
-    #     else:
-    #         order.items.add(order_item)
-    #         messages.info(request, "This item was added to your cart.")
-    # else:
-    #     ordered_date = timezone.now()
-    #     order = Order.objects.create(
-    #         user=request.user, ordered_date=ordered_date)
-    #     order.items.add(order_item)
-    #     messages.info(request, "core:order-summary")
+    #     reader = csv.reader(f, delimiter='\t')
+    #     i = 0
+    #     for row in reader:
+    #         i+=1
+    #         item = Item(title=row[2],
+    #                     slug='item' + str(i),
+    #                     image='https://media.istockphoto.com/id/92450205/photo/sunsplashed-window.jpg?s=612x612&w=0&k=20&c=dTuhETbiWnoxAR1Ek5ROlj0liKxBazb14d9rsfe4XTc=',
+    #                     acrtiul=row[3],
+    #                     category=Category.objects.filter(title=row[0], subcategory__title=row[1])[0],
+    #                     price=100,
+    #                     description="Норма упаковки:" + row[5]
+    #                     )
+    #         item.save()
     # return JsonResponse({'data': '123'})
+    slug = str(request.POST.get('slug'))
+    item = get_object_or_404(Item, slug=slug)
+    order_item, created = OrderItem.objects.get_or_create(
+        item=item,
+        user=request.user,
+        ordered=False
+    )
+    order_qs = Order.objects.filter(user=request.user, payment=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item.quantity += 1
+            order_item.save()
+            messages.info(request, "This item quantity was updated.")
+        else:
+            order.items.add(order_item)
+            messages.info(request, "This item was added to your cart.")
+    else:
+        ordered_date = timezone.now()
+        order = Order.objects.create(
+            user=request.user, ordered_date=ordered_date)
+        order.items.add(order_item)
+        messages.info(request, "core:order-summary")
+    return JsonResponse({'data': '123'})
 
 
 def dashboards(request):
