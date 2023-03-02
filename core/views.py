@@ -352,7 +352,81 @@ def dashboards(request):
         'mobiuz2sim': response['body'][0]['counters'][219]['value'],
         'uzmobile1sim': response['body'][0]['counters'][220]['value'],
         'uzmobile2sim': response['body'][0]['counters'][221]['value'],
+        'ucelld3': response['body'][0]['counters'][222]['value'],
+        'ucelld6': response['body'][0]['counters'][223]['value'],
+        'ucelld12': response['body'][0]['counters'][224]['value'],
+        'ucelld36': response['body'][0]['counters'][225]['value'],
+        'ucelld60': response['body'][0]['counters'][226]['value'],
+        'ucelld120': response['body'][0]['counters'][227]['value'],
+        'beelined3': response['body'][0]['counters'][228]['value'],
+        'beelined6': response['body'][0]['counters'][229]['value'],
+        'beelined12': response['body'][0]['counters'][230]['value'],
+        'beelined36': response['body'][0]['counters'][231]['value'],
+        'beelined60': response['body'][0]['counters'][232]['value'],
+        'beelined120': response['body'][0]['counters'][233]['value'],
+        'mobiuzd3': response['body'][0]['counters'][234]['value'],
+        'mobiuzd6': response['body'][0]['counters'][235]['value'],
+        'mobiuzd12': response['body'][0]['counters'][236]['value'],
+        'mobiuzd36': response['body'][0]['counters'][237]['value'],
+        'mobiuzd60': response['body'][0]['counters'][238]['value'],
+        'mobiuzd120': response['body'][0]['counters'][239]['value'],
+        'uzmobiled3': response['body'][0]['counters'][240]['value'],
+        'uzmobiled6': response['body'][0]['counters'][241]['value'],
+        'uzmobiled12': response['body'][0]['counters'][242]['value'],
+        'uzmobiled36': response['body'][0]['counters'][243]['value'],
+        'uzmobiled60': response['body'][0]['counters'][244]['value'],
+        'uzmobiled120': response['body'][0]['counters'][245]['value'],
+        'ucell_main': response['body'][0]['counters'][246]['value'],
+        'ucell_second': response['body'][0]['counters'][247]['value'],
+        'mobiuz_main': response['body'][0]['counters'][248]['value'],
+        'mobiuz_second': response['body'][0]['counters'][249]['value'],
+        'uzmobile_main': response['body'][0]['counters'][250]['value'],
+        'uzmobile_second': response['body'][0]['counters'][251]['value'],
+        'ucell_ucell': response['body'][0]['counters'][252]['value'],
+        'ucell_beeline': response['body'][0]['counters'][253]['value'],
+        'ucell_mobiuz': response['body'][0]['counters'][254]['value'],
+        'ucell_uzmobile': response['body'][0]['counters'][255]['value'],
+        'beeline_ucell': response['body'][0]['counters'][256]['value'],
+        'beeline_beeline': response['body'][0]['counters'][257]['value'],
+        'beeline_mobiuz': response['body'][0]['counters'][258]['value'],
+        'beeline_uzmobile': response['body'][0]['counters'][259]['value'],
+        'mobiuz_ucell': response['body'][0]['counters'][260]['value'],
+        'mobiuz_beeline': response['body'][0]['counters'][261]['value'],
+        'mobiuz_mobiuz': response['body'][0]['counters'][262]['value'],
+        'mobiuz_uzmobile': response['body'][0]['counters'][263]['value'],
+        'uzmobile_ucell': response['body'][0]['counters'][264]['value'],
+        'uzmobile_beeline': response['body'][0]['counters'][265]['value'],
+        'uzmobile_mobiuz': response['body'][0]['counters'][266]['value'],
+        'uzmobile_uzmobile': response['body'][0]['counters'][267]['value'],
+        'beeline_p': response['body'][0]['counters'][118]['value'],
+        'beeline_n': response['body'][0]['counters'][119]['value'],
+        'beeline_nps': (int)((response['body'][0]['counters'][118]['value'] - response['body'][0]['counters'][120]['value']) /
+                             (response['body'][0]['counters'][120]['value'] + response['body'][0]['counters'][119]['value'] + response['body'][0]['counters'][118]['value'])
+                             * 100),
+        'beeline_k': response['body'][0]['counters'][120]['value'],
+        'mobiuz_p': response['body'][0]['counters'][121]['value'],
+        'mobiuz_n': response['body'][0]['counters'][122]['value'],
+        'mobiuz_nps': (int)(
+            (response['body'][0]['counters'][121]['value'] - response['body'][0]['counters'][123]['value']) / (
+                        response['body'][0]['counters'][121]['value'] + response['body'][0]['counters'][122]['value'] +
+                        response['body'][0]['counters'][123]['value']) * 100),
+        'mobiuz_k': response['body'][0]['counters'][123]['value'],
+        'ucell_p': response['body'][0]['counters'][124]['value'],
+        'ucell_n': response['body'][0]['counters'][125]['value'],
+        'ucell_nps': (int)(
+            (response['body'][0]['counters'][124]['value'] - response['body'][0]['counters'][126]['value']) / (
+                        response['body'][0]['counters'][124]['value'] + response['body'][0]['counters'][125]['value'] +
+                        response['body'][0]['counters'][126]['value']) * 100),
+        'ucell_k': response['body'][0]['counters'][126]['value'],
+        'uzmobile_p': response['body'][0]['counters'][127]['value'],
+        'uzmobile_n': response['body'][0]['counters'][128]['value'],
+        'uzmobile_nps': (int)(
+            (response['body'][0]['counters'][127]['value'] - response['body'][0]['counters'][129]['value']) / (
+                        response['body'][0]['counters'][127]['value'] + response['body'][0]['counters'][128]['value'] +
+                        response['body'][0]['counters'][129]['value']) * 100),
+        'uzmobile_k': response['body'][0]['counters'][129]['value'],
     }
+    # print(response['body'][0]['counters'][124]['value'])
     # print(context)
     return render(request, 'dashboards.html', context)
 

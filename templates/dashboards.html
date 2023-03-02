@@ -1,29 +1,276 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-      }
-      .chartBox {
-        width: 45%;
-        border-radius: 20px;
-        border: solid 3px rgba(54, 162, 235, 1);
-        background: white;
-      }
-    </style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gauge Chart with datalabels plugin displaying labels</title>
+  <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+  <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
+  <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
 
 <body>
+<div style="display: flex">
+  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
+      <canvas id="Beeline_NPS"></canvas>
+       <h1>Beeline NPS - {{ beeline_nps }}%</h1>
+  </div>
+  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
+      <canvas id="Ucell_NPS"></canvas>
+       <h1>Ucell NPS - {{ ucell_nps }}%</h1>
+  </div>
+  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
+      <canvas id="Uzmobile_NPS"></canvas>
+       <h1>Uzmobile NPS - {{ uzmobile_nps }}%</h1>
+  </div>
+    <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
+      <canvas id="Mobiuz_NPS"></canvas>
+       <h1>Mobiuz NPS - {{ mobiuz_nps }}%</h1>
+  </div>
+</div>
+</body>
+<script>
+let sum = ({{ beeline_p }} + {{ beeline_k }} + {{ beeline_n }});
+let promouters = {{ beeline_p }};
+let neutrals = {{ beeline_n }};
+let kritics ={{ beeline_k }};
+let configg = {
+  type: 'gauge',
+  data: {
+    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    datasets: [{
+      data: [sum,
+          sum + sum*3/10,
+          sum + sum*5/10,
+          sum + sum],
+      value: sum + (promouters - kritics),
+      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Gauge chart with datalabels plugin displaying labels'
+    },
+    layout: {
+      padding: {
+        bottom: 30
+      }
+    },
+    needle: {
+      radiusPercentage: 2,
+      widthPercentage: 3.2,
+      lengthPercentage: 80,
+      color: 'rgba(0, 0, 0, 1)'
+    },
+    valueLabel: {
+      display: false
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        formatter:  function (value, context) {
+          return context.chart.data.labels[context.dataIndex];
+        },
+        color: 'rgba(0, 0, 0, 1.0)',
+        backgroundColor: null,
+        font: {
+          size: 20,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+};
+const myChar = new Chart(
+      document.getElementById('Beeline_NPS'),
+      configg
+    );
+</script>
+<script>
+let sum1 = ({{ ucell_p }} + {{ ucell_k }} + {{ ucell_n }});
+let promouters1 = {{ ucell_p }};
+let kritics1 ={{ ucell_k }};
+console.log(sum1)
+let configg1 = {
+  type: 'gauge',
+  data: {
+    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    datasets: [{
+      data: [sum1,
+          sum1 + sum1*3/10,
+          sum1 + sum1*5/10,
+          sum1 + sum1],
+      value: sum1 + (promouters1 - kritics1),
+      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Gauge chart with datalabels plugin displaying labels'
+    },
+    layout: {
+      padding: {
+        bottom: 30
+      }
+    },
+    needle: {
+      radiusPercentage: 2,
+      widthPercentage: 3.2,
+      lengthPercentage: 80,
+      color: 'rgba(0, 0, 0, 1)'
+    },
+    valueLabel: {
+      display: false
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        formatter:  function (value, context) {
+          return context.chart.data.labels[context.dataIndex];
+        },
+        color: 'rgba(0, 0, 0, 1.0)',
+        backgroundColor: null,
+        font: {
+          size: 20,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+};
+const myChar1 = new Chart(
+      document.getElementById('Ucell_NPS'),
+      configg1
+    );
+</script>
+<script>
+let sum2 = ({{ uzmobile_p }} + {{ uzmobile_k }} + {{ uzmobile_n }});
+let promouters2 = {{ uzmobile_p }};
+let kritics2 ={{ uzmobile_k }};
+
+console.log(sum2)
+let configg2 = {
+  type: 'gauge',
+  data: {
+    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    datasets: [{
+      data: [sum2,
+          sum2 + sum2*3/10,
+          sum2 + sum2*5/10,
+          sum2 + sum2],
+      value: sum2 + (promouters2 - kritics2),
+      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Gauge chart with datalabels plugin displaying labels'
+    },
+    layout: {
+      padding: {
+        bottom: 30
+      }
+    },
+    needle: {
+      radiusPercentage: 2,
+      widthPercentage: 3.2,
+      lengthPercentage: 80,
+      color: 'rgba(0, 0, 0, 1)'
+    },
+    valueLabel: {
+      display: false
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        formatter:  function (value, context) {
+          return context.chart.data.labels[context.dataIndex];
+        },
+        color: 'rgba(0, 0, 0, 1.0)',
+        backgroundColor: null,
+        font: {
+          size: 20,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+};
+const myChar2 = new Chart(
+      document.getElementById('Uzmobile_NPS'),
+      configg2
+    );
+</script>
+<script>
+let sum3 = ({{ mobiuz_p }} + {{ mobiuz_k }} + {{ mobiuz_n }});
+let promouters3 = {{ mobiuz_p }};
+let kritics3 ={{ mobiuz_k }};
+console.log(sum3)
+let configg3 = {
+  type: 'gauge',
+  data: {
+    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    datasets: [{
+      data: [sum3,
+          sum3 + sum3*3/10,
+          sum3 + sum3*5/10,
+          sum3 + sum3],
+      value: sum3 + (promouters3 - kritics3),
+      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Gauge chart with datalabels plugin displaying labels'
+    },
+    layout: {
+      padding: {
+        bottom: 30
+      }
+    },
+    needle: {
+      radiusPercentage: 2,
+      widthPercentage: 3.2,
+      lengthPercentage: 80,
+      color: 'rgba(0, 0, 0, 1)'
+    },
+    valueLabel: {
+      display: false
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        formatter:  function (value, context) {
+          return context.chart.data.labels[context.dataIndex];
+        },
+        color: 'rgba(0, 0, 0, 1.0)',
+        backgroundColor: null,
+        font: {
+          size: 20,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+};
+const myChar3 = new Chart(
+      document.getElementById('Mobiuz_NPS'),
+      configg3
+    );
+</script>
     <div>
         <h1>Выборка</h1>
         <h3>{{ ucell_all }}</h3>
@@ -70,6 +317,10 @@
         <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>
         <canvas id="NumberOfSims"></canvas>
     </div>
+     <div class="chartBox" style="width: 100%; height: 200px">
+        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>
+        <canvas id="period"></canvas>
+    </div>
 
 
 
@@ -81,13 +332,9 @@
 
 
 
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
-    <script>
+<script>
     Chart.register(ChartjsPluginStacked100.default);
     // setup
     const data = {
@@ -157,6 +404,97 @@
     // Instantly assign Chart.js version
     const chartVersion = document.getElementById('chartVersion');
     chartVersion.innerText = Chart.version;
+    </script>
+<script>
+    const data8 = {
+      labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
+      datasets: [{
+        label: 'до 3 мес',
+        data: [{{ucelld3}}, {{ beelined3 }}, {{ uzmobiled3 }}, {{ mobiuzd3 }}],
+        backgroundColor: [
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,1)',
+        ]
+      },{
+        label: 'Пол года',
+        data: [{{ucelld6}}, {{ beelined6 }}, {{ uzmobiled6 }}, {{ mobiuzd6}}],
+        backgroundColor: [
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+        ]
+      },{
+        label: 'До 1 года',
+        data: [{{ucelld12}}, {{ beelined12 }}, {{ uzmobiled12 }}, {{ mobiuzd12}}],
+        backgroundColor: [
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+        ]
+      },{
+        label: 'От 1 до 3 лет',
+        data: [{{ucelld36}}, {{ beelined36 }}, {{ uzmobiled36 }}, {{ mobiuzd36}}],
+        backgroundColor: [
+          'rgba(165, 55, 25,1)',
+          'rgba(165, 55, 25,1)',
+          'rgba(165, 55, 25,1)',
+          'rgba(165, 55, 25,1)',
+        ]
+      },{
+        label: 'От 3 до 5 лет',
+        data: [{{ucelld60}}, {{ beelined60 }}, {{ uzmobiled60 }}, {{ mobiuzd60 }}],
+        backgroundColor: [
+          'rgba(16, 55, 253,1)',
+          'rgba(16, 55, 253,1)',
+          'rgba(16, 55, 253,1)',
+          'rgba(16, 55, 253,1)',
+        ]
+      },{
+        label: 'От 5 до 10 лет',
+        data: [{{ucelld120}}, {{ beelined120 }}, {{ uzmobiled120 }}, {{ mobiuzd120 }}],
+        backgroundColor: [
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+        ],
+        borderColor: [
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+          'rgba(165, 120, 253,1)',
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const config8 = {
+      type: 'bar',
+      data: data8,
+      options: {
+        plugins: {
+          stacked100: {
+              enable: true,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart8 = new Chart(
+      document.getElementById('period'),
+      config8
+    );
     </script>
     <script>
     const data7 = {
