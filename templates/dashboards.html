@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{#<!DOCTYPE html>#}
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
@@ -9,13 +9,552 @@
   <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
   <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
 </head>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
+<!-- Chart code -->
 <body>
+<script>
+am5.ready(function() {
+var root = am5.Root.new("chartdiv");
+var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+  panX: false,
+  panY: false,
+  startAngle: 180,
+  endAngle: 360
+}));
+var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+  innerRadius: -25
+});
+
+axisRenderer.grid.template.setAll({
+  stroke: false,
+  visible: true,
+  strokeOpacity: 0.8
+});
+
+var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+  min: -100,
+  max: 100,
+  strictMinMax: true,
+  renderer: axisRenderer
+}));
+var axisDataItem = xAxis.makeDataItem({});
+
+var clockHand = am5radar.ClockHand.new(root, {
+  pinRadius: am5.percent(12),
+  radius: am5.percent(100),
+  bottomWidth: 20
+})
+
+var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+  sprite: clockHand
+}));
+
+xAxis.createAxisRange(axisDataItem);
+
+var label = chart.radarContainer.children.push(am5.Label.new(root, {
+  fill: am5.color(0xffffff),
+  centerX: am5.percent(55),
+  textAlign: "center",
+  centerY: am5.percent(50),
+  fontSize: "100%"
+}));
+axisDataItem.set("value",({{ beeline_nps }}[0]-{{ beeline_nps }}[2])/({{ beeline_nps }}[0] + {{ beeline_nps }}[1]+{{ beeline_nps }}[2]) * 100);
+bullet.get("sprite").on("rotation", function () {
+  var value = axisDataItem.get("value");
+  xAxis.axisRanges.each(function (axisRange) {
+    if (value >= axisRange.get("value") && value <= axisRange.get("endValue"))
+      fill = axisRange.get("axisFill").get("fill");
+  })
+  label.set("text", Math.round(value).toString());
+  clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+  clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+});
+var bandsData = [{
+  angle: 180,
+  color: "#ee1f25",
+  lowScore: -100,
+  highScore: -80
+}, {
+  color: "#f04922",
+  angle: 198,
+  lowScore: -80,
+  highScore: -60
+}, {
+  color: "#f04922",
+  lowScore: -60,
+  angle: 216,
+  highScore: -40
+}, {
+  color: "#f04922",
+  angle: 234,
+  lowScore: -40,
+  highScore: -20
+}, {
+  color: "#f04922",
+  angle: 252,
+  lowScore: -20,
+  highScore: 0
+}, {
+  color: "#ACE1AF",
+  angle: 270,
+  lowScore: 0,
+  highScore: 20
+}, {
+  color: "#4FFFB0",
+  angle: 288,
+  lowScore: 20,
+  highScore: 40
+},
+{
+  color: "#32de84",
+  angle: 306,
+  lowScore: 40,
+  highScore: 60
+},{
+  color: "#17B169",
+  angle: 324,
+  lowScore: 60,
+  highScore: 80
+},{
+  color: "#228B22",
+  angle: 342,
+  lowScore: 80,
+  highScore: 100
+}];
+
+am5.array.each(bandsData, function (data) {
+  var axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
+  axisRange.setAll({
+    value: data.lowScore,
+    endValue: data.highScore,
+    startAngle: data.angle,
+    endAngle: data.angle+18,
+  });
+
+  axisRange.get("axisFill").setAll({
+    fill: am5.color(data.color),
+    fillOpacity: 0.9
+  });
+});
+chart.appear(3000);
+
+});
+</script>
+<script>
+am5.ready(function() {
+var root = am5.Root.new("chartdiv1");
+var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+  panX: false,
+  panY: false,
+  startAngle: 180,
+  endAngle: 360
+}));
+var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+  innerRadius: -25
+});
+
+axisRenderer.grid.template.setAll({
+  stroke: false,
+  visible: true,
+  strokeOpacity: 0.8
+});
+
+var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+  min: -100,
+  max: 100,
+  strictMinMax: true,
+  renderer: axisRenderer
+}));
+var axisDataItem = xAxis.makeDataItem({});
+
+var clockHand = am5radar.ClockHand.new(root, {
+  pinRadius: am5.percent(12),
+  radius: am5.percent(100),
+  bottomWidth: 20
+})
+
+var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+  sprite: clockHand
+}));
+
+xAxis.createAxisRange(axisDataItem);
+
+var label = chart.radarContainer.children.push(am5.Label.new(root, {
+  fill: am5.color(0xffffff),
+  centerX: am5.percent(55),
+  textAlign: "center",
+  centerY: am5.percent(50),
+  fontSize: "100%"
+}));
+axisDataItem.set("value",({{ ucell_nps }}[0]-{{ ucell_nps }}[2])/({{ ucell_nps }}[0] + {{ ucell_nps }}[1]+{{ ucell_nps }}[2]) * 100);
+bullet.get("sprite").on("rotation", function () {
+  var value = axisDataItem.get("value");
+  xAxis.axisRanges.each(function (axisRange) {
+    if (value >= axisRange.get("value") && value <= axisRange.get("endValue"))
+      fill = axisRange.get("axisFill").get("fill");
+  })
+  label.set("text", Math.round(value).toString());
+  clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+  clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+});
+var bandsData = [{
+  angle: 180,
+  color: "#ee1f25",
+  lowScore: -100,
+  highScore: -80
+}, {
+  color: "#f04922",
+  angle: 198,
+  lowScore: -80,
+  highScore: -60
+}, {
+  color: "#f04922",
+  lowScore: -60,
+  angle: 216,
+  highScore: -40
+}, {
+  color: "#f04922",
+  angle: 234,
+  lowScore: -40,
+  highScore: -20
+}, {
+  color: "#f04922",
+  angle: 252,
+  lowScore: -20,
+  highScore: 0
+}, {
+  color: "#ACE1AF",
+  angle: 270,
+  lowScore: 0,
+  highScore: 20
+}, {
+  color: "#4FFFB0",
+  angle: 288,
+  lowScore: 20,
+  highScore: 40
+},
+{
+  color: "#32de84",
+  angle: 306,
+  lowScore: 40,
+  highScore: 60
+},{
+  color: "#17B169",
+  angle: 324,
+  lowScore: 60,
+  highScore: 80
+},{
+  color: "#228B22",
+  angle: 342,
+  lowScore: 80,
+  highScore: 100
+}];
+
+am5.array.each(bandsData, function (data) {
+  var axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
+  axisRange.setAll({
+    value: data.lowScore,
+    endValue: data.highScore,
+    startAngle: data.angle,
+    endAngle: data.angle+18,
+  });
+
+  axisRange.get("axisFill").setAll({
+    fill: am5.color(data.color),
+    fillOpacity: 0.9
+  });
+});
+chart.appear(3000);
+
+});
+</script>
+<script>
+am5.ready(function() {
+var root = am5.Root.new("chartdiv2");
+var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+  panX: false,
+  panY: false,
+  startAngle: 180,
+  endAngle: 360
+}));
+var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+  innerRadius: -25
+});
+
+axisRenderer.grid.template.setAll({
+  stroke: false,
+  visible: true,
+  strokeOpacity: 0.8
+});
+
+var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+  min: -100,
+  max: 100,
+  strictMinMax: true,
+  renderer: axisRenderer
+}));
+var axisDataItem = xAxis.makeDataItem({});
+
+var clockHand = am5radar.ClockHand.new(root, {
+  pinRadius: am5.percent(12),
+  radius: am5.percent(100),
+  bottomWidth: 20
+})
+
+var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+  sprite: clockHand
+}));
+
+xAxis.createAxisRange(axisDataItem);
+
+var label = chart.radarContainer.children.push(am5.Label.new(root, {
+  fill: am5.color(0xffffff),
+  centerX: am5.percent(55),
+  textAlign: "center",
+  centerY: am5.percent(50),
+  fontSize: "100%"
+}));
+axisDataItem.set("value",({{ uzmobile_nps }}[0]-{{ uzmobile_nps }}[2])/({{ uzmobile_nps }}[0] + {{ uzmobile_nps }}[1]+{{ uzmobile_nps }}[2]) * 100);
+bullet.get("sprite").on("rotation", function () {
+  var value = axisDataItem.get("value");
+  xAxis.axisRanges.each(function (axisRange) {
+    if (value >= axisRange.get("value") && value <= axisRange.get("endValue"))
+      fill = axisRange.get("axisFill").get("fill");
+  })
+  label.set("text", Math.round(value).toString());
+  clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+  clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+});
+var bandsData = [{
+  angle: 180,
+  color: "#ee1f25",
+  lowScore: -100,
+  highScore: -80
+}, {
+  color: "#f04922",
+  angle: 198,
+  lowScore: -80,
+  highScore: -60
+}, {
+  color: "#f04922",
+  lowScore: -60,
+  angle: 216,
+  highScore: -40
+}, {
+  color: "#f04922",
+  angle: 234,
+  lowScore: -40,
+  highScore: -20
+}, {
+  color: "#f04922",
+  angle: 252,
+  lowScore: -20,
+  highScore: 0
+}, {
+  color: "#ACE1AF",
+  angle: 270,
+  lowScore: 0,
+  highScore: 20
+}, {
+  color: "#4FFFB0",
+  angle: 288,
+  lowScore: 20,
+  highScore: 40
+},
+{
+  color: "#32de84",
+  angle: 306,
+  lowScore: 40,
+  highScore: 60
+},{
+  color: "#17B169",
+  angle: 324,
+  lowScore: 60,
+  highScore: 80
+},{
+  color: "#228B22",
+  angle: 342,
+  lowScore: 80,
+  highScore: 100
+}];
+
+am5.array.each(bandsData, function (data) {
+  var axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
+  axisRange.setAll({
+    value: data.lowScore,
+    endValue: data.highScore,
+    startAngle: data.angle,
+    endAngle: data.angle+18,
+  });
+
+  axisRange.get("axisFill").setAll({
+    fill: am5.color(data.color),
+    fillOpacity: 0.9
+  });
+});
+chart.appear(3000);
+
+});
+</script>
+<script>
+am5.ready(function() {
+var root = am5.Root.new("chartdiv3");
+var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+  panX: false,
+  panY: false,
+  startAngle: 180,
+  endAngle: 360
+}));
+var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+  innerRadius: -25
+});
+
+axisRenderer.grid.template.setAll({
+  stroke: false,
+  visible: true,
+  strokeOpacity: 0.8
+});
+
+var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+  min: -100,
+  max: 100,
+  strictMinMax: true,
+  renderer: axisRenderer
+}));
+var axisDataItem = xAxis.makeDataItem({});
+
+var clockHand = am5radar.ClockHand.new(root, {
+  pinRadius: am5.percent(12),
+  radius: am5.percent(100),
+  bottomWidth: 20
+})
+
+var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+  sprite: clockHand
+}));
+
+xAxis.createAxisRange(axisDataItem);
+
+var label = chart.radarContainer.children.push(am5.Label.new(root, {
+  fill: am5.color(0xffffff),
+  centerX: am5.percent(55),
+  textAlign: "center",
+  centerY: am5.percent(50),
+  fontSize: "100%"
+}));
+axisDataItem.set("value",({{ mobiuz_nps }}[0]-{{ mobiuz_nps }}[2])/({{ mobiuz_nps }}[0] + {{ mobiuz_nps }}[1]+{{ mobiuz_nps }}[2]) * 100);
+bullet.get("sprite").on("rotation", function () {
+  var value = axisDataItem.get("value");
+  xAxis.axisRanges.each(function (axisRange) {
+    if (value >= axisRange.get("value") && value <= axisRange.get("endValue"))
+      fill = axisRange.get("axisFill").get("fill");
+  })
+  label.set("text", Math.round(value).toString());
+  clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+  clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+});
+var bandsData = [{
+  angle: 180,
+  color: "#ee1f25",
+  lowScore: -100,
+  highScore: -80
+}, {
+  color: "#f04922",
+  angle: 198,
+  lowScore: -80,
+  highScore: -60
+}, {
+  color: "#f04922",
+  lowScore: -60,
+  angle: 216,
+  highScore: -40
+}, {
+  color: "#f04922",
+  angle: 234,
+  lowScore: -40,
+  highScore: -20
+}, {
+  color: "#f04922",
+  angle: 252,
+  lowScore: -20,
+  highScore: 0
+}, {
+  color: "#ACE1AF",
+  angle: 270,
+  lowScore: 0,
+  highScore: 20
+}, {
+  color: "#4FFFB0",
+  angle: 288,
+  lowScore: 20,
+  highScore: 40
+},
+{
+  color: "#32de84",
+  angle: 306,
+  lowScore: 40,
+  highScore: 60
+},{
+  color: "#17B169",
+  angle: 324,
+  lowScore: 60,
+  highScore: 80
+},{
+  color: "#228B22",
+  angle: 342,
+  lowScore: 80,
+  highScore: 100
+}];
+
+am5.array.each(bandsData, function (data) {
+  var axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
+  axisRange.setAll({
+    value: data.lowScore,
+    endValue: data.highScore,
+    startAngle: data.angle,
+    endAngle: data.angle+18,
+  });
+
+  axisRange.get("axisFill").setAll({
+    fill: am5.color(data.color),
+    fillOpacity: 0.9
+  });
+});
+chart.appear(3000);
+
+});
+</script>
+{% load static %}
 <div style="display: flex">
-  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
-      <canvas id="Beeline_NPS"></canvas>
-       <h1>Beeline NPS - {{ beeline_nps }}%</h1>
-  </div>
+    <div id="canvas" style="width:30%; height: 300px; align-items: center; align-content: center; text-align: center">
+        <div id="chartdiv1"></div>
+        <h1>Ucell NPS</h1>
+    </div>
+    <div style="width: 70%; height: 300px">
+        <img src="{% static 'img/green.png' %}">
+        <img src="{% static 'img/yellow.png' %}">
+        <img src="{% static 'img/red.png' %}">
+    </div>
+</div>
+<div style="margin-top: 100px">
+    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
+        <div id="chartdiv"></div>
+        <h1>Beeline NPS</h1>
+    </div>
+    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
+        <div id="chartdiv2"></div>
+        <h1>Uzmobile NPS</h1>
+    </div>
+    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
+        <div id="chartdiv3"></div>
+        <h1>Mobiuz NPS</h1>
+    </div>
+</div>
+
   <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
       <canvas id="Ucell_NPS"></canvas>
        <h1>Ucell NPS - {{ ucell_nps }}%</h1>
@@ -28,69 +567,9 @@
       <canvas id="Mobiuz_NPS"></canvas>
        <h1>Mobiuz NPS - {{ mobiuz_nps }}%</h1>
   </div>
-</div>
-</body>
-<script>
-let sum = ({{ beeline_p }} + {{ beeline_k }} + {{ beeline_n }});
-let promouters = {{ beeline_p }};
-let neutrals = {{ beeline_n }};
-let kritics ={{ beeline_k }};
-let configg = {
-  type: 'gauge',
-  data: {
-    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
-    datasets: [{
-      data: [sum,
-          sum + sum*3/10,
-          sum + sum*5/10,
-          sum + sum],
-      value: sum + (promouters - kritics),
-      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
-      borderWidth: 2
-    }]
-  },
-  options: {
-      legend: {
-          display: false //This will do the task
-      },
-    responsive: true,
-    title: {
-      display: true,
-      text: 'Gauge chart with datalabels plugin displaying labels'
-    },
-    layout: {
-      padding: {
-        bottom: 30
-      }
-    },
-    needle: {
-      radiusPercentage: 2,
-      widthPercentage: 3.2,
-      lengthPercentage: 80,
-      color: 'rgba(0, 0, 0, 1)'
-    },
-    plugins: {
-      datalabels: {
-        display: false,
-        formatter:  function (value, context) {
-          return context.chart.data.labels[context.dataIndex];
-        },
-        color: 'rgba(0, 0, 0, 1.0)',
-        backgroundColor: null,
-        font: {
-          size: 20,
-          weight: 'bold'
-        }
-      }
-    }
-  }
-};
-const myChar = new Chart(
-      document.getElementById('Beeline_NPS'),
-      configg
-    );
-</script>
-<script>
+</div>=
+
+</script><script>
 let sum1 = ({{ ucell_p }} + {{ ucell_k }} + {{ ucell_n }});
 let promouters1 = {{ ucell_p }};
 let kritics1 ={{ ucell_k }};
@@ -159,7 +638,7 @@ console.log(sum2)
 let configg2 = {
   type: 'gauge',
   data: {
-    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    labels: ['Критики', 'Нейтралы', 'Промоутеры'],
     datasets: [{
       data: [sum2,
           sum2 + sum2*3/10,
@@ -219,7 +698,7 @@ console.log(sum3)
 let configg3 = {
   type: 'gauge',
   data: {
-    {#labels: ['Критики', 'Нейтралы', 'Промоутеры'],#}
+    labels: ['Критики', 'Нейтралы', 'Промоутеры'],
     datasets: [{
       data: [sum3,
           sum3 + sum3*3/10,
@@ -273,10 +752,10 @@ const myChar3 = new Chart(
 </script>
     <div>
         <h1>Выборка</h1>
-        <h3>{{ ucell_all }}</h3>
-        <h3>{{ beeline_all }}</h3>
-        <h3>{{ mobiuz_all }}</h3>
-        <h3>{{ uzmobile_all }}</h3>
+        <h3>{{ ucell }}</h3>
+        <h3>{{ beeline }}</h3>
+        <h3>{{ mobiuz }}</h3>
+        <h3>{{ uzmobil }}</h3>
     </div>
 
     <div style="display: flex; justify-content: space-around">
@@ -341,7 +820,7 @@ const myChar3 = new Chart(
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: 'Мужчины',
-        data: [{{ucell_men}}, {{ beeline_men }}, {{ uzmobile_men }}, {{ mobiuz_men }}],
+        data: {{ mens }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -357,7 +836,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: 'Женщины',
-        data: [{{ucell_woman}}, {{beeline_woman}}, {{ uzmobile_woman }}, {{ mobiuz_woman }}],
+        data: {{ womans }},
           backgroundColor: [
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
@@ -410,7 +889,7 @@ const myChar3 = new Chart(
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: 'до 3 мес',
-        data: [{{ucelld3}}, {{ beelined3 }}, {{ uzmobiled3 }}, {{ mobiuzd3 }}],
+        data:  {{ month3 }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -419,7 +898,7 @@ const myChar3 = new Chart(
         ]
       },{
         label: 'Пол года',
-        data: [{{ucelld6}}, {{ beelined6 }}, {{ uzmobiled6 }}, {{ mobiuzd6}}],
+        data: {{ month6 }},
         backgroundColor: [
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
@@ -428,7 +907,7 @@ const myChar3 = new Chart(
         ]
       },{
         label: 'До 1 года',
-        data: [{{ucelld12}}, {{ beelined12 }}, {{ uzmobiled12 }}, {{ mobiuzd12}}],
+        data: {{ month12 }},
         backgroundColor: [
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
@@ -437,7 +916,7 @@ const myChar3 = new Chart(
         ]
       },{
         label: 'От 1 до 3 лет',
-        data: [{{ucelld36}}, {{ beelined36 }}, {{ uzmobiled36 }}, {{ mobiuzd36}}],
+        data: {{ month36 }},
         backgroundColor: [
           'rgba(165, 55, 25,1)',
           'rgba(165, 55, 25,1)',
@@ -446,7 +925,7 @@ const myChar3 = new Chart(
         ]
       },{
         label: 'От 3 до 5 лет',
-        data: [{{ucelld60}}, {{ beelined60 }}, {{ uzmobiled60 }}, {{ mobiuzd60 }}],
+        data: {{ month60 }},
         backgroundColor: [
           'rgba(16, 55, 253,1)',
           'rgba(16, 55, 253,1)',
@@ -455,7 +934,7 @@ const myChar3 = new Chart(
         ]
       },{
         label: 'От 5 до 10 лет',
-        data: [{{ucelld120}}, {{ beelined120 }}, {{ uzmobiled120 }}, {{ mobiuzd120 }}],
+        data: {{ month120 }},
         backgroundColor: [
           'rgba(165, 120, 253,1)',
           'rgba(165, 120, 253,1)',
@@ -501,7 +980,7 @@ const myChar3 = new Chart(
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: '1 Сим',
-        data: [{{ucell1sim}}, {{ beeline1sim }}, {{ uzmobile1sim }}, {{ mobiuz1sim }}],
+        data: {{ sim1 }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -517,7 +996,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '2 Сим',
-        data: [{{ucell2sim}}, {{ beeline2sim }}, {{ uzmobile2sim }}, {{ mobiuz2sim}}],
+        data: {{ sim2 }},
         backgroundColor: [
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
@@ -563,7 +1042,7 @@ const myChar3 = new Chart(
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: '16-19',
-        data: [{{ucell_16_19}}, {{beeline_16_19}}, {{ uzmobile_16_19 }}, {{mobiuz_16_19}}],
+        data: {{ y16_19 }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -579,7 +1058,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '20-24',
-        data: [{{ ucell_20_24 }}, {{beeline_20_24}}, {{uzmobile_20_24}}, {{mobiuz_20_24}}],
+        data: {{ y20_24 }},
         backgroundColor: [
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
@@ -595,7 +1074,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '25-34',
-        data: [{{ ucell_25_34 }}, {{beeline_25_34}}, {{uzmobile_25_34}}, {{mobiuz_25_34}}],
+        data: {{ y25_34 }},
         backgroundColor: [
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
@@ -611,7 +1090,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '35-44',
-        data: [{{ucell_35_44}}, {{beeline_35_44}}, {{uzmobile_35_44}}, {{mobiuz_35_44}}],
+        data: {{ y35_44 }},
         backgroundColor: [
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
@@ -627,7 +1106,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '45-54',
-        data: [{{ucell_45_54}}, {{beeline_45_54}}, {{ uzmobile_45_54 }}, {{mobiuz_45_54}}],
+        data: {{ y45_54 }},
         backgroundColor: [
           'rgba(191, 191, 191,1)',
           'rgba(191, 191, 191,1)',
@@ -643,7 +1122,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: '55+',
-        data: [{{ ucell_55 }}, {{ beeline_55 }}, {{uzmobile_55}}, {{ mobiuz_55 }}],
+        data: {{ y55 }},
         backgroundColor: [
           'rgba(0, 0, 0,1)',
           'rgba(0, 0, 0,1)',
@@ -689,7 +1168,7 @@ const myChar3 = new Chart(
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
         label: 'Областной центр',
-        data: [{{ucell_center}}, {{beeline_center}}, {{ uzmobile_center }}, {{ mobiuz_center }}],
+        data: {{ center }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -705,7 +1184,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: 'Город',
-        data: [{{ucell_city}}, {{beeline_city}}, {{ uzmobile_city }}, {{ mobiuz_city }}],
+        data: {{ city }},
         backgroundColor: [
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
@@ -721,7 +1200,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: 'ПГТ',
-        data: [{{ucell_pgt}}, {{beeline_pgt}}, {{ uzmobile_pgt }}, {{mobiuz_pgt}}],
+        data: {{ pgt }},
         backgroundColor: [
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
@@ -737,7 +1216,7 @@ const myChar3 = new Chart(
         borderWidth: 1
       },{
         label: 'Село',
-        data: [{{ucell_village}}, {{beeline_village}}, {{ uzmobile_village }}, {{mobiuz_village}}],
+        data: {{ village }},
         backgroundColor: [
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
@@ -783,7 +1262,7 @@ const myChar3 = new Chart(
     const data3 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: ['{{ucell_work}}', '{{ beeline_work }}', '{{ uzmobile_work }}', '{{mobiuz_work}}'],
+        data: {{ work }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -815,7 +1294,7 @@ const myChar3 = new Chart(
     const data4 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [{{ucell_conversations}}, {{beeline_conversations}}, {{ uzmobile_conversations }}, {{ mobiuz_conversations }}],
+        data: {{ conversations }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -847,7 +1326,7 @@ const myChar3 = new Chart(
     const data5 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [{{ ucell_calls }}, {{beeline_calls}}, {{ uzmobile_calls }}, {{ mobiuz_calls }}],
+        data: {{ calls }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
@@ -879,7 +1358,7 @@ const myChar3 = new Chart(
     const data6 = {
       labels: ['Ucell', 'Beeline', 'Uzmobile', 'MobiUz'],
       datasets: [{
-        data: [{{ ucell_internet }}, {{beeline_internet}}, {{uzmobile_internet}}, {{mobiuz_internet}}],
+        data: {{ internet }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
