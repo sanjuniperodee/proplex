@@ -27,8 +27,7 @@
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">Дверная фурнитура</h2>
         <div class="row px-xl-5">
-
-                {% for item in object_list %}
+            {% for item in object_list %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
                     <a href="{{ item.get_absolute_url }}">
@@ -62,14 +61,15 @@
     </div>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">ПРОФИЛЬ</h2>
-        {% for item in object_list2 %}
         <div class="row px-xl-5">
-            <a href="{{ item.get_absolute_url }}">
+            {% for item in object_list2 %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
+                    <a href="{{ item.get_absolute_url }}">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                        <img class="img" src="{{ item.image.url }}" alt="">
                     </div>
+                    </a>
                     <div class="text-center py-4" style="word-break: break-word;">
                         <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
@@ -86,26 +86,24 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
                         <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
                     </div>
                 </div>
             </div>
-            </a>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">МОСКИТНЫЙ ПРОФИЛЬ</h2>
-        {% for item in object_list3 %}
         <div class="row px-xl-5">
-            <a href="{{ item.get_absolute_url }}">
+            {% for item in object_list3 %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
+                    <a href="{{ item.get_absolute_url }}">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                        <img class="img" src="{{ item.image.url }}" alt="">
                     </div>
+                    </a>
                     <div class="text-center py-4" style="word-break: break-word;">
                         <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
@@ -122,26 +120,24 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
                         <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
                     </div>
                 </div>
             </div>
-            </a>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">VHS</h2>
-        {% for item in object_list4 %}
         <div class="row px-xl-5">
-            <a href="{{ item.get_absolute_url }}">
+            {% for item in object_list4 %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
+                    <a href="{{ item.get_absolute_url }}">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                        <img class="img" src="{{ item.image.url }}" alt="">
                     </div>
+                    </a>
                     <div class="text-center py-4" style="word-break: break-word;">
                         <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
@@ -158,26 +154,25 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
                         <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
                     </div>
                 </div>
             </div>
-            </a>
+            {% endfor %}
+
         </div>
-        {% endfor %}
     </div>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">СТЕКЛОПАКЕТ</h2>
-        {% for item in object_list6 %}
-        <div class="row px-xl-5">
-            <a href="{{ item.get_absolute_url }}">
+       <div class="row px-xl-5">
+            {% for item in object_list5 %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
+                    <a href="{{ item.get_absolute_url }}">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                        <img class="img" src="{{ item.image.url }}" alt="">
                     </div>
+                    </a>
                     <div class="text-center py-4" style="word-break: break-word;">
                         <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
@@ -194,26 +189,25 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
                         <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
                     </div>
                 </div>
             </div>
-            </a>
+            {% endfor %}
+
         </div>
-        {% endfor %}
     </div>
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">КОМПЛЕКТУЮЩИЕ</h2>
-        {% for item in object_list6 %}
         <div class="row px-xl-5">
-            <a href="{{ item.get_absolute_url }}">
+            {% for item in object_list6 %}
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
                 <div class="product-item bg-light mb-4">
+                    <a href="{{ item.get_absolute_url }}">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                        <img class="img" src="{{ item.image.url }}" alt="">
                     </div>
+                    </a>
                     <div class="text-center py-4" style="word-break: break-word;">
                         <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
@@ -230,15 +224,13 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
                         <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
                     </div>
                 </div>
             </div>
-            </a>
+            {% endfor %}
+
         </div>
-        {% endfor %}
     </div>
 
     {% include "footer.html" %}
