@@ -13,7 +13,7 @@ import openpyxl
 import random
 import string
 import smtplib
-import urllib.request
+# import urllib.requestx
 import subprocess
 import stripe
 import requests
