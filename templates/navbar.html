@@ -39,14 +39,14 @@
             </div>
             <div class="col-lg-4 col-6 text-right">
                 <div class="input-group" style="width: 100%">
-                    <input type="text" class="form-control" placeholder="Поиск" style="width: 50%; height: 40px">
+                    <input type="text" class="form-control" placeholder="Поиск" style="height: 40px">
                     <div class="input-group-append" style="margin-right: 10%">
                         <span class="input-group-text bg-transparent text-primary" style="height: 40px">
                             <i class="fa fa-search" style="color: dodgerblue"></i>
                         </span>
                     </div>
-                    <img src="{% static 'img/basket.png' %}" alt="" width="8%" height="100%" style="margin-right: 5%">
-                    <img src="{% static 'img/profile.png' %}" alt="" width="8%" height="100%">
+                    <a href="{% url 'core:order-summary' %}"><img src="{% static 'img/basket.png' %}" alt="" height="40px" style="margin-right: 30px"></a>
+                    <a href="{% url 'account_login' %}"><img src="{% static 'img/profile.png' %}" alt=""  height="40px"></a>
                 </div>
             </div>
         </div>
