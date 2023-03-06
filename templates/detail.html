@@ -2,37 +2,14 @@
 <html lang="en">
 {% load static %}
 <head>
-    <meta charset="utf-8">
-    <title>Ybeauty.kz</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="{% static 'lib/animate/animate.min.css'%}" rel="stylesheet">
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{% static  'css/style4.css'%}" rel="stylesheet">
-    <style>
-        *{
-            font-family: Lato;
-            padding: 0;
-            margin: 0;
-            {#font-family: 'Cormorant', serif;#}
-        }
-        body{
-            background-color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+    <link href="{% static 'css/style4.css'%}" rel="stylesheet">
 </head>
 
 <body>
@@ -42,11 +19,11 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="{% url 'core:home' %}">В Начало</a>
-                    <a class="breadcrumb-item text-dark" href="{% url 'core:home1' object.category.title 'all'%}">{{ object.category.title }}</a>
-                    <a class="breadcrumb-item text-dark" href="{% url 'core:home1' object.category.title object.category.subcategory%}">{{ object.category.subcategory }}</a>
-                    <span class="breadcrumb-item active">{{ object.title }}</span>
+                <nav class="breadcrumb mb-30">
+                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home' %}">В Начало</a>
+                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title 'all'%}">{{ object.category.title }}</a>
+                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title object.category.subcategory%}">{{ object.category.subcategory }}</a>
+                    <span class="breadcrumb-item active" style="color: darkblue">{{ object.title }}</span>
                 </nav>
             </div>
         </div>
@@ -62,7 +39,7 @@
             </div>
 
             <div class="col-lg-7 h-auto mb-30">
-                <div class="h-100 bg-light p-30">
+                <div class="h-100 p-30">
                     <h3>{{ object.title }}</h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
@@ -76,7 +53,8 @@
                     <h3 class="font-weight-semi-bold mb-4">{{ object.price }}KZT</h3>
                     <p class="mb-4">{{ object.description }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
-                         <a class='btn btn-primary float-right' href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button">Добавить в Корзину</button>
+{#                         <a class='btn btn-primary float-right' href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
                     </div>
                 </div>
             </div>
@@ -85,7 +63,7 @@
         </div>
         <div class="row px-xl-5">
             <div class="col">
-                <div class="bg-light p-30">
+                <div class="p-30">
                     <div>
                         <h4 class="mb-3">Дополнительное описание</h4>
                         <p>{{ object.description1 }}</p>

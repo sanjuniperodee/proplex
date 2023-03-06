@@ -215,7 +215,7 @@ def home(request):
         'object_list6': page_obj6
     }
 
-    return render(request, 'home_page.html', context)
+    return render(request, 'index.html', context)
 
 
 @login_required

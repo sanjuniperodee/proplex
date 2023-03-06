@@ -1,98 +1,246 @@
 {% load static %}
-{% load cart_template_tags %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block head_title %}{% endblock %}</title>
-  {% block extra_head %}
-  {% endblock %}
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style1.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %}">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
-
-  </head>
-
-  <body>
-
-    <header role="banner">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">Ybeauty.kz</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarsExample05">
-            <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Recipes</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="#">Food Catering</a>
-                  <a class="dropdown-item" href="#">Drink &amp; Beverages</a>
-                  <a class="dropdown-item" href="#">Wedding &amp; Birthday</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">News</a>
-              </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item cta-btn">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!-- END header -->
-
-
-    <div class="hero" style="background-image: url({% static 'img/hero_1.jpg' %});"></div>
-  
-
-
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.sticky.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-  </body>
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'css/style4.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+    <style>
+        .img{
+            width: 100%;
+            height: 280px;
+        }
+        @media screen  and (max-width: 760px){
+            .img{
+                height: 180px;
+            }
+        }
+    </style>
+</head>
 <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">Дверная фурнитура</h2>
+        {% for item in object_list %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
-    {% block content %}
-    {% endblock content %}
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">ПРОФИЛЬ</h2>
+        {% for item in object_list2 %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
 
-    {% block extra_body %}
-    {% endblock %}
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">МОСКИТНЫЙ ПРОФИЛЬ</h2>
+        {% for item in object_list3 %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">VHS</h2>
+        {% for item in object_list4 %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">СТЕКЛОПАКЕТ</h2>
+        {% for item in object_list6 %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center">КОМПЛЕКТУЮЩИЕ</h2>
+        {% for item in object_list6 %}
+        <div class="row px-xl-5">
+            <a href="{{ item.get_absolute_url }}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img" src="{{ item.image.url }}" alt="" height="300px">
+                    </div>
+                    <div class="text-center py-4" style="word-break: break-word;">
+                        <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
+
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>{{ item.get_price }}₸</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star-half-alt text-primary mr-1"></small>
+                            <small class="far fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!-- <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'> -->
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+{#                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>#}
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 
     {% include "footer.html" %}
-    {% include "scripts.html" %}
-
-    {% block extra_scripts %}
-    {% endblock extra_scripts %}
 </body>
 </html>
