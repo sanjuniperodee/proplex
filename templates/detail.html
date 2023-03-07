@@ -53,8 +53,8 @@
                     <h3 class="font-weight-semi-bold mb-4">{{ object.price }}KZT</h3>
                     <p class="mb-4">{{ object.description }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
-                         <a style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>
-{#                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button">Добавить в Корзину</button>#}
+{#                         < style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
+                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</button>
 {#                         <a class='btn btn-primary float-right' href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
                     </div>
                 </div>
@@ -76,7 +76,32 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    const buttons = document.querySelectorAll('button[type="button"]');
+    {#console.log(buttons)#}
+    for(let i = 1; i < buttons.length ; i++) {
+        if(buttons[i].id == 'add_to_card'){
+            console.log(buttons[i]['value'])
+            buttons[i].addEventListener('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "core:add-to-cart1" %}',
+                    data:
+                    {
+                        slug:buttons[i]['value'],
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType:'json',
+                    success:function(){
+                        window.location.assign({% url 'core:order-summary' %});
+                    }
+                })
+            });
+        }
+    }
+    </script>
     {% include "footer.html" %}
 </body>
 

@@ -64,6 +64,8 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <a class="nav-item nav-link" href="{% url 'core:order-summary' %}"><img src="{% static 'img/basket.png' %}" alt="" height="40px" style="margin-right: 30px"></a>
+                        <a class="nav-item nav-link" href="{% url 'account_login' %}"><img src="{% static 'img/profile.png' %}" alt=""  height="40px"></a>
                         <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="nav-item nav-link" style="color:black;">Дверная фурнитура</a>
                         <a href="{% url 'core:home1' 'профиль' 'all'%}" class="nav-item nav-link" style="color:black;">ПРОФИЛЬ</a>
                         <a href="{% url 'core:home1' 'москитный профиль' 'all'%}" style="color:black;" class="nav-item nav-link">МОСКИТНЫЙ ПРОФИЛЬ</a>
