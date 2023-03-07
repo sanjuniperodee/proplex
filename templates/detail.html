@@ -53,7 +53,8 @@
                     <h3 class="font-weight-semi-bold mb-4">{{ object.price }}KZT</h3>
                     <p class="mb-4">{{ object.description }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
-                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button">Добавить в Корзину</button>
+                         <a style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>
+{#                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button">Добавить в Корзину</button>#}
 {#                         <a class='btn btn-primary float-right' href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
                     </div>
                 </div>

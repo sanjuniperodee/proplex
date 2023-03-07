@@ -1,8 +1,9 @@
+from django.core.checks import messages
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.db import models
 from django.http import request
-from django.shortcuts import reverse, get_object_or_404
+from django.shortcuts import reverse, get_object_or_404, redirect
 from django.utils import timezone
 from django_countries.fields import CountryField
 
@@ -83,22 +84,22 @@ class Item(models.Model):
             if order.items.filter(item__slug=item.slug).exists():
                 order_item.quantity += 1
                 order_item.save()
-                # messages.info(request, "This item quantity was updated.")
-                # return redirect("core:order-summary")
+                messages.info(request, "This item quantity was updated.")
+                return redirect("core:order-summary")
             else:
                 order.items.add(order_item)
-                # messages.info(request, "This item was added to your cart.")
-                # return redirect("core:order-summary")
+                messages.info(request, "This item was added to your cart.")
+                return redirect("core:order-summary")
         else:
             ordered_date = timezone.now()
             order = Order.objects.create(
                 user=request.user, ordered_date=ordered_date)
             order.items.add(order_item)
-            # messages.info(request, "This item was added to your cart.")
-        # return redirect("core:order-summary")
-        # return reverse("core:add-to-cart", kwargs={
-        #     'slug': self.slug
-        # })
+            messages.info(request, "This item was added to your cart.")
+        return redirect("core:order-summary")
+        return reverse("core:add-to-cart", kwargs={
+            'slug': self.slug
+        })
 
     def get_remove_from_cart_url(self):
         return reverse("core:remove-from-cart", kwargs={
