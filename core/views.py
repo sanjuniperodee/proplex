@@ -155,6 +155,12 @@ def home1(request, ctg, ctg2):
     if ctg2 == 'all':
         object_list = Item.objects.filter(category__title=ctg).order_by('title')
         brands = SubCategory.objects.filter(category__title=ctg)
+    elif ctg2 == 'price_up':
+        object_list = Item.objects.filter(category__title=ctg).order_by('price')
+        brands = SubCategory.objects.filter(category__title=ctg)
+    elif ctg2 == 'price_down':
+        object_list = Item.objects.filter(category__title=ctg).order_by('-price')
+        brands = SubCategory.objects.filter(category__title=ctg)
     else:
         object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
         brands = Brand.objects.filter(category__title=ctg, category__subcategory__title=ctg2)
@@ -162,24 +168,14 @@ def home1(request, ctg, ctg2):
         print("I'm here mfs")
 
     if request.method == 'POST':
-        if ctg2 == 'all':
-            brandy = request.POST.getlist('scales')
-            object_list = []
-            i = 0
-            for brand in brandy:
-                i+=1
-                object_list += Item.objects.filter(category__title=ctg, category__subcategory__title=brand).order_by('title')
-            if i == 0:
-                object_list = Item.objects.filter(category__title=ctg)
-        else:
-            brandy = request.POST.getlist('scales')
-            object_list = []
-            i = 0
-            for brand in brandy:
-                i+=1
-                object_list += Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2, brand__title=brand).order_by('title')
-            if i == 0:
-                object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
+        brandy = request.POST.getlist('scales')
+        object_list = []
+        i = 0
+        for brand in brandy:
+            i+=1
+            object_list += Item.objects.filter(category__title=ctg, category__subcategory__title=brand).order_by('title')
+        if i == 0:
+            object_list = Item.objects.filter(category__title=ctg)
     paginator = Paginator(object_list, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

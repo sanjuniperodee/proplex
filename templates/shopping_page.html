@@ -173,9 +173,8 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Сортировать</button>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_up'%}">По цене вверх</a>
+                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_down'%}">По цене вниз </a>
                                     </div>
                                 </div>
                             </div>
