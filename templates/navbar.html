@@ -53,34 +53,23 @@
     </div>
     <!-- Topbar End -->
     <!-- Navbar Start -->
-    <div class="container-fluid bg-dark mb-30" style="margin-bottom: 0px; padding-bottom: 0px">
+    <div class="container-fluid mb-30" style="margin-bottom: 0px; padding-bottom: 0px">
         <div class="row px-xl-5">
             <div class="col-lg-9 d-block d-md-none">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <nav class="navbar navbar-expand-lg navbar-dark py-3 py-lg-0 px-0">
                     <a href="{% url 'core:home' %}" class="text-decoration-none">
-                        <img src="{% static 'img/head.png' %}" alt="" height="60px">
+                        <img src="{% static 'img/logo.png' %}" alt="" height="60px">
                     </a>
-                    <button type="button" class="navbar-toggler " data-toggle="collapse" data-target="#navbarCollapse">
+                    <button type="button" class="navbar-toggler" style="background-color: #0b51c5" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="color:dodgerblue;">
-
-                        <div class="nav-item dropdown dropdown">
-                            <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="nav-link dropdown-toggle" style="color:white;" data-toggle="dropdown">Дверная фурнитура</a>
-                        </div>
-                        <div class="nav-item dropdown dropdown">
-                            <a href="{% url 'core:home1' 'профиль' 'all'%}" class="nav-link dropdown-toggle" style="color:white;" data-toggle="dropdown">ПРОФИЛЬ</a>
-                        </div>
-                        <a href="{% url 'core:home1' 'москитный профиль' 'all'%}" style="color:white" class="nav-item nav-link">МОСКИТНЫЙ ПРОФИЛЬ</a>
-                        <div class="nav-item dropdown dropdown">
-                            <a href="{% url 'core:home1' 'VHS' 'all'%}" class="nav-link dropdown-toggle" style="color:white;" data-toggle="dropdown">VHS </a>
-                        </div>
-                        <div class="nav-item dropdown dropdown">
-                            <a href="{% url 'core:home1' 'стеклопакет' 'all'%}" class="nav-link dropdown-toggle" style="color:white;" data-toggle="dropdown">СТЕКЛОПАКЕТ</a>
-                        </div>
-                        <div class="nav-item dropdown dropdown">
-                            <a href="{% url 'core:home1' 'Комплектующие' 'all'%}" class="nav-link dropdown-toggle" style="color:white;" data-toggle="dropdown">КОМПЛЕКТУЮЩИЕ</a>
-                        </div>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="nav-item nav-link" style="color:black;">Дверная фурнитура</a>
+                        <a href="{% url 'core:home1' 'профиль' 'all'%}" class="nav-item nav-link" style="color:black;">ПРОФИЛЬ</a>
+                        <a href="{% url 'core:home1' 'москитный профиль' 'all'%}" style="color:black;" class="nav-item nav-link">МОСКИТНЫЙ ПРОФИЛЬ</a>
+                        <a href="{% url 'core:home1' 'VHS' 'all'%}" class="nav-item nav-link" style="color:black;">VHS </a>
+                        <a href="{% url 'core:home1' 'стеклопакет' 'all'%}" class="nav-item nav-link" style="color:black;">СТЕКЛОПАКЕТ</a>
+                        <a href="{% url 'core:home1' 'Комплектующие' 'all'%}" class="nav-item nav-link" style="color:black;">КОМПЛЕКТУЮЩИЕ</a>
                     </div>
                 </nav>
             </div>
