@@ -41,15 +41,6 @@
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 p-30">
                     <h3>{{ object.title }}</h3>
-                    <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
-                    </div>
                     <h3 class="font-weight-semi-bold mb-4">{{ object.price }}KZT</h3>
                     <p class="mb-4">{{ object.description }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
@@ -95,7 +86,7 @@
                     },
                     dataType:'json',
                     success:function(){
-                        window.location.assign({% url 'core:order-summary' %});
+                        alert("Добавлено в корзину " + buttons[i]['value']);
                     }
                 })
             });

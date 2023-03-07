@@ -164,9 +164,6 @@ def home1(request, ctg, ctg2):
     if request.method == 'POST':
         if ctg2 == 'all':
             brandy = request.POST.getlist('scales')
-            if len(brandy) == 1:
-                print('aaaa')
-                return redirect("core:home1", ctg=ctg, ctg2=brandy[0])
             object_list = []
             i = 0
             for brand in brandy:
@@ -199,12 +196,12 @@ def home1(request, ctg, ctg2):
 
 @csrf_exempt
 def home(request):
-    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='стеклопакет').order_by('title'), 4).get_page(request.GET.get('page'))
-    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 4).get_page(request.GET.get('page'))
+    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='стеклопакет').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 6).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
         'object_list': page_obj,
