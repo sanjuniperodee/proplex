@@ -56,8 +56,7 @@ class Item(models.Model):
     description = models.TextField(default="NONE")
     description1 = models.TextField(default="NONE")
     description2 = models.TextField(default="NONE")
-    image = models.FileField(blank=True)
-
+    image = models.ImageField()
     def __str__(self):
         return self.title
 
@@ -106,8 +105,7 @@ class Item(models.Model):
 
 class ItemImage(models.Model):
     post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
-    images = models.FileField(upload_to='media/')
-
+    images = models.ImageField()
     def __str__(self):
         return self.post.title
 

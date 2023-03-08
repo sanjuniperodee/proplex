@@ -10,11 +10,93 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
     <link href="{% static 'css/style4.css'%}" rel="stylesheet">
+    <style>
+        .product {
+          width: 100%;
+          height: 100vh;
+        }
+
+        .product__images {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .product__main-image {
+          height: 100%;
+          width: 500px;
+          object-fit: cover;
+          cursor: pointer;
+          border: 1px solid #070707;
+        }
+        @media screen  and (max-width: 760px){
+            .product__main-image {
+          height: 100%;
+          width: 340px;
+          object-fit: cover;
+          cursor: pointer;
+          border: 1px solid #070707;
+        }
+        }
+
+        .product__slider-wrap {
+          max-width: 500px;
+          min-height: 100px;
+          display: flex;
+          align-items: center;
+        }
+
+        .product__slider {
+          width: 100%;
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+        }
+
+        .product__image {
+          margin: 20px 0 0 20px;
+          width: 100%;
+          height: 100px;
+          object-fit: cover;
+          cursor: pointer;
+          opacity: 0.5;
+          {#margin: 0.25rem;#}
+          border: 1px solid #070707;
+        }
+
+        .product__image:first-child {
+          margin-left: 0;
+        }
+
+        .product__image:last-child {
+          margin-right: 0;
+        }
+
+        .product__image:hover {
+          opacity: 1;
+        }
+
+        .product__image--active {
+          opacity: 1;
+        }
+
+        .product__slider::-webkit-scrollbar {
+          height: 10px;
+        }
+
+        .product__slider::-webkit-scrollbar-thumb {
+          background-color: #f9564f;
+          border-radius: 50px;
+        }
+
+    </style>
 </head>
 
 <body>
     {% include "navbar.html" %}
-
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -35,7 +117,28 @@
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
-                <img src="{{ object.image.url }}" width="420px" height="420px" class="img-fluid" alt="">
+                <div class="product__images">
+                    <img src="{{ object.image.url }}"
+                        alt="google pixel 6"
+                        class="product__main-image"
+                        id="main-image"
+                    />
+
+                    <div class="product__slider-wrap">
+                        <div class="product__slider">
+                            <img src="{{ object.image.url }}"
+                                class="product__image product__image--active"
+                            />
+                            {% for i in images %}
+                            <img src="{{ i.images.url }}"
+                                class="product__image product__image--active"
+                            />
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+{#                <img src="{{ object.image.url }}" width="420px" height="420px" class="img-fluid" alt="">#}
             </div>
 
             <div class="col-lg-7 h-auto mb-30">
@@ -68,6 +171,22 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        const mainImage = document.getElementById("main-image");
+const images = document.querySelectorAll(".product__image");
+
+images.forEach((image) => {
+    image.addEventListener("click", (event) => {
+        mainImage.src = event.target.src;
+
+        document
+            .querySelector(".product__image--active")
+            .classList.remove("product__image--active");
+
+        event.target.classList.add("product__image--active");
+    });
+});
+    </script>
     <script type="text/javascript">
     const buttons = document.querySelectorAll('button[type="button"]');
     {#console.log(buttons)#}

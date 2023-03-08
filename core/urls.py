@@ -1,4 +1,5 @@
-from django.urls import path
+from django.contrib.staticfiles.views import serve
+from django.urls import path, re_path
 from .views import *
 
 app_name = 'core'
@@ -9,7 +10,7 @@ urlpatterns = [
     path('filter/<str:ctg>/<str:ctg2>', home1, name='home1'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('order-summary/', order_summary, name='order-summary'),
-    path('product/<slug>/', ItemDetailView.as_view(), name='product'),
+    path('product/<slug>/', detail, name='product'),
     path('add-to-cart/<slug>', add_to_cart, name='add-to-cart'),
     path('add-to-cart1', add_to_cart1, name='add-to-cart1'),
     path('add-coupon/', AddCouponView.as_view(), name='add-coupon'),

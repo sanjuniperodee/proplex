@@ -31,7 +31,7 @@ from django.views.generic import ListView, DetailView, View
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Coupon, Refund, UserProfile, Brand, Category, SubCategory
+from .models import Item, OrderItem, Order, Address, Coupon, Refund, UserProfile, Brand, Category, SubCategory, ItemImage
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -442,6 +442,18 @@ def order_summary(request):
     except ObjectDoesNotExist:
         messages.warning(request, "You do not have an active order")
         return redirect("/")
+
+
+def detail(request, slug):
+    item = Item.objects.filter(slug=slug)[0]
+    images = ItemImage.objects.filter(post__slug=slug)
+    print(12312313)
+    print(images[0].images)
+    context = {
+        'object': item,
+        'images': images
+    }
+    return render(request, 'detail.html', context)
 
 
 class ItemDetailView(DetailView):
