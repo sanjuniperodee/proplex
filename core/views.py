@@ -192,7 +192,9 @@ def home1(request, ctg, ctg2):
 
 @csrf_exempt
 def home(request):
+
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 6).get_page(request.GET.get('page'))
+    item1 = page_obj[0]
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 6).get_page(request.GET.get('page'))
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 6).get_page(request.GET.get('page'))
     page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 6).get_page(request.GET.get('page'))
@@ -200,7 +202,8 @@ def home(request):
     page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 6).get_page(request.GET.get('page'))
     context = {
         'str': 'none',
-        'object_list': page_obj,
+        'item1' : item1,
+        'object_list': page_obj[1:],
         'object_list2': page_obj2,
         'object_list3': page_obj3,
         'object_list4': page_obj4,
