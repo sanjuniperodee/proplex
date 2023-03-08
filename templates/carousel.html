@@ -4,7 +4,7 @@
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <div class="col-lg-3 col-md-3 col-sm-5 pb-1 col-6">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item1.get_absolute_url }}">
                             <div class="product-img position-relative overflow-hidden">
@@ -63,7 +63,7 @@
 let items = document.querySelectorAll('.carousel .carousel-item')
 
 items.forEach((el) => {
-    const minPerSlide = 4
+    const minPerSlide = 6
     let next = el.nextElementSibling
     for (var i=1; i<minPerSlide; i++) {
         if (!next) {
