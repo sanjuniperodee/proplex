@@ -24,45 +24,45 @@
             }
         }
         @media (max-width: 767px) {
-    .carousel-inner .carousel-item > div {
-        display: none;
-    }
-    .carousel-inner .carousel-item > div:first-child {
-        display: block;
-    }
-}
+            .carousel-inner .carousel-item > div {
+                display: flex;
+            }
+            .carousel-inner .carousel-item > div:first-child {
+                display: block;
+            }
+        }
 
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-    display: flex;
-}
+        .carousel-inner .carousel-item.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            display: flex;
+        }
 
-/* medium and up screens */
-@media (min-width: 768px) {
+        /* medium and up screens */
+        @media (min-width: 768px) {
 
-    .carousel-inner .carousel-item-end.active,
-    .carousel-inner .carousel-item-next {
-      transform: translateX(25%);
-    }
+            .carousel-inner .carousel-item-end.active,
+            .carousel-inner .carousel-item-next {
+              transform: translateX(25%);
+            }
 
-    .carousel-inner .carousel-item-start.active,
-    .carousel-inner .carousel-item-prev {
-      transform: translateX(-25%);
-    }
-}
+            .carousel-inner .carousel-item-start.active,
+            .carousel-inner .carousel-item-prev {
+              transform: translateX(-25%);
+            }
+        }
 
-.carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start {
-  transform: translateX(0);
-}
+        .carousel-inner .carousel-item-end,
+        .carousel-inner .carousel-item-start {
+          transform: translateX(0);
+        }
 
 
     </style>
 </head>
 <body>
     {% include "navbar.html" %}
-    <div class="container-fluid pt-5 pb-3">
+    <div class="container-fluid pt-5 pb-3" style="width: 95%">
         <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="text-decoration-none"><h2 class="text-uppercase mx-xl-5 mb-4 justify-content-center bg-default" >Дверная фурнитура</h2></a>
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -111,23 +111,44 @@
                 </div>
                 {% endfor %}
             </div>
-            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
             </a>
-            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
             </a>
         </div>
+    </div>
     <div class="d-flex align-items-center justify-content-center">
         <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}"> Смотреть еще </a>
-    </div>
     </div>
     <div class="container-fluid pt-5 pb-3">
         <a href="{% url 'core:home1' 'профиль' 'all'%}" class="text-decoration-none"><h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">ПРОФИЛЬ</h2></a>
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
+                        <div class="product-item bg-light mb-4">
+                            <a href="{{ item2.get_absolute_url }}">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
+                            </div>
+                            </a>
+                            <div class="text-center py-4" style="word-break: break-word;">
+                                <a class="text-decoration-none" href="{{ item2.get_absolute_url }}"><p class="h6">{{ item2.title }}</p></a>
+
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ item2.get_price }}₸</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item2.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for item in object_list2 %}
-                <div class="carousel-item {% if item.title == 'Товар номер 1' %}active {% endif %}">
+                <div class="carousel-item ">
                     <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item.get_absolute_url }}">
@@ -150,6 +171,13 @@
                 </div>
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
+            </a>
+        </div>
     <div class="d-flex align-items-center justify-content-center">
         <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'профиль' 'all'%}"> Смотреть еще </a>
     </div>
@@ -158,8 +186,29 @@
         <a href="{% url 'core:home1' 'москитный профиль' 'all'%}" class="text-decoration-none"><h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">МОСКИТНЫЙ ПРОФИЛЬ</h2></a>
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
+                        <div class="product-item bg-light mb-4">
+                            <a href="{{ item3.get_absolute_url }}">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
+                            </div>
+                            </a>
+                            <div class="text-center py-4" style="word-break: break-word;">
+                                <a class="text-decoration-none" href="{{ item3.get_absolute_url }}"><p class="h6">{{ item3.title }}</p></a>
+
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ item3.get_price }}₸</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item3.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for item in object_list3 %}
-                <div class="carousel-item {% if item.title == 'Товар номер 1' %}active {% endif %}">
+                <div class="carousel-item ">
                     <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item.get_absolute_url }}">
@@ -182,6 +231,13 @@
                 </div>
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
+            </a>
+        </div>
     <div class="d-flex align-items-center justify-content-center">
         <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'москитный профиль' 'all'%}"> Смотреть еще </a>
     </div>
@@ -190,8 +246,29 @@
         <a href="{% url 'core:home1' 'VHS' 'all'%}" class="text-decoration-none"><h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">VHS</h2></a>
        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
+                        <div class="product-item bg-light mb-4">
+                            <a href="{{ item4.get_absolute_url }}">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
+                            </div>
+                            </a>
+                            <div class="text-center py-4" style="word-break: break-word;">
+                                <a class="text-decoration-none" href="{{ item4.get_absolute_url }}"><p class="h6">{{ item4.title }}</p></a>
+
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ item4.get_price }}₸</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item4.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for item in object_list4 %}
-                <div class="carousel-item {% if item.title == 'Товар номер 1' %}active {% endif %}">
+                <div class="carousel-item ">
                     <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item.get_absolute_url }}">
@@ -214,6 +291,13 @@
                 </div>
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
+            </a>
+        </div>
     <div class="d-flex align-items-center justify-content-center">
             <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'VHS' 'all'%}"> Смотреть еще </a>
     </div>
@@ -222,8 +306,29 @@
         <a href="{% url 'core:home1' 'стеклопакет' 'all'%}" class="text-decoration-none"> <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">СТЕКЛОПАКЕТ</h2></a>
        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
+                        <div class="product-item bg-light mb-4">
+                            <a href="{{ item5.get_absolute_url }}">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
+                            </div>
+                            </a>
+                            <div class="text-center py-4" style="word-break: break-word;">
+                                <a class="text-decoration-none" href="{{ item5.get_absolute_url }}"><p class="h6">{{ item5.title }}</p></a>
+
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ item5.get_price }}₸</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item5.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for item in object_list5 %}
-                <div class="carousel-item {% if item.title == 'Товар номер 1' %}active {% endif %}">
+                <div class="carousel-item ">
                     <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item.get_absolute_url }}">
@@ -246,6 +351,13 @@
                 </div>
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
+            </a>
+        </div>
     <div class="d-flex align-items-center justify-content-center">
             <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'стеклопакет' 'all'%}"> Смотреть еще </a>
     </div>
@@ -254,8 +366,29 @@
         <a href="{% url 'core:home1' 'Комплектующие' 'all'%}" class="text-decoration-none">  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">КОМПЛЕКТУЮЩИЕ</h2></a>
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
+                        <div class="product-item bg-light mb-4">
+                            <a href="{{ item6.get_absolute_url }}">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
+                            </div>
+                            </a>
+                            <div class="text-center py-4" style="word-break: break-word;">
+                                <a class="text-decoration-none" href="{{ item6.get_absolute_url }}"><p class="h6">{{ item6.title }}</p></a>
+
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{ item6.get_price }}₸</h5>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item6.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for item in object_list6 %}
-                <div class="carousel-item {% if item.title == 'Товар номер 1' %}active {% endif %}">
+                <div class="carousel-item ">
                     <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
                         <div class="product-item bg-light mb-4">
                             <a href="{{ item.get_absolute_url }}">
@@ -278,6 +411,13 @@
                 </div>
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
+            </a>
+        </div>
     <div class="d-flex align-items-center justify-content-center">
         <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Комплектующие' 'all'%}"> Смотреть еще </a>
     </div>

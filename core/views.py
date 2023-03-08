@@ -196,19 +196,29 @@ def home(request):
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 6).get_page(request.GET.get('page'))
     item1 = page_obj[0]
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 6).get_page(request.GET.get('page'))
+    item2 = page_obj2[0]
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 6).get_page(request.GET.get('page'))
+    item3 = page_obj3[0]
     page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 6).get_page(request.GET.get('page'))
+    item4 = page_obj4[0]
     page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='стеклопакет').order_by('title'), 6).get_page(request.GET.get('page'))
+    item5 = page_obj5[0]
     page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 6).get_page(request.GET.get('page'))
+    item6 = page_obj6[0]
     context = {
         'str': 'none',
         'item1' : item1,
+        'item2': item2,
+        'item3': item3,
+        'item4': item4,
+        'item5': item5,
+        'item6': item6,
         'object_list': page_obj[1:],
-        'object_list2': page_obj2,
-        'object_list3': page_obj3,
-        'object_list4': page_obj4,
-        'object_list5': page_obj5,
-        'object_list6': page_obj6
+        'object_list2': page_obj2[1:],
+        'object_list3': page_obj3[1:],
+        'object_list4': page_obj4[1:],
+        'object_list5': page_obj5[1:],
+        'object_list6': page_obj6[1:]
     }
 
     return render(request, 'index.html', context)
