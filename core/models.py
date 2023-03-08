@@ -56,7 +56,7 @@ class Item(models.Model):
     description = models.TextField(default="NONE")
     description1 = models.TextField(default="NONE")
     description2 = models.TextField(default="NONE")
-    image = models.ImageField()
+    image = models.FileField(blank=True)
 
     def __str__(self):
         return self.title
@@ -104,6 +104,14 @@ class Item(models.Model):
         })
 
 
+class ItemImage(models.Model):
+    post = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
+    images = models.FileField(upload_to='media/')
+
+    def __str__(self):
+        return self.post.title
+
+
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
@@ -146,13 +154,13 @@ class Order(models.Model):
     refund_requested = models.BooleanField(default=False)
     refund_granted = models.BooleanField(default=False)
     v_obrabotke = models.BooleanField(default=False)
+
     def __str__(self):
         if self.payment == True:
             if self.v_obrabotke == True:
                 return "Номер заказа: " + str(self.id) + " Оплачено. В обработке"
             return "Номер заказа: " + str(self.id) + " Оплачено. Не обработано"
         return self.user.username + ". Номер заказа: " + str(self.id) + " Не оплачено"
-
 
     def get_total(self):
         total = 0
@@ -164,7 +172,7 @@ class Order(models.Model):
 
 
 class Address(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100, null=True)
     comments = models.CharField(max_length=255, null=True)
     phone_number = models.CharField(max_length=50)
