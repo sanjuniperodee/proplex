@@ -1,7 +1,7 @@
 {% load static %}
 <div class="container-fluid pt-5 pb-3" style="width: 95%">
         <a href="{% url 'core:home1' 'VHS' 'all'%}" class="text-decoration-none"><h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">VHS</h2></a>
-        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="recipeCarousel-4" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
                     <div class="col-lg-3 col-md-3 col-sm-5 pb-1 col-6">
@@ -48,10 +48,10 @@
                 </div>
                 {% endfor %}
             </div>
-            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
+            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel-4" role="button" data-bs-slide="prev" style="width: 100px">
                 <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
             </a>
-            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel-4" role="button" data-bs-slide="next" style="width: 100px">
                 <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
             </a>
         </div>
@@ -60,15 +60,15 @@
             <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'VHS' 'all'%}"> Смотреть еще </a>
     </div>
 <script>
-let items = document.querySelectorAll('.carousel .carousel-item')
+let items4 = document.querySelectorAll('#recipeCarousel-4 .carousel-item')
 
-items.forEach((el) => {
+items4.forEach((el) => {
     const minPerSlide = 4
     let next = el.nextElementSibling
     for (var i=1; i<minPerSlide; i++) {
         if (!next) {
             // wrap carousel by using first child
-        	next = items[0]
+        	next = items4[0]
       	}
         let cloneChild = next.cloneNode(true)
         el.appendChild(cloneChild.children[0])
