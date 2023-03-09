@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width= , initial-scale=1.0">
     <title>Proplex.kz</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
     <link href="{% static 'css/style4.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <style>
         .product {
           width: 100%;
@@ -147,9 +146,8 @@
                     <h3 class="font-weight-semi-bold mb-4">{{ object.price }}KZT</h3>
                     <p class="mb-4">{{ object.description }}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
-{#                         < style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
-                        <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</button>
-{#                         <a class='btn btn-primary float-right' href="{{ object.get_add_to_cart_url }}" ><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</a>#}
+                        <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                        <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ object.slug }}" type="button"><i class="fa fa-shopping-cart mr-1"></i>Добавить в Корзину</button>
                     </div>
                 </div>
             </div>
@@ -169,24 +167,9 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        const mainImage = document.getElementById("main-image");
-const images = document.querySelectorAll(".product__image");
-
-images.forEach((image) => {
-    image.addEventListener("click", (event) => {
-        mainImage.src = event.target.src;
-
-        document
-            .querySelector(".product__image--active")
-            .classList.remove("product__image--active");
-
-        event.target.classList.add("product__image--active");
-    });
-});
-    </script>
+    {% include "footer.html" %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     const buttons = document.querySelectorAll('button[type="button"]');
     {#console.log(buttons)#}
@@ -211,8 +194,21 @@ images.forEach((image) => {
             });
         }
     }
-    </script>
-    {% include "footer.html" %}
-</body>
+</script>
+    <script type="text/javascript">
+const mainImage = document.getElementById("main-image");
+const images = document.querySelectorAll(".product__image");
 
+images.forEach((image) => {
+    image.addEventListener("click", (event) => {
+        mainImage.src = event.target.src;
+
+        document
+            .querySelector(".product__image--active")
+            .classList.remove("product__image--active");
+
+        event.target.classList.add("product__image--active");
+    });
+});
+</script>
 </html>

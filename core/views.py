@@ -231,6 +231,7 @@ def add_to_cart1(request):
     #         item.save()
     # return JsonResponse({'data': '123'})
     slug = str(request.POST.get('slug'))
+    print(slug)
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
