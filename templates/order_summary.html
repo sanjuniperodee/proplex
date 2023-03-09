@@ -55,7 +55,7 @@
                             <img class="img" src="{{ order_item.item.image.url }}" alt="">
                         </div>
                         <div class="text-center py-4" style="word-break: break-word;">
-                            <a class="text-decoration-none" href="{{ order_item.item.get_absolute_url }}"><p class="h6">{{ order_item.item.title }}</p></a>
+                            <a class="text-decoration-none" href="{{ order_item.item.get_absolute_url }}"><p class="h6" style="word-break: break-word;">{{ order_item.item.title }}</p></a>
                             <p class="h6">Цена : {{ order_item.item.get_price }}₸</p>
                         </div>
 
