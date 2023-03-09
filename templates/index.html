@@ -2,11 +2,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Proplex.kz</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://schauhan.in/Examples/ecommerce_product_slider/style1.css" />
+    <link rel="stylesheet" type="text/css" href="http://schauhan.in/Examples/ecommerce_product_slider/lightslider.css" />
+    <script src="http://schauhan.in/Examples/ecommerce_product_slider/jquery-3.5.1.js" ></script>
+    <script src="http://schauhan.in/Examples/ecommerce_product_slider/lightslider.js" ></script>
+    <script>
+          $(document).ready(function() {
+        $('#autoWidth').lightSlider({
+            autoWidth:true,
+            loop:true,
+            onSliderLoad: function() {
+                $('#autoWidth').removeClass('cS-hidden');
+            }
+        });
+      });
+	</script>
     <link href="{% static 'css/style4.css'%}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
     <style>
@@ -19,53 +34,19 @@
                 width: 160px;
             }
         }
-        @media (max-width: 767px) {
-            .carousel-inner .carousel-item > div {
-                display: none;
-            }
-            .carousel-inner .carousel-item > div:first-child {
-                display: block;
-            }
-        }
-
-        .carousel-inner .carousel-item.active,
-        .carousel-inner .carousel-item-next,
-        .carousel-inner .carousel-item-prev {
-            display: flex;
-        }
-
-        /* medium and up screens */
-        @media (min-width: 768px) {
-
-            .carousel-inner .carousel-item-end.active,
-            .carousel-inner .carousel-item-next {
-              transform: translateX(25%);
-            }
-
-            .carousel-inner .carousel-item-start.active,
-            .carousel-inner .carousel-item-prev {
-              transform: translateX(-25%);
-            }
-        }
-
-        .carousel-inner .carousel-item-end,
-        .carousel-inner .carousel-item-start {
-          transform: translateX(0);
-        }
     </style>
 </head>
 <body>
     {% include "navbar.html" %}
     {% include "carousel.html" %}
     {% include "carousel2.html" %}
-    {% include "carousel3.html" %}
-    {% include "carousel4.html" %}
-    {% include "carousel5.html" %}
-    {% include "carousel6.html" %}
+{#    {% include "carousel3.html" %}#}
+{#    {% include "carousel4.html" %}#}
+{#    {% include "carousel5.html" %}#}
+{#    {% include "carousel6.html" %}#}
 
-    {% include "footer.html" %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{#    {% include "footer.html" %}#}
+s    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     const buttons = document.querySelectorAll('button[type="button"]');
     {#console.log(buttons)#}

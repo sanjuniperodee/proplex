@@ -193,7 +193,7 @@ def home1(request, ctg, ctg2):
 @csrf_exempt
 def home(request):
 
-    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 6).get_page(request.GET.get('page'))
+    page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 10  ).get_page(request.GET.get('page'))
     item1 = page_obj[0]
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 6).get_page(request.GET.get('page'))
     # item2 = page_obj2[0]
@@ -213,15 +213,15 @@ def home(request):
         'item4': item1,
         'item5': item1,
         'item6': item1,
-        'object_list': page_obj[1:],
+        'object_list': page_obj,
         'object_list2': page_obj2[1:],
         'object_list3': page_obj3[1:],
         'object_list4': page_obj4[1:],
         'object_list5': page_obj5[1:],
         'object_list6': page_obj6[1:]
     }
-
-    return render(request, 'index.html', context)
+    print(page_obj)
+    return render(request, 'carousel.html', context)
 
 
 @login_required
@@ -476,7 +476,7 @@ def detail(request, slug):
     item = Item.objects.filter(slug=slug)[0]
     images = ItemImage.objects.filter(post__slug=slug)
     print(12312313)
-    print(images[0].images)
+    # print(images[0].images)
     context = {
         'object': item,
         'images': images
