@@ -45,6 +45,7 @@
 .general-wrap{
     display: grid;
     justify-content: center;
+    align-items: center;
 
 }
 

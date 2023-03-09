@@ -542,23 +542,23 @@ chart.appear(3000);
     <div class="general-indicator">
         <div class="general-wrap">
             <div id="chartdiv1"></div>
-            <h3 class="title-ucell">Ucell NPS - {{ ucell_nps_v }}%</h3>
+            <img class="title-ucell" src="{% static 'img/ucell.png' %}">
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters({{ ucell_p }})</h3>
+                    <h3 class="img-text">Promoters ({{ ucell_p }})</h3>
                     <p class="text%">{{ ucell_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives({{ ucell_n }})</h3>
+                    <h3 class="img-text">Passives ({{ ucell_n }})</h3>
                     <p class="text%">{{ ucell_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors({{ ucell_k }})</h3>
+                    <h3 class="img-text">Detractors ({{ ucell_k }})</h3>
                     <p class="text%">{{ ucell_k_p }}%</p>
                 </div>
             </div>
@@ -566,11 +566,11 @@ chart.appear(3000);
 
         <div class="general-wrap">
             <div id="chartdiv"></div>
-            <h3 class="title-ucell">Beeline NPS - {{ beeline_nps_v }}%</h3>
+            <img class="title-ucell" src="{% static 'img/beeline.png' %}">
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters({{ beeline_p }})</h3>
+                    <h3 class="img-text">Promoters ({{ beeline_p }})</h3>
                     <p class="text%">{{ beeline_p_p }}%</p>
                 </div>
 
@@ -590,7 +590,7 @@ chart.appear(3000);
 
         <div class="general-wrap">
             <div id="chartdiv2"></div>
-            <h3 class="title-ucell">Uzmobile NPS - {{ uzmobile_nps_v }}%</h3>
+            <img class="title-ucell" src="{% static 'img/uzmob.png' %}">
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
@@ -614,7 +614,7 @@ chart.appear(3000);
 
         <div class="general-wrap">
             <div id="chartdiv3"></div>
-            <h3 class="title-ucell">Mobiuz NPS - {{ mobiuz_nps_v }}%</h3>
+            <img class="title-ucell mobiuz" src="{% static 'img/mobiuz.png' %}" style="width: 100px">
 
             <div class="img-wrap">
                 <div class="img-desc green">
@@ -638,7 +638,28 @@ chart.appear(3000);
         </div>
     </div>
 
-    <section style="margin-top: 130px">
+    <section>
+        <div class="sample-container">
+            <h2 class="sample-title">Выборка</h2>
+            <div class="sample-wrap" >
+               <div class="sample-desc usel">
+                    <h3 >{{ ucell }}</h3>
+                   <img src ="{% static 'img/ucell.png' %}" class="img-uceel">
+               </div>
+                <div class="sample-desc beeline">
+                    <h3>{{ beeline }}</h3>
+                   <img src="{% static 'img/beeline.png' %}" class="img-beeline">
+               </div>
+                <div class="sample-desc mobiuz" style="margin-left: 1%">
+                    <h3>{{ mobiuz }}</h3>
+                   <img src="{% static 'img/mobiuz.png' %}" class="img-mobiuz " style="width: 66px; height: 32px;">
+               </div>
+{#                <div class="sample-desc uzmob">#}
+{#                    <h3>{{ uzmobil }}</h3>#}
+{#                   <img src="{% static 'img/uzmob.png' %}" class="img-uzmobil">#}
+{#               </div>#}
+            </div>
+        </div>
 
         <div class="age-container">
             <div class="chartBox wrap">
@@ -649,13 +670,21 @@ chart.appear(3000);
               <h2 class="age-title">Возрастные группы</h2>
               <canvas id="YearGroup" height="200px"></canvas>
             </div>
-            <div class="chartBox wrap">
+        </div>
+
+        <div class="container-region">
+           <div class="chartBox"  class="box-region">
                <h2 class="region-title">ТИП НАСЕЛЕННОГО ПУНКТА</h2>
-               <canvas id="CityType" height="200px"></canvas>
+               <canvas id="CityType"></canvas>
            </div>
         </div>
 
+
+        <div class="desc-text">
+                ЦЕЛИ ИСПОЛЬЗОВАНИЯ СИМ КАРТЫ
+        </div>
         <div class="desc-indic">
+
 
             <div class="chartBox box2 ">
                <h2 class="desc-title">Для связи на работе</h2>
@@ -687,11 +716,12 @@ chart.appear(3000);
             </div>
 
             <div class="chartBox sim-style" >
-                 <h2 class="sim-title">КОЛИЧЕСТВО СИМ-КАРТ</h2>
+                 <h2 class="sim-title">ПЕРИОД ИСПОЛЬЗОВАНИЯ СИМ-КАРТ</h2>
                <canvas id="period"></canvas>
             </div>
         </div>
 
+    </section>
 
 
 
