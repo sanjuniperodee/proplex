@@ -162,8 +162,9 @@ def home1(request, ctg, ctg2):
         object_list = Item.objects.filter(category__title=ctg).order_by('-price')
         brands = SubCategory.objects.filter(category__title=ctg)
     else:
-        object_list = Item.objects.filter(category__title=ctg, category__subcategory__title=ctg2).order_by('title')
-        brands = Brand.objects.filter(category__title=ctg, category__subcategory__title=ctg2)
+        object_list = Item.objects.filter(category__title=ctg).order_by('title')
+        brands = SubCategory.objects.filter(category__title=ctg)
+        brandy = [ctg2]
     if request.method == "GET":
         print("I'm here mfs")
 

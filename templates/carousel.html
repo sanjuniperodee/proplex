@@ -102,7 +102,7 @@
 <body>
     {% include "navbar.html" %}
 <div class="container-fluid pb-3" style="width: 95%">
-<a href="{% url 'core:home1' 'Дверная Фурнитура' 'all'%}" class="text-decoration-none">  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">Дверная фурнитура</h2></a>
+<a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="text-decoration-none">  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">Дверная фурнитура</h2></a>
 <section class="slider mt-5" style="height: 100%">
 	<ul id="autoWidth1" class="cs-hidden" >
     {% for item in object_list %}
@@ -130,7 +130,7 @@
 	</section>
 </div>
     <div class="d-flex align-items-center justify-content-center">
-        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Дверная Фурнитура' 'all'%}"> Смотреть еще </a>
+        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}"> Смотреть еще </a>
     </div>
 {% include "carousel2.html" %}
 {% include "carousel3.html" %}
