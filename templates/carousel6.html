@@ -12,7 +12,8 @@
 </script>
 <div class="container-fluid pt-5 pb-3" style="width: 95%">
         <a href="{% url 'core:home1' 'Комплектующие' 'all'%}" class="text-decoration-none">  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 justify-content-center" style="padding-top: 50px">КОМПЛЕКТУЮЩИЕ</h2></a>
-        <ul id="autoWidth6" class="cs-hidden" >
+<section class="slider mt-5" style="height: 100%">
+    <ul id="autoWidth6" class="cs-hidden" >
     {% for item in object_list6 %}
       <li class="item-a">
         <div class="box">
