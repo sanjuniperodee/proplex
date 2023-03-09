@@ -1,79 +1,239 @@
-{% load static %}
-<div class="container-fluid pt-5 pb-3" style="width: 95%">
-        <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="text-decoration-none"><h2 class="text-uppercase mx-xl-5 mb-4 justify-content-center bg-default" >Дверная фурнитура</h2></a>
-        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
-                        <div class="product-item bg-light mb-4">
-                            <a href="{{ item1.get_absolute_url }}">
-                            <div class="product-img position-relative overflow-hidden">
-                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
-                            </div>
-                            </a>
-                            <div class="text-center py-4" style="word-break: break-word;">
-                                <a class="text-decoration-none" href="{{ item1.get_absolute_url }}"><p class="h6">{{ item1.title }}</p></a>
+{#{% load static %}#}
+{#<div class="container-fluid pt-5 pb-3" style="width: 95%">#}
+{#        <a href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}" class="text-decoration-none"><h2 class="text-uppercase mx-xl-5 mb-4 justify-content-center bg-default" >Дверная фурнитура</h2></a>#}
+{#        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">#}
+{#            <div class="carousel-inner" role="listbox">#}
+{#                <div class="carousel-item active">#}
+{#                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">#}
+{#                        <div class="product-item bg-light mb-4">#}
+{#                            <a href="{{ item1.get_absolute_url }}">#}
+{#                            <div class="product-img position-relative overflow-hidden">#}
+{#                                <img class="img" src="{% static 'img/item.webp' %}" alt="">#}
+{#                            </div>#}
+{#                            </a>#}
+{#                            <div class="text-center py-4" style="word-break: break-word;">#}
+{#                                <a class="text-decoration-none" href="{{ item1.get_absolute_url }}"><p class="h6">{{ item1.title }}</p></a>#}
+{##}
+{#                                <div class="d-flex align-items-center justify-content-center mt-2">#}
+{#                                    <h5>{{ item1.get_price }}₸</h5>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="d-flex align-items-center justify-content-center">#}
+{#                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item1.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% for item in object_list %}#}
+{#                <div class="carousel-item ">#}
+{#                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">#}
+{#                        <div class="product-item bg-light mb-4">#}
+{#                            <a href="{{ item.get_absolute_url }}">#}
+{#                            <div class="product-img position-relative overflow-hidden">#}
+{#                                <img class="img" src="{% static 'img/item.webp' %}" alt="">#}
+{#                            </div>#}
+{#                            </a>#}
+{#                            <div class="text-center py-4" style="word-break: break-word;">#}
+{#                                <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>#}
+{##}
+{#                                <div class="d-flex align-items-center justify-content-center mt-2">#}
+{#                                    <h5>{{ item.get_price }}₸</h5>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="d-flex align-items-center justify-content-center">#}
+{#                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">#}
+{#                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>#}
+{#            </a>#}
+{#            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">#}
+{#                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="d-flex align-items-center justify-content-center">#}
+{#        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}"> Смотреть еще </a>#}
+{#    </div>#}
+{#<script>#}
+{#    let myCarousel = document.querySelectorAll('#featureContainer .carousel .carousel-item');#}
+{#    myCarousel.forEach((el) => {#}
+{#      const minPerSlide = 4#}
+{#      let next = el.nextElementSibling#}
+{#      for (var i=1; i<minPerSlide; i++) {#}
+{#        if (!next) {#}
+{#          // wrap carousel by using first child#}
+{#          next = myCarousel[0]#}
+{#        }#}
+{#        let cloneChild = next.cloneNode(true)#}
+{#        el.appendChild(cloneChild.children[0])#}
+{#        next = next.nextElementSibling#}
+{#      }#}
+{#    })#}
+{#</script>#}
+<style>
+    .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+@media (max-width: 767px) {
+  #featureContainer .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  #featureContainer .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+#featureContainer .carousel-inner .carousel-item.active,
+#featureContainer .carousel-inner .carousel-item-next,
+#featureContainer .carousel-inner .carousel-item-prev {
+  display: flex;
+}
+@media (min-width: 768px) {
 
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>{{ item1.get_price }}₸</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item1.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% for item in object_list %}
-                <div class="carousel-item ">
-                    <div class="col-lg-2 col-md-3 col-sm-5 pb-1 col-6">
-                        <div class="product-item bg-light mb-4">
-                            <a href="{{ item.get_absolute_url }}">
-                            <div class="product-img position-relative overflow-hidden">
-                                <img class="img" src="{% static 'img/item.webp' %}" alt="">
-                            </div>
-                            </a>
-                            <div class="text-center py-4" style="word-break: break-word;">
-                                <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
-
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>{{ item.get_price }}₸</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <button style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart bg-transparent" style="color: dodgerblue"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+  #featureContainer .carousel-inner .carousel-item-end.active,
+  #featureContainer .carousel-inner .carousel-item-next {
+    transform: translateX(25%);
+  }
+  #featureContainer .carousel-inner .carousel-item-start.active,
+  #featureContainer .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%);
+  }
+  #featureContainer .card img{
+    width: 90%;
+    height: 40vh;
+  }
+  #featureContainer .carousel-item{
+    justify-content: space-between;
+  }
+}
+@media (max-width: 767px) {
+  #featureContainer .card img{
+    width: 100%;
+    height: 75vh;
+  }
+}
+#featureContainer .carousel-inner .carousel-item-end,
+#featureContainer .carousel-inner .carousel-item-start {
+  transform: translateX(0);
+}
+#featureContainer .card{
+  border: 0;
+}
+#featureContainer .card{
+  position: relative;
+}
+#featureContainer .card .card-img-overlays{
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+}
+#featureContainer a{
+  text-decoration: none;
+}
+#featureContainer .indicator{
+  border: 1px solid rgb(202, 202, 202);
+  padding: 3px 6px 3px 6px;
+}
+#featureContainer .indicator:hover{
+  background-color: blue;
+  border: 1px solid blue;
+  transition: 200ms;
+}
+#featureContainer .indicator:hover{
+  color: white;
+  transition: 200ms;
+}
+#featureContainer .indicator {
+  color: lightgray;
+}
+#featureContainer .float-end{
+  padding-top: 10px;
+}
+</style>
+<div class="container my-3 mt-5" id="featureContainer">
+  <div class="row mx-auto my-auto justify-content-center">
+    <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Carousel Controls. OPTIONAL -->
+      <div class="float-end pe-md-4">
+        <a class="indicator" href="#featureCarousel" role="button" data-bs-slide="prev">
+          Left Arrow Here
+        </a> &nbsp;&nbsp;
+        <a class="w-aut indicator" href="#featureCarousel" role="button" data-bs-slide="next">
+          Right Arrow Here
+        </a>
+      </div>
+      <!-- Add Slides To The Carousel -->
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-img">
+                <img src="img1.jpg" class="img-fluid">
+              </div>
+              <div class="card-img-overlays">Slide 1</div>
             </div>
-            <a class="carousel-control-prev bg-transparent w-20" href="#recipeCarousel" role="button" data-bs-slide="prev" style="width: 100px">
-                <span class="carousel-control-prev-icon bg-dark" aria-hidden="true" style="margin-right: 85px"></span>
-            </a>
-            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next" style="width: 100px">
-                <span class="carousel-control-next-icon bg-dark" aria-hidden="true" style="margin-left: 85px"></span>
-            </a>
+          </div>
         </div>
+        <div class="carousel-item">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-img">
+                <img src="img2.jpg" class="img-fluid">
+              </div>
+              <div class="card-img-overlays">Slide 2</div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-img">
+                <img src="img3.jpg" class="img-fluid">
+              </div>
+              <div class="card-img-overlays">Slide 3</div>
+            </div>
+          </div>
+        </div>
+        ... more slides here
+      </div>
     </div>
-    <div class="d-flex align-items-center justify-content-center">
-        <a style="border-radius: 50px; margin-top: 60px" class="btn btn-outline-dark" href="{% url 'core:home1' 'Дверная фурнитура' 'all'%}"> Смотреть еще </a>
-    </div>
+  </div>
+</div>
 <script>
-let items = document.querySelectorAll('.carousel .carousel-item')
-
-items.forEach((el) => {
-    const minPerSlide = 2
-    let next = el.nextElementSibling
-    for (var i=1; i<minPerSlide; i++) {
-        if (!next) {
-            // wrap carousel by using first child
-        	next = items[0]
-      	}
-        let cloneChild = next.cloneNode(true)
-        el.appendChild(cloneChild.children[0])
-        next = next.nextElementSibling
+    let myCarousel = document.querySelectorAll('#featureContainer .carousel .carousel-item');
+myCarousel.forEach((el) => {
+  const minPerSlide = 4
+  let next = el.nextElementSibling
+  for (var i=1; i<minPerSlide; i++) {
+    if (!next) {
+      // wrap carousel by using first child
+      next = myCarousel[0]
     }
+    let cloneChild = next.cloneNode(true)
+    el.appendChild(cloneChild.children[0])
+    next = next.nextElementSibling
+  }
 })
-
 </script>

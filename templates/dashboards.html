@@ -1,4 +1,4 @@
-{#<!DOCTYPE html>#}
+{% load static %}
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
   <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
   <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
-{#        <link href="{% static 'css/style10.css'%}" rel="stylesheet">#}
+        <link href="{% static 'css/style5.css'%}" rel="stylesheet">
 </head>
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
@@ -529,57 +529,257 @@ chart.appear(3000);
 
 });
 </script>
-{% load static %}
-<header>
-<div class="container">
-            <div class="wrap-logo">
-              <img src="{% static 'img/logo-mamc.png'%}">
-            </div>
 
-            <div class="wrap-logo2">
-                <img src="{% static 'img/'%}" alt="ucell">
+<main>
+    <div class="desc">
+        <div style="display:flex; justify-content: space-between">
+            <img src="{% static 'img/logo-mamc.png' %}" class="logo-mamc">
+            <h1 class="title">Metricalist | Net Promoter Score</h1>
+            <img src="{% static 'img/logo-zakaz.png' %}" class="logo-zakaz">
+        </div>
+        <p class="text">Get insights from your survey.Analyze your NPS,Csat and Customer Sentiments</p>
+    </div>
+    <div class="general-indicator">
+        <div class="general-wrap">
+            <div id="chartdiv1"></div>
+            <h3 class="title-ucell">Ucell NPS - {{ ucell_nps_v }}%</h3>
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters({{ ucell_p }})</h3>
+                    <p class="text%">{{ ucell_p_p }}%</p>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives({{ ucell_n }})</h3>
+                    <p class="text%">{{ ucell_n_p }}%</p>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors({{ ucell_k }})</h3>
+                    <p class="text%">{{ ucell_k_p }}%</p>
+                </div>
             </div>
         </div>
-</header>
-<div>
-    <div >
-        <div id="chartdiv1"></div>
-        <h1>Ucell NPS</h1>
-    </div>
-    <div style="width: 70%; height: 300px">
-        <img src="{% static 'img/green.png' %}">
-        <img src="{% static 'img/yellow.png' %}">
-        <img src="{% static 'img/red.png' %}">
-    </div>
-</div>
-<div style="margin-top: 100px">
-    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
-        <div id="chartdiv"></div>
-        <h1>Beeline NPS</h1>
-    </div>
-    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
-        <div id="chartdiv2"></div>
-        <h1>Uzmobile NPS</h1>
-    </div>
-    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">
-        <div id="chartdiv3"></div>
-        <h1>Mobiuz NPS</h1>
-    </div>
-</div>
 
-  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
-      <canvas id="Ucell_NPS"></canvas>
-       <h1>Ucell NPS - {{ ucell_nps }}%</h1>
-  </div>
-  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
-      <canvas id="Uzmobile_NPS"></canvas>
-       <h1>Uzmobile NPS - {{ uzmobile_nps }}%</h1>
-  </div>
-    <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">
-      <canvas id="Mobiuz_NPS"></canvas>
-       <h1>Mobiuz NPS - {{ mobiuz_nps }}%</h1>
-  </div>
-</div>=
+        <div class="general-wrap">
+            <div id="chartdiv"></div>
+            <h3 class="title-ucell">Beeline NPS - {{ beeline_nps_v }}%</h3>
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters({{ beeline_p }})</h3>
+                    <p class="text%">{{ beeline_p_p }}%</p>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives({{ beeline_n }})</h3>
+                    <p class="text%">{{ beeline_n_p }}%</p>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors({{ beeline_k }})</h3>
+                    <p class="text%">{{ beeline_k_p }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="general-wrap">
+            <div id="chartdiv2"></div>
+            <h3 class="title-ucell">Uzmobile NPS - {{ uzmobile_nps_v }}%</h3>
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters({{ uzmobile_p }})</h3>
+                    <p class="text%">{{ uzmobile_p_p }}%</p>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives({{ uzmobile_n }})</h3>
+                    <p class="text%">{{ uzmobile_n_p }}%</p>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors({{ uzmobile_k }})</h3>
+                    <p class="text%">{{ uzmobile_k_p }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="general-wrap">
+            <div id="chartdiv3"></div>
+            <h3 class="title-ucell">Mobiuz NPS - {{ mobiuz_nps_v }}%</h3>
+
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters({{ mobiuz_p }})</h3>
+                    <p class="text%">{{ mobiuz_p_p }}%</p>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives({{ mobiuz_n }})</h3>
+                    <p class="text%">{{ mobiuz_n_p }}%</p>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors({{ mobiuz_k }})</h3>
+                    <p class="text%">{{ mobiuz_k_p }}%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section style="margin-top: 130px">
+
+        <div class="age-container">
+            <div class="chartBox wrap">
+                <h2 class="age-title">Пол абонентов</h2>
+                <canvas id="SexGroup" height="200px"></canvas>
+            </div>
+            <div class="chartBox wrap">
+              <h2 class="age-title">Возрастные группы</h2>
+              <canvas id="YearGroup" height="200px"></canvas>
+            </div>
+            <div class="chartBox wrap">
+               <h2 class="region-title">ТИП НАСЕЛЕННОГО ПУНКТА</h2>
+               <canvas id="CityType" height="200px"></canvas>
+           </div>
+        </div>
+
+        <div class="desc-indic">
+
+            <div class="chartBox box2 ">
+               <h2 class="desc-title">Для связи на работе</h2>
+               <canvas id="Work" height="200px"></canvas>
+           </div>
+
+            <div class="chartBox box2">
+               <h2 class="desc-title">Для общения (личный номер)</h2>
+               <canvas id="Conversations" height="200px"></canvas>
+            </div>
+
+
+            <div class="chartBox box2">
+              <h2 class="desc-title">Для звонков</h2>
+              <canvas id="Calls" height="200px"></canvas>
+            </div>
+
+
+            <div class="chartBox box2">
+              <h2 class="desc-title">Для интернета</h2>
+              <canvas id="Internet" height="200px"></canvas>
+            </div>
+        </div>
+
+        <div class="sim-container">
+            <div class="chartBox sim-style" >
+              <h2 class="sim-title">КОЛИЧЕСТВО СИМ-КАРТ</h2>
+              <canvas id="NumberOfSims"></canvas>
+            </div>
+
+            <div class="chartBox sim-style" >
+                 <h2 class="sim-title">КОЛИЧЕСТВО СИМ-КАРТ</h2>
+               <canvas id="period"></canvas>
+            </div>
+        </div>
+
+
+
+
+{#          <div class="chartBox">#}
+{#            <h1>Пол абонентов</h1>#}
+{#            <canvas id="SexGroup" height="200px"></canvas>#}
+{#          </div>#}
+{#          <div class="chartBox">#}
+{#            <h1>Возрастные группы</h1>#}
+{#            <canvas id="YearGroup" height="200px"></canvas>#}
+{#          </div>#}
+
+{#    <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>#}
+{#        <canvas id="CityType"></canvas>#}
+{#    </div>#}
+
+{#    <div style="display: flex; justify-content: space-around">#}
+{#        <div class="chartBox">#}
+{#            <h1>Для связи на работе</h1>#}
+{#            <canvas id="Work" height="200px"></canvas>#}
+{#        </div>#}
+{#        <div class="chartBox">#}
+{#            <h1>Для общения (личный номер)</h1>#}
+{#            <canvas id="Conversations" height="200px"></canvas>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div style="display: flex; justify-content: space-around">#}
+{#        <div class="chartBox">#}
+{#            <h1>Для звонков</h1>#}
+{#            <canvas id="Calls" height="200px"></canvas>#}
+{#        </div>#}
+{#        <div class="chartBox">#}
+{#            <h1>Для интернета</h1>#}
+{#            <canvas id="Internet" height="200px"></canvas>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
+{#        <canvas id="NumberOfSims"></canvas>#}
+{#    </div>#}
+{#     <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
+{#        <canvas id="period"></canvas>#}
+{#    </div>#}
+{#    </section>#}
+{#     <div >#}
+{#        <div id="chartdiv1"></div>#}
+{#        <h1>Ucell NPS</h1>#}
+{#    </div>#}
+{#    <div style="width: 70%; height: 300px">#}
+{#        <img src="{% static 'img/green.png' %}">#}
+{#        <img src="{% static 'img/yellow.png' %}">#}
+{#        <img src="{% static 'img/red.png' %}">#}
+{#    </div>#}
+
+
+{#    <div style="margin-top: 100px">#}
+{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
+{#        <div id="chartdiv"></div>#}
+{#        <h1>Beeline NPS</h1>#}
+{#    </div>#}
+{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
+{#        <div id="chartdiv2"></div>#}
+{#        <h1>Uzmobile NPS</h1>#}
+{#    </div>#}
+{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
+{#        <div id="chartdiv3"></div>#}
+{#        <h1>Mobiuz NPS</h1>#}
+{#    </div>#}
+{#</div>#}
+</main>
+
+
+{##}
+{#  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
+{#      <canvas id="Ucell_NPS"></canvas>#}
+{#       <h1>Ucell NPS - {{ ucell_nps }}%</h1>#}
+{#  </div>#}
+{#  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
+{#      <canvas id="Uzmobile_NPS"></canvas>#}
+{#       <h1>Uzmobile NPS - {{ uzmobile_nps }}%</h1>#}
+{#  </div>#}
+{#    <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
+{#      <canvas id="Mobiuz_NPS"></canvas>#}
+{#       <h1>Mobiuz NPS - {{ mobiuz_nps }}%</h1>#}
+{#  </div>#}
+{#</div>#}
 
 </script><script>
 let sum1 = ({{ ucell_p }} + {{ ucell_k }} + {{ ucell_n }});
@@ -762,56 +962,56 @@ const myChar3 = new Chart(
       configg3
     );
 </script>
-    <div>
-        <h1>Выборка</h1>
-        <h3>{{ ucell }}</h3>
-        <h3>{{ beeline }}</h3>
-        <h3>{{ mobiuz }}</h3>
-        <h3>{{ uzmobil }}</h3>
-    </div>
+{#    <div>#}
+{#        <h1>Выборка</h1>#}
+{#        <h3>{{ ucell }}</h3>#}
+{#        <h3>{{ beeline }}</h3>#}
+{#        <h3>{{ mobiuz }}</h3>#}
+{#        <h3>{{ uzmobil }}</h3>#}
+{#    </div>#}
 
-    <div style="display: flex; justify-content: space-around">
-        <div class="chartBox">
-            <h1>Пол абонентов</h1>
-            <canvas id="SexGroup" height="200px"></canvas>
-        </div>
-        <div class="chartBox">
-            <h1>Возрастные группы</h1>
-            <canvas id="YearGroup" height="200px"></canvas>
-        </div>
-    </div>
-    <div class="chartBox" style="width: 100%; height: 200px">
-        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>
-        <canvas id="CityType"></canvas>
-    </div>
-    <div style="display: flex; justify-content: space-around">
-        <div class="chartBox">
-            <h1>Для связи на работе</h1>
-            <canvas id="Work" height="200px"></canvas>
-        </div>
-        <div class="chartBox">
-            <h1>Для общения (личный номер)</h1>
-            <canvas id="Conversations" height="200px"></canvas>
-        </div>
-    </div>
-    <div style="display: flex; justify-content: space-around">
-        <div class="chartBox">
-            <h1>Для звонков</h1>
-            <canvas id="Calls" height="200px"></canvas>
-        </div>
-        <div class="chartBox">
-            <h1>Для интернета</h1>
-            <canvas id="Internet" height="200px"></canvas>
-        </div>
-    </div>
-    <div class="chartBox" style="width: 100%; height: 200px">
-        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>
-        <canvas id="NumberOfSims"></canvas>
-    </div>
-     <div class="chartBox" style="width: 100%; height: 200px">
-        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>
-        <canvas id="period"></canvas>
-    </div>
+{#    <div style="display: flex; justify-content: space-around">#}
+{#        <div class="chartBox">#}
+{#            <h1>Пол абонентов</h1>#}
+{#            <canvas id="SexGroup" height="200px"></canvas>#}
+{#        </div>#}
+{#        <div class="chartBox">#}
+{#            <h1>Возрастные группы</h1>#}
+{#            <canvas id="YearGroup" height="200px"></canvas>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>#}
+{#        <canvas id="CityType"></canvas>#}
+{#    </div>#}
+{#    <div style="display: flex; justify-content: space-around">#}
+{#        <div class="chartBox">#}
+{#            <h1>Для связи на работе</h1>#}
+{#            <canvas id="Work" height="200px"></canvas>#}
+{#        </div>#}
+{#        <div class="chartBox">#}
+{#            <h1>Для общения (личный номер)</h1>#}
+{#            <canvas id="Conversations" height="200px"></canvas>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div style="display: flex; justify-content: space-around">#}
+{#        <div class="chartBox">#}
+{#            <h1>Для звонков</h1>#}
+{#            <canvas id="Calls" height="200px"></canvas>#}
+{#        </div>#}
+{#        <div class="chartBox">#}
+{#            <h1>Для интернета</h1>#}
+{#            <canvas id="Internet" height="200px"></canvas>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
+{#        <canvas id="NumberOfSims"></canvas>#}
+{#    </div>#}
+{#     <div class="chartBox" style="width: 100%; height: 200px">#}
+{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
+{#        <canvas id="period"></canvas>#}
+{#    </div>#}
 
 
 
@@ -845,7 +1045,9 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+         barThickness: 35
+
       },{
         label: 'Женщины',
         data: {{ womans }},
@@ -861,7 +1063,8 @@ const myChar3 = new Chart(
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       }]
     };
 
@@ -880,7 +1083,7 @@ const myChar3 = new Chart(
             beginAtZero: true,
           },
           x: {
-              barThickness: 10,
+              barThickness: 35,
           }
         }
       }
@@ -907,7 +1110,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
-        ]
+        ],
+         barThickness: 50
       },{
         label: 'Пол года',
         data: {{ month6 }},
@@ -916,7 +1120,8 @@ const myChar3 = new Chart(
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
-        ]
+        ],
+         barThickness: 50
       },{
         label: 'До 1 года',
         data: {{ month12 }},
@@ -925,7 +1130,8 @@ const myChar3 = new Chart(
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
-        ]
+        ],
+         barThickness: 50
       },{
         label: 'От 1 до 3 лет',
         data: {{ month36 }},
@@ -934,7 +1140,8 @@ const myChar3 = new Chart(
           'rgba(165, 55, 25,1)',
           'rgba(165, 55, 25,1)',
           'rgba(165, 55, 25,1)',
-        ]
+        ],
+         barThickness: 50
       },{
         label: 'От 3 до 5 лет',
         data: {{ month60 }},
@@ -943,7 +1150,8 @@ const myChar3 = new Chart(
           'rgba(16, 55, 253,1)',
           'rgba(16, 55, 253,1)',
           'rgba(16, 55, 253,1)',
-        ]
+        ],
+         barThickness: 50
       },{
         label: 'От 5 до 10 лет',
         data: {{ month120 }},
@@ -959,7 +1167,8 @@ const myChar3 = new Chart(
           'rgba(165, 120, 253,1)',
           'rgba(165, 120, 253,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+         barThickness: 50
       }]
     };
 
@@ -1005,7 +1214,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+         barThickness: 50
       },{
         label: '2 Сим',
         data: {{ sim2 }},
@@ -1021,7 +1231,8 @@ const myChar3 = new Chart(
           'rgba(165, 55, 253,1)',
           'rgba(165, 55, 253,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+         barThickness: 50
       }]
     };
 
@@ -1067,7 +1278,8 @@ const myChar3 = new Chart(
           'rgba(195, 255, 104,1)',
           'rgba(195, 255, 104,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: '20-24',
         data: {{ y20_24 }},
@@ -1083,7 +1295,8 @@ const myChar3 = new Chart(
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: '25-34',
         data: {{ y25_34 }},
@@ -1099,7 +1312,8 @@ const myChar3 = new Chart(
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: '35-44',
         data: {{ y35_44 }},
@@ -1115,7 +1329,8 @@ const myChar3 = new Chart(
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: '45-54',
         data: {{ y45_54 }},
@@ -1131,7 +1346,8 @@ const myChar3 = new Chart(
           'rgba(191, 191, 191,1)',
           'rgba(191, 191, 191,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: '55+',
         data: {{ y55 }},
@@ -1147,7 +1363,8 @@ const myChar3 = new Chart(
           'rgba(0, 0, 0,1)',
           'rgba(0, 0, 0,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       }]
     };
 
@@ -1193,7 +1410,8 @@ const myChar3 = new Chart(
           'rgba(195, 255, 104,1)',
           'rgba(195, 255, 104,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: 'Город',
         data: {{ city }},
@@ -1209,7 +1427,8 @@ const myChar3 = new Chart(
           'rgba(239, 207, 227,1)',
           'rgba(239, 207, 227,1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: 'ПГТ',
         data: {{ pgt }},
@@ -1225,7 +1444,8 @@ const myChar3 = new Chart(
           'rgba(102, 204, 153, 1)',
           'rgba(102, 204, 153, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       },{
         label: 'Село',
         data: {{ village }},
@@ -1241,7 +1461,8 @@ const myChar3 = new Chart(
           'rgba(227, 61, 148, 1)',
           'rgba(227, 61, 148, 1)',
         ],
-        borderWidth: 1
+        borderWidth: 1,
+       barThickness: 35
       }]
     };
 
@@ -1280,7 +1501,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
-        ]},]
+        ],
+         barThickness: 35},],
     };
 
     // config
@@ -1312,7 +1534,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
-        ]},]
+        ],
+         barThickness: 35},],
     };
 
     // config
@@ -1344,7 +1567,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
-        ]},]
+        ],
+         barThickness: 35},],
     };
 
     // config
@@ -1376,7 +1600,8 @@ const myChar3 = new Chart(
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
           'rgba(90, 34, 139,1)',
-        ]},]
+        ],
+         barThickness: 35},],
     };
 
     // config

@@ -196,23 +196,23 @@ def home(request):
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 6).get_page(request.GET.get('page'))
     item1 = page_obj[0]
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 6).get_page(request.GET.get('page'))
-    item2 = page_obj2[0]
+    # item2 = page_obj2[0]
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 6).get_page(request.GET.get('page'))
-    item3 = page_obj3[0]
+    # item3 = page_obj3[0]
     page_obj4 = Paginator(Item.objects.get_queryset().filter(category__title='VHS').order_by('title'), 6).get_page(request.GET.get('page'))
-    item4 = page_obj4[0]
+    # item4 = page_obj4[0]
     page_obj5 = Paginator(Item.objects.get_queryset().filter(category__title='стеклопакет').order_by('title'), 6).get_page(request.GET.get('page'))
-    item5 = page_obj5[0]
+    # item5 = page_obj5[0]
     page_obj6 = Paginator(Item.objects.get_queryset().filter(category__title='Комплектующие').order_by('title'), 6).get_page(request.GET.get('page'))
-    item6 = page_obj6[0]
+    # item6 = page_obj6[0]
     context = {
         'str': 'none',
         'item1' : item1,
-        'item2': item2,
-        'item3': item3,
-        'item4': item4,
-        'item5': item5,
-        'item6': item6,
+        'item2': item1,
+        'item3': item1,
+        'item4': item1,
+        'item5': item1,
+        'item6': item1,
         'object_list': page_obj[1:],
         'object_list2': page_obj2[1:],
         'object_list3': page_obj3[1:],
@@ -420,9 +420,37 @@ def dashboards(request):
         'month60': month60,
         'month120': month120,
         'beeline_nps': beeline,
+        'beeline_p': beeline[0],
+        'beeline_p_p': int(beeline[0]/(beeline[0]+beeline[1]+beeline[2])*100),
+        'beeline_n': beeline[1],
+        'beeline_n_p': int(beeline[1] / (beeline[0] + beeline[1] + beeline[2]) * 100),
+        'beeline_k': beeline[2],
+        'beeline_k_p': int(beeline[2] / (beeline[0] + beeline[1] + beeline[2]) * 100),
+        'beeline_nps_v': int(((beeline[0]-beeline[2])/(beeline[0]+beeline[1]+beeline[2]))*100),
         'mobiuz_nps': mobiuz,
+        'mobiuz_p': mobiuz[0],
+        'mobiuz_p_p': int(mobiuz[0] / (mobiuz[0] + mobiuz[1] + mobiuz[2]) * 100),
+        'mobiuz_n': mobiuz[1],
+        'mobiuz_n_p': int(mobiuz[1] / (mobiuz[0] + mobiuz[1] + mobiuz[2]) * 100),
+        'mobiuz_k': mobiuz[2],
+        'mobiuz_k_p': int(mobiuz[2] / (mobiuz[0] + mobiuz[1] + mobiuz[2]) * 100),
+        'mobiuz_nps_v': int(((mobiuz[0]-mobiuz[2])/(mobiuz[0]+mobiuz[1]+mobiuz[2]))*100),
         'uzmobile_nps': uzmobile,
+        'uzmobile_p': uzmobile[0],
+        'uzmobile_p_p': int(uzmobile[0] / (uzmobile[0] + uzmobile[1] + uzmobile[2]) * 100),
+        'uzmobile_n': uzmobile[1],
+        'uzmobile_n_p': int(uzmobile[1] / (uzmobile[0] + uzmobile[1] + uzmobile[2]) * 100),
+        'uzmobile_k': uzmobile[2],
+        'uzmobile_k_p': int(uzmobile[2] / (uzmobile[0] + uzmobile[1] + uzmobile[2]) * 100),
+        'uzmobile_nps_v': int(((uzmobile[0]-uzmobile[2])/(uzmobile[0]+uzmobile[1]+uzmobile[2]))*100),
         'ucell_nps': ucell,
+        'ucell_p': ucell[0],
+        'ucell_p_p': int(ucell[0] / (ucell[0] + ucell[1] + ucell[2]) * 100),
+        'ucell_n': ucell[1],
+        'ucell_n_p': int(ucell[1] / (ucell[0] + ucell[1] + ucell[2]) * 100),
+        'ucell_k': ucell[2],
+        'ucell_k_p': int(ucell[2] / (ucell[0] + ucell[1] + ucell[2]) * 100),
+        'ucell_nps_v': int(((ucell[0]-ucell[2])/(ucell[0]+ucell[1]+ucell[2]))*100)
 
     }
     print(response['body'][0]['counters'][124]['value'])
