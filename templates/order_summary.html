@@ -54,10 +54,17 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img" src="{{ order_item.item.image.url }}" alt="">
                         </div>
-                        <div class="text-center py-4" style="word-break: break-word;">
+                        <div class="text-center py-4" style="word-break: break-word; height: 130px;">
                             <a class="text-decoration-none" href="{{ order_item.item.get_absolute_url }}"><p class="h6" style="word-break: break-word;">{{ order_item.item.title }}</p></a>
-                            <p class="h6">Цена : {{ order_item.item.get_price }}₸</p>
+
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <p class="h6">Цена : {{ order_item.item.get_price }}₸</p>
+                            </div>
                         </div>
+{#                        <div class="text-center py-4" style="word-break: break-word;">#}
+{#                            <a class="text-decoration-none" href="{{ order_item.item.get_absolute_url }}"><p class="h6" style="word-break: break-word;">{{ order_item.item.title }}</p></a>#}
+{#                            <p class="h6">Цена : {{ order_item.item.get_price }}₸</p>#}
+{#                        </div>#}
 
                     </div>
                 </div>

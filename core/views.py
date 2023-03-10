@@ -273,6 +273,14 @@ def dashboards(request):
     response = result.json()
     mens = [response['body'][0]['counters'][140]['value'],response['body'][0]['counters'][142]['value'],response['body'][0]['counters'][144]['value'],response['body'][0]['counters'][146]['value']]
     womans = [response['body'][0]['counters'][141]['value'],response['body'][0]['counters'][143]['value'],response['body'][0]['counters'][145]['value'],response['body'][0]['counters'][147]['value']]
+    mens[0] = int((mens[0]/(mens[0]+womans[0]))*100)
+    womans[0] = 100-mens[0]
+    mens[1] = int((mens[1] / (mens[1] + womans[1])) * 100)
+    womans[1] = 100 - mens[1]
+    mens[2] = int((mens[2] / (mens[2] + womans[2])) * 100)
+    womans[2] = 100 - mens[2]
+    mens[3] = int((mens[3] / (mens[3] + womans[3])) * 100)
+    womans[3] = 100 - mens[3]
     y16_19 = [response['body'][0]['counters'][154]['value'],response['body'][0]['counters'][160]['value'],response['body'][0]['counters'][166]['value'],response['body'][0]['counters'][172]['value']]
     y20_24 = [response['body'][0]['counters'][155]['value'],response['body'][0]['counters'][161]['value'],response['body'][0]['counters'][167]['value'],response['body'][0]['counters'][173]['value']]
     y25_34 = [response['body'][0]['counters'][156]['value'],response['body'][0]['counters'][162]['value'],response['body'][0]['counters'][168]['value'],response['body'][0]['counters'][174]['value']]

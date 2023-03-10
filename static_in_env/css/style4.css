@@ -9711,6 +9711,15 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+.desc{
+  background: #0d0d0d;
+}
+@media screen and (max-width : 991px) {
+  .general-indicator{
+  width:96%;
+  margin:0 0;
+  }
+}
 /*@media (max-width: 800px) {*/
 /*  .product-item {*/
 /*    width: 10px;*/

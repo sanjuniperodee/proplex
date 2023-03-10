@@ -1,19 +1,19 @@
 {% load static %}
 <html lang="en-US">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gauge Chart with datalabels plugin displaying labels</title>
-  <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
-  <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
-  <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
-        <link href="{% static 'css/style5.css'%}" rel="stylesheet">
-</head>
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gauge Chart with datalabels plugin displaying labels</title>
+    <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+    <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
+    <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
+    <link href="{% static 'css/style5.css'%}" rel="stylesheet">
+    </head>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 <!-- Chart code -->
 <body>
@@ -547,19 +547,16 @@ chart.appear(3000);
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
                     <h3 class="img-text">Promoters ({{ ucell_p }})</h3>
-                    <p class="text%">{{ ucell_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
                     <h3 class="img-text">Passives ({{ ucell_n }})</h3>
-                    <p class="text%">{{ ucell_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
                     <h3 class="img-text">Detractors ({{ ucell_k }})</h3>
-                    <p class="text%">{{ ucell_k_p }}%</p>
                 </div>
             </div>
         </div>
@@ -571,19 +568,16 @@ chart.appear(3000);
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
                     <h3 class="img-text">Promoters ({{ beeline_p }})</h3>
-                    <p class="text%">{{ beeline_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives({{ beeline_n }})</h3>
-                    <p class="text%">{{ beeline_n_p }}%</p>
+                    <h3 class="img-text">Passives ({{ beeline_n }})</h3>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors({{ beeline_k }})</h3>
-                    <p class="text%">{{ beeline_k_p }}%</p>
+                    <h3 class="img-text">Detractors ({{ beeline_k }})</h3>
                 </div>
             </div>
         </div>
@@ -594,20 +588,17 @@ chart.appear(3000);
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters({{ uzmobile_p }})</h3>
-                    <p class="text%">{{ uzmobile_p_p }}%</p>
+                    <h3 class="img-text">Promoters ({{ uzmobile_p }})</h3>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives({{ uzmobile_n }})</h3>
-                    <p class="text%">{{ uzmobile_n_p }}%</p>
+                    <h3 class="img-text">Passives ({{ uzmobile_n }})</h3>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors({{ uzmobile_k }})</h3>
-                    <p class="text%">{{ uzmobile_k_p }}%</p>
+                    <h3 class="img-text">Detractors ({{ uzmobile_k }})</h3>
                 </div>
             </div>
         </div>
@@ -619,25 +610,22 @@ chart.appear(3000);
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters({{ mobiuz_p }})</h3>
-                    <p class="text%">{{ mobiuz_p_p }}%</p>
+                    <h3 class="img-text">Promoters ({{ mobiuz_p }})</h3>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives({{ mobiuz_n }})</h3>
-                    <p class="text%">{{ mobiuz_n_p }}%</p>
+                    <h3 class="img-text">Passives ({{ mobiuz_n }})</h3>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors({{ mobiuz_k }})</h3>
-                    <p class="text%">{{ mobiuz_k_p }}%</p>
+                    <h3 class="img-text">Detractors ({{ mobiuz_k }})</h3>
                 </div>
             </div>
         </div>
     </div>
-
+    <img src="{% static 'img/nps1.png' %}" style="margin-top: 100px; margin-left: 200px">
     <section>
         <div class="sample-container">
             <h2 class="sample-title">Выборка</h2>
@@ -654,10 +642,10 @@ chart.appear(3000);
                     <h3>{{ mobiuz }}</h3>
                    <img src="{% static 'img/mobiuz.png' %}" class="img-mobiuz " style="width: 66px; height: 32px;">
                </div>
-{#                <div class="sample-desc uzmob">#}
-{#                    <h3>{{ uzmobil }}</h3>#}
-{#                   <img src="{% static 'img/uzmob.png' %}" class="img-uzmobil">#}
-{#               </div>#}
+                <div class="sample-desc uzmob">
+                    <h3>{{ uzmobil }}</h3>
+                   <img src="{% static 'img/uzmob.png' %}" class="img-uzmobil">
+               </div>
             </div>
         </div>
 
@@ -680,9 +668,7 @@ chart.appear(3000);
         </div>
 
 
-        <div class="desc-text">
-                ЦЕЛИ ИСПОЛЬЗОВАНИЯ СИМ КАРТЫ
-        </div>
+        <h1 class="title" style="width: 100%; align-items: center; text-align: center">ЦЕЛИ ИСПОЛЬЗОВАНИЯ СИМ КАРТЫ</h1>
         <div class="desc-indic">
 
 
@@ -722,339 +708,10 @@ chart.appear(3000);
         </div>
 
     </section>
-
-
-
-{#          <div class="chartBox">#}
-{#            <h1>Пол абонентов</h1>#}
-{#            <canvas id="SexGroup" height="200px"></canvas>#}
-{#          </div>#}
-{#          <div class="chartBox">#}
-{#            <h1>Возрастные группы</h1>#}
-{#            <canvas id="YearGroup" height="200px"></canvas>#}
-{#          </div>#}
-
-{#    <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>#}
-{#        <canvas id="CityType"></canvas>#}
-{#    </div>#}
-
-{#    <div style="display: flex; justify-content: space-around">#}
-{#        <div class="chartBox">#}
-{#            <h1>Для связи на работе</h1>#}
-{#            <canvas id="Work" height="200px"></canvas>#}
-{#        </div>#}
-{#        <div class="chartBox">#}
-{#            <h1>Для общения (личный номер)</h1>#}
-{#            <canvas id="Conversations" height="200px"></canvas>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div style="display: flex; justify-content: space-around">#}
-{#        <div class="chartBox">#}
-{#            <h1>Для звонков</h1>#}
-{#            <canvas id="Calls" height="200px"></canvas>#}
-{#        </div>#}
-{#        <div class="chartBox">#}
-{#            <h1>Для интернета</h1>#}
-{#            <canvas id="Internet" height="200px"></canvas>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
-{#        <canvas id="NumberOfSims"></canvas>#}
-{#    </div>#}
-{#     <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
-{#        <canvas id="period"></canvas>#}
-{#    </div>#}
-{#    </section>#}
-{#     <div >#}
-{#        <div id="chartdiv1"></div>#}
-{#        <h1>Ucell NPS</h1>#}
-{#    </div>#}
-{#    <div style="width: 70%; height: 300px">#}
-{#        <img src="{% static 'img/green.png' %}">#}
-{#        <img src="{% static 'img/yellow.png' %}">#}
-{#        <img src="{% static 'img/red.png' %}">#}
-{#    </div>#}
-
-
-{#    <div style="margin-top: 100px">#}
-{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
-{#        <div id="chartdiv"></div>#}
-{#        <h1>Beeline NPS</h1>#}
-{#    </div>#}
-{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
-{#        <div id="chartdiv2"></div>#}
-{#        <h1>Uzmobile NPS</h1>#}
-{#    </div>#}
-{#    <div id="canvas" style="width:25%; height: 200px; align-items: center; align-content: center; text-align: center">#}
-{#        <div id="chartdiv3"></div>#}
-{#        <h1>Mobiuz NPS</h1>#}
-{#    </div>#}
-{#</div>#}
 </main>
-
-
-{##}
-{#  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
-{#      <canvas id="Ucell_NPS"></canvas>#}
-{#       <h1>Ucell NPS - {{ ucell_nps }}%</h1>#}
-{#  </div>#}
-{#  <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
-{#      <canvas id="Uzmobile_NPS"></canvas>#}
-{#       <h1>Uzmobile NPS - {{ uzmobile_nps }}%</h1>#}
-{#  </div>#}
-{#    <div id="canvas-holder" style="width:25%; align-items: center; align-content: center; text-align: center">#}
-{#      <canvas id="Mobiuz_NPS"></canvas>#}
-{#       <h1>Mobiuz NPS - {{ mobiuz_nps }}%</h1>#}
-{#  </div>#}
-{#</div>#}
-
-</script><script>
-let sum1 = ({{ ucell_p }} + {{ ucell_k }} + {{ ucell_n }});
-let promouters1 = {{ ucell_p }};
-let kritics1 ={{ ucell_k }};
-console.log(sum1)
-let configg1 = {
-  type: 'gauge',
-  data: {
-    labels: ['Критики', 'Нейтралы', 'Промоутеры', 'Very good'],
-    datasets: [{
-      data: [sum1,
-          sum1 + sum1*3/10,
-          sum1 + sum1*5/10,
-          sum1 + sum1],
-      value: sum1 + (promouters1 - kritics1),
-      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: 'Gauge chart with datalabels plugin displaying labels'
-    },
-    layout: {
-      padding: {
-        bottom: 30
-      }
-    },
-    needle: {
-      radiusPercentage: 2,
-      widthPercentage: 3.2,
-      lengthPercentage: 80,
-      color: 'rgba(0, 0, 0, 1)'
-    },
-    valueLabel: {
-      display: false
-    },
-    plugins: {
-      datalabels: {
-        display: false,
-        formatter:  function (value, context) {
-          return context.chart.data.labels[context.dataIndex];
-        },
-        color: 'rgba(0, 0, 0, 1.0)',
-        backgroundColor: null,
-        font: {
-          size: 20,
-          weight: 'bold'
-        }
-      }
-    }
-  }
-};
-const myChar1 = new Chart(
-      document.getElementById('Ucell_NPS'),
-      configg1
-    );
-</script>
-<script>
-let sum2 = ({{ uzmobile_p }} + {{ uzmobile_k }} + {{ uzmobile_n }});
-let promouters2 = {{ uzmobile_p }};
-let kritics2 ={{ uzmobile_k }};
-
-console.log(sum2)
-let configg2 = {
-  type: 'gauge',
-  data: {
-    labels: ['Критики', 'Нейтралы', 'Промоутеры'],
-    datasets: [{
-      data: [sum2,
-          sum2 + sum2*3/10,
-          sum2 + sum2*5/10,
-          sum2 + sum2],
-      value: sum2 + (promouters2 - kritics2),
-      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: 'Gauge chart with datalabels plugin displaying labels'
-    },
-    layout: {
-      padding: {
-        bottom: 30
-      }
-    },
-    needle: {
-      radiusPercentage: 2,
-      widthPercentage: 3.2,
-      lengthPercentage: 80,
-      color: 'rgba(0, 0, 0, 1)'
-    },
-    valueLabel: {
-      display: false
-    },
-    plugins: {
-      datalabels: {
-        display: false,
-        formatter:  function (value, context) {
-          return context.chart.data.labels[context.dataIndex];
-        },
-        color: 'rgba(0, 0, 0, 1.0)',
-        backgroundColor: null,
-        font: {
-          size: 20,
-          weight: 'bold'
-        }
-      }
-    }
-  }
-};
-const myChar2 = new Chart(
-      document.getElementById('Uzmobile_NPS'),
-      configg2
-    );
-</script>
-<script>
-let sum3 = ({{ mobiuz_p }} + {{ mobiuz_k }} + {{ mobiuz_n }});
-let promouters3 = {{ mobiuz_p }};
-let kritics3 ={{ mobiuz_k }};
-console.log(sum3)
-let configg3 = {
-  type: 'gauge',
-  data: {
-    labels: ['Критики', 'Нейтралы', 'Промоутеры'],
-    datasets: [{
-      data: [sum3,
-          sum3 + sum3*3/10,
-          sum3 + sum3*5/10,
-          sum3 + sum3],
-      value: sum3 + (promouters3 - kritics3),
-      backgroundColor: ['red', 'orange', 'rgb(102, 204, 153)', 'green'],
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: 'Gauge chart with datalabels plugin displaying labels'
-    },
-    layout: {
-      padding: {
-        bottom: 30
-      }
-    },
-    needle: {
-      radiusPercentage: 2,
-      widthPercentage: 3.2,
-      lengthPercentage: 80,
-      color: 'rgba(0, 0, 0, 1)'
-    },
-    valueLabel: {
-      display: false
-    },
-    plugins: {
-      datalabels: {
-        display: false,
-        formatter:  function (value, context) {
-          return context.chart.data.labels[context.dataIndex];
-        },
-        color: 'rgba(0, 0, 0, 1.0)',
-        backgroundColor: null,
-        font: {
-          size: 20,
-          weight: 'bold'
-        }
-      }
-    }
-  }
-};
-const myChar3 = new Chart(
-      document.getElementById('Mobiuz_NPS'),
-      configg3
-    );
-</script>
-{#    <div>#}
-{#        <h1>Выборка</h1>#}
-{#        <h3>{{ ucell }}</h3>#}
-{#        <h3>{{ beeline }}</h3>#}
-{#        <h3>{{ mobiuz }}</h3>#}
-{#        <h3>{{ uzmobil }}</h3>#}
-{#    </div>#}
-
-{#    <div style="display: flex; justify-content: space-around">#}
-{#        <div class="chartBox">#}
-{#            <h1>Пол абонентов</h1>#}
-{#            <canvas id="SexGroup" height="200px"></canvas>#}
-{#        </div>#}
-{#        <div class="chartBox">#}
-{#            <h1>Возрастные группы</h1>#}
-{#            <canvas id="YearGroup" height="200px"></canvas>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>ТИП НАСЕЛЕННОГО ПУНКТА</h1>#}
-{#        <canvas id="CityType"></canvas>#}
-{#    </div>#}
-{#    <div style="display: flex; justify-content: space-around">#}
-{#        <div class="chartBox">#}
-{#            <h1>Для связи на работе</h1>#}
-{#            <canvas id="Work" height="200px"></canvas>#}
-{#        </div>#}
-{#        <div class="chartBox">#}
-{#            <h1>Для общения (личный номер)</h1>#}
-{#            <canvas id="Conversations" height="200px"></canvas>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div style="display: flex; justify-content: space-around">#}
-{#        <div class="chartBox">#}
-{#            <h1>Для звонков</h1>#}
-{#            <canvas id="Calls" height="200px"></canvas>#}
-{#        </div>#}
-{#        <div class="chartBox">#}
-{#            <h1>Для интернета</h1>#}
-{#            <canvas id="Internet" height="200px"></canvas>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
-{#        <canvas id="NumberOfSims"></canvas>#}
-{#    </div>#}
-{#     <div class="chartBox" style="width: 100%; height: 200px">#}
-{#        <h1>КОЛИЧЕСТВО СИМ-КАРТ</h1>#}
-{#        <canvas id="period"></canvas>#}
-{#    </div>#}
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script>
     Chart.register(ChartjsPluginStacked100.default);
     // setup
@@ -1064,16 +721,16 @@ const myChar3 = new Chart(
         label: 'Мужчины',
         data: {{ mens }},
         backgroundColor: [
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
         ],
         borderColor: [
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
+          'rgba(90, 34, 139,0.7)',
         ],
         borderWidth: 1,
          barThickness: 35
@@ -1103,20 +760,26 @@ const myChar3 = new Chart(
       type: 'bar',
       data,
       options: {
-        plugins: {
-          stacked100: {
-              enable: true,
-          }
-        },
         scales: {
           y: {
-            beginAtZero: true,
-          },
+              stacked: true,
+                ticks: {
+                    display: false,
+                },
+              grid: {
+                    display: false
+                }
+            },
           x: {
+              stacked: true,
               barThickness: 35,
-          }
+              grid: {
+                    display: false
+                }
+          },
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1146,56 +809,50 @@ const myChar3 = new Chart(
         label: 'Пол года',
         data: {{ month6 }},
         backgroundColor: [
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
+          'rgba(239, 207, 227, 1)',
+          'rgba(239, 207, 227, 1)',
+          'rgba(239, 207, 227, 1)',
+          'rgba(239, 207, 227, 1)',
         ],
          barThickness: 50
       },{
         label: 'До 1 года',
         data: {{ month12 }},
         backgroundColor: [
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
-          'rgba(165, 55, 253,1)',
+          'rgba(144, 198, 149,1)',
+          'rgba(144, 198, 149,1)',
+          'rgba(144, 198, 149,1)',
+          'rgba(144, 198, 149,1)',
         ],
          barThickness: 50
       },{
         label: 'От 1 до 3 лет',
         data: {{ month36 }},
         backgroundColor: [
-          'rgba(165, 55, 25,1)',
-          'rgba(165, 55, 25,1)',
-          'rgba(165, 55, 25,1)',
-          'rgba(165, 55, 25,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
+          'rgba(165, 55, 253,1)',
         ],
          barThickness: 50
       },{
         label: 'От 3 до 5 лет',
         data: {{ month60 }},
         backgroundColor: [
-          'rgba(16, 55, 253,1)',
-          'rgba(16, 55, 253,1)',
-          'rgba(16, 55, 253,1)',
-          'rgba(16, 55, 253,1)',
+          'rgb(0, 0, 0, 1)',
+          'rgb(0, 0, 0, 1)',
+          'rgb(0, 0, 0, 1)',
+          'rgb(0, 0, 0, 1)',
         ],
          barThickness: 50
       },{
         label: 'От 5 до 10 лет',
         data: {{ month120 }},
         backgroundColor: [
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
-        ],
-        borderColor: [
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
-          'rgba(165, 120, 253,1)',
+          'rgb(0, 107, 0, 1)',
+          'rgb(0, 107, 0, 1)',
+          'rgb(0, 107, 0, 1)',
+          'rgb(0, 107, 0, 1)',
         ],
         borderWidth: 1,
          barThickness: 50
@@ -1213,11 +870,22 @@ const myChar3 = new Chart(
           }
         },
         scales: {
-          y: {
-            beginAtZero: true
-          }
+            y: {
+                ticks: {
+                    display: false
+                },
+                grid: {
+                    display: false
+                }
+            },
+            x:{
+                grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1278,10 +946,21 @@ const myChar3 = new Chart(
         },
         scales: {
           y: {
-            beginAtZero: true
-          }
+                ticks: {
+                    display: false
+                },
+              grid: {
+                    display: false
+                }
+            },
+            x:{
+              grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1410,10 +1089,21 @@ const myChar3 = new Chart(
         },
         scales: {
           y: {
-            beginAtZero: true
-          }
+                ticks: {
+                    display: false
+                },
+              grid: {
+                    display: false
+                }
+            },
+            x:{
+              grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1508,11 +1198,22 @@ const myChar3 = new Chart(
           }
         },
         scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
+            y: {
+                grid: {
+                    display: false
+                }
+            },
+            x: {
+                ticks: {
+                    display: false
+                },
+                grid: {
+                    display: false
+                }
+            }
+        },
+    },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1528,9 +1229,9 @@ const myChar3 = new Chart(
         data: {{ work }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(255, 252, 127,1)',
+          'rgb(255, 33, 38, 1)',
+          'rgba(44, 130, 201, 1)',
         ],
          barThickness: 35},],
     };
@@ -1542,10 +1243,21 @@ const myChar3 = new Chart(
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
+                ticks: {
+                    display: false
+                },
+              grid: {
+                    display: false
+                }
+            },
+            x:{
+              grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1561,9 +1273,9 @@ const myChar3 = new Chart(
         data: {{ conversations }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(255, 252, 127,1)',
+          'rgb(255, 33, 38, 1)',
+          'rgba(44, 130, 201, 1)',
         ],
          barThickness: 35},],
     };
@@ -1574,11 +1286,22 @@ const myChar3 = new Chart(
       data: data4,
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+         y: {
+                ticks: {
+                    display: false
+                },
+             grid: {
+                    display: false
+                }
+            },
+            x:{
+             grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1594,9 +1317,9 @@ const myChar3 = new Chart(
         data: {{ calls }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(255, 252, 127,1)',
+          'rgb(255, 33, 38, 1)',
+          'rgba(44, 130, 201, 1)',
         ],
          barThickness: 35},],
     };
@@ -1608,10 +1331,21 @@ const myChar3 = new Chart(
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
+                ticks: {
+                    display: false
+                },
+              grid: {
+                    display: false
+                }
+            },
+            x:{
+              grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
@@ -1627,9 +1361,9 @@ const myChar3 = new Chart(
         data: {{ internet }},
         backgroundColor: [
           'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
-          'rgba(90, 34, 139,1)',
+          'rgba(255, 252, 127,1)',
+          'rgb(255, 33, 38, 1)',
+          'rgba(44, 130, 201, 1)',
         ],
          barThickness: 35},],
     };
@@ -1641,10 +1375,21 @@ const myChar3 = new Chart(
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
+                ticks: {
+                    display: false
+                },
+              grid: {
+                    display: false
+                }
+            },
+            x:{
+              grid: {
+                    display: false
+                }
+            }
         }
-      }
+      },
+      plugins:[ChartDataLabels],
     };
 
     // render init block
