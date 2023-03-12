@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gauge Chart with datalabels plugin displaying labels</title>
+    <link href="{% static 'css/style5.css' %}" rel="stylesheet">
     <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
     <script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
     <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
-    <link href="{% static 'css/style5.css'%}" rel="stylesheet">
     </head>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
@@ -539,95 +539,7 @@ chart.appear(3000);
         </div>
         <p class="text">Get insights from your survey.Analyze your NPS,Csat and Customer Sentiments</p>
     </div>
-    <div class="general-indicator">
-        <div class="general-wrap">
-            <div id="chartdiv1"></div>
-            <img class="title-ucell" src="{% static 'img/ucell.png' %}">
-            <div class="img-wrap">
-                <div class="img-desc green">
-                    <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ ucell_p }})</h3>
-                </div>
-
-                <div class="img-desc yellow">
-                    <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ ucell_n }})</h3>
-                </div>
-
-                <div class="img-desc red">
-                    <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ ucell_k }})</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="general-wrap">
-            <div id="chartdiv"></div>
-            <img class="title-ucell" src="{% static 'img/beeline.png' %}">
-            <div class="img-wrap">
-                <div class="img-desc green">
-                    <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ beeline_p }})</h3>
-                </div>
-
-                <div class="img-desc yellow">
-                    <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ beeline_n }})</h3>
-                </div>
-
-                <div class="img-desc red">
-                    <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ beeline_k }})</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="general-wrap">
-            <div id="chartdiv2"></div>
-            <img class="title-ucell" src="{% static 'img/uzmob.png' %}">
-            <div class="img-wrap">
-                <div class="img-desc green">
-                    <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ uzmobile_p }})</h3>
-                </div>
-
-                <div class="img-desc yellow">
-                    <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ uzmobile_n }})</h3>
-                </div>
-
-                <div class="img-desc red">
-                    <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ uzmobile_k }})</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="general-wrap">
-            <div id="chartdiv3"></div>
-            <img class="title-ucell mobiuz" src="{% static 'img/mobiuz.png' %}" style="width: 100px">
-
-            <div class="img-wrap">
-                <div class="img-desc green">
-                    <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ mobiuz_p }})</h3>
-                </div>
-
-                <div class="img-desc yellow">
-                    <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ mobiuz_n }})</h3>
-                </div>
-
-                <div class="img-desc red">
-                    <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ mobiuz_k }})</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <img src="{% static 'img/nps1.png' %}" style="margin-top: 100px; margin-left: 200px">
-    <section>
-        <div class="sample-container">
+    <div class="sample-container" style="margin-bottom: 100px">
             <h2 class="sample-title">Выборка</h2>
             <div class="sample-wrap" >
                <div class="sample-desc usel">
@@ -652,7 +564,161 @@ chart.appear(3000);
                </div>
             </div>
         </div>
+    <div class="general-indicator">
+        <div class="general-wrap" style="width: 25%">
+            <div id="chartdiv1"></div>
+            <img class="title-ucell" src="{% static 'img/ucell.png' %}">
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters ({{ ucell_p }})</h3>
+                </div>
 
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives ({{ ucell_n }})</h3>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors ({{ ucell_k }})</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="general-wrap" style="width: 25%">
+            <div id="chartdiv"></div>
+            <img class="title-ucell" src="{% static 'img/beeline.png' %}">
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters ({{ beeline_p }})</h3>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives ({{ beeline_n }})</h3>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors ({{ beeline_k }})</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="general-wrap" style="width: 25%">
+            <div id="chartdiv2"></div>
+            <img class="title-ucell" src="{% static 'img/uzmob.png' %}">
+            <div style="padding: 0; margin: 0">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters ({{ uzmobile_p }})</h3>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives ({{ uzmobile_n }})</h3>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors ({{ uzmobile_k }})</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="general-wrap" style="width: 25%">
+            <div id="chartdiv3"></div>
+            <img class="title-ucell mobiuz" src="{% static 'img/mobiuz.png' %}" style="width: 100px">
+
+            <div class="img-wrap">
+                <div class="img-desc green">
+                    <img src="{% static 'img/green.png' %}" class="img-img" >
+                    <h3 class="img-text">Promoters ({{ mobiuz_p }})</h3>
+                </div>
+
+                <div class="img-desc yellow">
+                    <img src="{% static 'img/yellow.png' %}" class="img-img">
+                    <h3 class="img-text">Passives ({{ mobiuz_n }})</h3>
+                </div>
+
+                <div class="img-desc red">
+                    <img src="{% static 'img/red.png' %}" class="img-img">
+                    <h3 class="img-text">Detractors ({{ mobiuz_k }})</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%; text-align: center; align-items: center">
+        <h1>ИНДЕКС NPS МОБИЛЬНЫХ ОПЕРАТОРОВ</h1>
+        <div style="width: 80%; margin-left: 10%; margin-right: 10%; ">
+            <canvas id="LineGraph"></canvas>
+        </div>
+    </div>
+    <script>
+        var yValues = ["September","October","November","December","January","February"];
+        var xValues = [48, 47, 40, 40, 48, 52];
+
+        new Chart("LineGraph", {
+          type: "line",
+          data: {
+            labels: yValues,
+            datasets: [{
+              label: 'Uzmobile',
+              backgroundColor: "rgba(0, 0, 0,0)",
+              borderColor: "blue",
+              data: xValues
+            },
+            {
+              label: 'Mobiuz',
+              backgroundColor: "rgba(0, 0, 0,0)",
+              borderColor: "red",
+              data: [37,50,44,44,42,35]
+            },
+            {
+              label: 'Beeline',
+              backgroundColor: "rgba(0, 0, 0,0)",
+              borderColor: "yellow",
+              data: [44,45,43,41,42,40]
+            },
+            {
+              label: 'Ucell',
+              backgroundColor: "rgba(0, 0, 0,0)",
+              borderColor: "violet",
+              data: [42,36,39,39,37,44]
+            }]
+          },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false,
+                            min: 30,
+                            display: false,
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        }
+                    },],
+                    xAxes: [{
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                        }
+                    },]
+                }
+            },
+              {#scales: {#}
+              {#  y: {#}
+              {#  },#}
+              {#  x: {#}
+              {#      grid: {#}
+              {#          display: false#}
+              {#      }#}
+              {#  },#}
+        });
+    </script>
+    <section>
         <div class="age-container">
             <div class="chartBox wrap">
                 <h2 class="age-title">Пол абонентов</h2>

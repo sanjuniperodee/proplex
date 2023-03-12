@@ -44,10 +44,11 @@
 }
 
 .general-wrap{
+    min-width: 100%;
     display: grid;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-
+    text-align: center;
 }
 
 .img-wrap {
