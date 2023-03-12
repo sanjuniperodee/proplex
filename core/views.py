@@ -257,6 +257,7 @@ def add_to_cart1(request):
     return JsonResponse({'data': '123'})
 
 
+@login_required()
 def dashboards(request):
     header = {
         'SS-Token': 'b859f200c0ed4ba491f9a4185f6fb64f',
