@@ -120,7 +120,7 @@
 {#                            <span class="badge border font-weight-normal">1000</span>#}
                         </div>
                         {% endfor %}
-                        <button  type="submit"  style="width: 150px; color: #fff; background: #2f2f2f; border-radius: 20px; text-align: center; border: none; font-size: 15px; padding: 3px">
+                        <button  type="submit" id="buttonsubmit"  style="width: 150px; color: #fff; background: #2f2f2f; border-radius: 20px; text-align: center; border: none; font-size: 15px; padding: 3px">
                             Применить
                         </button>
                     </form>
@@ -244,6 +244,25 @@
     {% include "footer.html" %}
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    let checkboxes = $("input[type=checkbox][name=scales]")
+    let enabledSettings = [];
+
+    checkboxes.change(function() {
+      enabledSettings = checkboxes
+        .filter(":checked")
+        .map(function() {
+            $.ajax({
+                success: function () {
+                    document.getElementById("buttonsubmit").click();
+                }
+            });
+        })
+        .get()
+
+      console.log(enabledSettings);
+    });
+</script>
     <script type="text/javascript">
     const buttons = document.querySelectorAll('button[type="button"]');
     {#console.log(buttons)#}
@@ -262,7 +281,7 @@
                     },
                     dataType:'json',
                     success:function(){
-                        alert("Добавлено в корзину " + buttons[i]['value']);
+                        alert()
                     }
                 })
             });

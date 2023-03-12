@@ -177,6 +177,7 @@ def home1(request, ctg, ctg2):
             object_list += Item.objects.filter(category__title=ctg, category__subcategory__title=brand).order_by('title')
         if i == 0:
             object_list = Item.objects.filter(category__title=ctg)
+
     paginator = Paginator(object_list, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
