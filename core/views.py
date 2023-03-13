@@ -208,11 +208,8 @@ def home1(request, ctg, ctg2):
 
 @csrf_exempt
 def home(request):
-    try:
-        order = Order.objects.get_queryset().filter(user=request.user, payment=False)
-        request.session['nonuser'] = 'false'
-    except:
-        request.session['nonuser'] = str(uuid.uuid4())
+    print(request.session['nonuser'])
+
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 10).get_page(request.GET.get('page'))
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 10).get_page(request.GET.get('page'))
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 10).get_page(request.GET.get('page'))
