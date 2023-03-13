@@ -210,7 +210,6 @@ def home1(request, ctg, ctg2, ctg3):
 
 @csrf_exempt
 def home(request):
-    print(request.session['nonuser'])
 
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 10).get_page(request.GET.get('page'))
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 10).get_page(request.GET.get('page'))
