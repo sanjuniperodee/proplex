@@ -85,15 +85,15 @@
                 </div>
             </td>
         </tr>
-        {% empty %}
-        <tr>
-            <td colspan='5'>Your cart is empty</td>
-        </tr>
-        <tr>
-            <td colspan="5">
-            <a style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark float-right" onclick="" href='/'>Вернуться к товарам</a>
-            </td>
-        </tr>
+{#        {% empty %}#}
+{#        <tr>#}
+{#            <td colspan='5'>Your cart is empty</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td colspan="5">#}
+{#            <a style="border-radius: 15px; color: dodgerblue" class="btn btn-outline-dark float-right" onclick="" href='/'>Вернуться к товарам</a>#}
+{#            </td>#}
+{#        </tr>#}
         {% endfor %}
         {% if object.coupon %}
         <tr>

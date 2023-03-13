@@ -111,8 +111,9 @@ class ItemImage(models.Model):
 
 
 class OrderItem(models.Model):
+    session_id = models.CharField(max_length=100, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE, null=True)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -136,12 +137,13 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
+    session_id = models.CharField(max_length=100, null=True)
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     ref_code = models.CharField(max_length=20, null=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField()
+    ordered_date = models.DateTimeField(null=True)
     shipping_address = models.ForeignKey(
         'Address', related_name='shipping_address', on_delete=models.SET_NULL, null=True)
     payment = models.BooleanField(default=False)

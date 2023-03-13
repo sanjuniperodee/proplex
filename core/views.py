@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+import uuid
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -194,7 +195,11 @@ def home1(request, ctg, ctg2):
 
 @csrf_exempt
 def home(request):
-
+    try:
+        order = Order.objects.get_queryset().filter(user=request.user, payment=False)
+        request.session['nonuser'] = 'false'
+    except:
+        request.session['nonuser'] = str(uuid.uuid4())
     page_obj = Paginator(Item.objects.get_queryset().filter(category__title='Дверная фурнитура').order_by('title'), 10).get_page(request.GET.get('page'))
     page_obj2 = Paginator(Item.objects.get_queryset().filter(category__title='профиль').order_by('title'), 10).get_page(request.GET.get('page'))
     page_obj3 = Paginator(Item.objects.get_queryset().filter(category__title='москитный профиль').order_by('title'), 10).get_page(request.GET.get('page'))
@@ -215,6 +220,61 @@ def home(request):
 
 
 def add_to_cart1(request):
+    if _user_is_authenticated(request.user):
+        slug = str(request.POST.get('slug'))
+        print(slug)
+        item = get_object_or_404(Item, slug=slug)
+        order_item, created = OrderItem.objects.get_or_create(
+            item=item,
+            user=request.user,
+            ordered=False
+        )
+        order_qs = Order.objects.filter(user=request.user, payment=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.items.filter(item__slug=item.slug).exists():
+                order_item.quantity += 1
+                order_item.save()
+                messages.info(request, "This item quantity was updated.")
+            else:
+                order.items.add(order_item)
+                messages.info(request, "This item was added to your cart.")
+        else:
+            ordered_date = timezone.now()
+            order = Order.objects.create(
+                user=request.user, ordered_date=ordered_date)
+            order.items.add(order_item)
+            messages.info(request, "core:order-summary")
+        return JsonResponse({'data': '123'})
+    else:
+        slug = str(request.POST.get('slug'))
+        print(slug)
+        item = get_object_or_404(Item, slug=slug)
+        order_item, created = OrderItem.objects.get_or_create(
+            item=item,
+            session_id=request.session['nonuser'],
+            ordered=False
+        )
+        order_qs = Order.objects.filter(session_id=request.session['nonuser'], payment=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.items.filter(item__slug=item.slug).exists():
+                order_item.quantity += 1
+                order_item.save()
+                messages.info(request, "This item quantity was updated.")
+            else:
+                order.items.add(order_item)
+                messages.info(request, "This item was added to your cart.")
+        else:
+            ordered_date = timezone.now()
+            order = Order.objects.create(
+                session_id=request.session['nonuser'], ordered_date=ordered_date)
+            order.items.add(order_item)
+            messages.info(request, "core:order-summary")
+        return JsonResponse({'data': '123'})
+
+
+
     # with open('core/Mika.csv', encoding="utf-16") as f:
     #     reader = csv.reader(f, delimiter='\t')
     #     i = 0
@@ -230,31 +290,7 @@ def add_to_cart1(request):
     #                     )
     #         item.save()
     # return JsonResponse({'data': '123'})
-    slug = str(request.POST.get('slug'))
-    print(slug)
-    item = get_object_or_404(Item, slug=slug)
-    order_item, created = OrderItem.objects.get_or_create(
-        item=item,
-        user=request.user,
-        ordered=False
-    )
-    order_qs = Order.objects.filter(user=request.user, payment=False)
-    if order_qs.exists():
-        order = order_qs[0]
-        if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
-            order_item.save()
-            messages.info(request, "This item quantity was updated.")
-        else:
-            order.items.add(order_item)
-            messages.info(request, "This item was added to your cart.")
-    else:
-        ordered_date = timezone.now()
-        order = Order.objects.create(
-            user=request.user, ordered_date=ordered_date)
-        order.items.add(order_item)
-        messages.info(request, "core:order-summary")
-    return JsonResponse({'data': '123'})
+
 
 
 @login_required()
@@ -465,23 +501,23 @@ def _user_is_authenticated(user):
         # django >= 2.0
         return user.is_authenticated
 def order_summary(request):
-    if _user_is_authenticated(request.user):
-        user = request.user
+    if request.session['nonuser'] == 'false':
+        try:
+            order = Order.objects.get_queryset().filter(user=request.user, payment=False)
+            context = {
+                'objects': order
+            }
+            return render(request, 'order_summary.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(request, "You do not have an active order")
+            return redirect("/")
     else:
-        # print(request.COOKIES)
-        request.session.save()
-        device = request.session.session_key
-        print(device)
-        user = UserProfile.objects.get_or_create(stripe_customer_id=device)[0]
-    try:
-        order = Order.objects.get_queryset().filter(user=user, payment=False)
+        order = Order.objects.get_or_create(session_id=request.session['nonuser'])
         context = {
             'objects': order
         }
         return render(request, 'order_summary.html', context)
-    except ObjectDoesNotExist:
-        messages.warning(request, "You do not have an active order")
-        return redirect("/")
+
 
 
 def detail(request, slug):
@@ -539,19 +575,33 @@ def add_to_cart(request, slug):
 
 def remove_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    order_qs = Order.objects.filter(
-        user=request.user,
-        payment=False,
-    )
+    if request.session['nonuser'] == "false":
+        order_qs = Order.objects.filter(
+            user=request.user,
+            payment=False,
+        )
+    else:
+        order_qs = Order.objects.filter(
+            session_id=request.session['nonuser'],
+            payment=False,
+        )
+
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
-            order_item = OrderItem.objects.filter(
-                item=item,
-                user=request.user,
-                ordered=False
-            )[0]
+            if request.session['nonuser'] == "false":
+                order_item = OrderItem.objects.filter(
+                    item=item,
+                    user=request.user,
+                    ordered=False
+                )[0]
+            else:
+                order_item = OrderItem.objects.filter(
+                    item=item,
+                    session_id=request.session['nonuser'],
+                    ordered=False
+                )[0]
             order.items.remove(order_item)
             order_item.delete()
             messages.info(request, "This item was removed from your cart.")
