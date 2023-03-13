@@ -60,7 +60,10 @@ def is_valid_form(values):
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
-            order = get_object_or_404(Order, user=self.request.user, payment=False)
+            if self.request.session['nonuser'] == 'false':
+                order = get_object_or_404(Order, user=self.request.user, payment=False)
+            else:
+                order = get_object_or_404(Order, session_id=self.request.session['nonuser'], payment=False)
             form = CheckoutForm()
             context = {
                 'form': form,
@@ -76,7 +79,10 @@ class CheckoutView(View):
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
         try:
-            order = get_object_or_404(Order, user=self.request.user, payment=False)
+            if self.request.session['nonuser'] == 'false':
+                order = get_object_or_404(Order, user=self.request.user, payment=False)
+            else:
+                order = get_object_or_404(Order, session_id=self.request.session['nonuser'], payment=False)
             items = order.items.get_queryset()
             print(items)
             df = pd.DataFrame(columns=['Title', 'Quantity', 'Sum'])
@@ -94,11 +100,18 @@ class CheckoutView(View):
                 comment = form.cleaned_data.get(
                     'comment')
                 if is_valid_form([shipping_address, comment, phone_number]):
-                    shipping_address = Address(
-                        phone_number=phone_number,
-                        comments=comment,
-                        user=self.request.user,
-                    )
+                    if self.request.session['nonuser'] == 'false':
+                        shipping_address = Address(
+                            phone_number=phone_number,
+                            comments=comment,
+                            user=self.request.user,
+                        )
+                    else:
+                        shipping_address = Address(
+                            phone_number=phone_number,
+                            comments=comment,
+                            user=self.request.session['nonuser'],
+                        )
                     shipping_address.save()
                     order.shipping_address = shipping_address
                     order.save()
