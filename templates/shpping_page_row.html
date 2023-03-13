@@ -15,13 +15,13 @@
     <style>
         .img{
             width: 100%;
-            height: 220px;
+            height: 100%;
         }
-        @media screen  and (max-width: 760px){
-            .img{
-                height: 165px;
-            }
-        }
+        {#@media screen  and (max-width: 760px){#}
+        {#    .img{#}
+        {#        height: 165px;#}
+        {#    }#}
+        {#}#}
         .overlay {
           /* Height & width depends on how you want to reveal the overlay (see JS below) */
           height: 100%;
@@ -88,7 +88,7 @@
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
                     <a class="breadcrumb-item text-dark" href="{% url 'core:home' %}">В Начало</a>
-                    <a class="breadcrumb-item text-dark" href="{% url 'core:home1' str 'all' 'block'%}">{{str}}</a>
+                    <a class="breadcrumb-item text-dark" href="{% url 'core:home1' str 'all' 'row'%}">{{str}}</a>
                     {% if str1 != 'all' %}
                         <span class="breadcrumb-item active">{{ str1 }}</span>
                     {% endif %}
@@ -165,42 +165,56 @@
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div>
-                                <a href="{% url 'core:home1' str str1 str2 %}" class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></a>
-                                <a href="{% url 'core:home1' str str1 'row' %}"class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></a>
+                                <a href="{% url 'core:home1' str str1 'block' %}" class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></a>
+                                <a href="{% url 'core:home1' str str1 str2 %}"class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></a>
                             </div>
                             <div class="ml-2">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Сортировать</button>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_up' 'block'%}">По цене вверх</a>
-                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_down' 'block'%}">По цене вниз </a>
+                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_up' str2%}">По цене вверх</a>
+                                        <a class="dropdown-item" href="{% url 'core:home1' str 'price_down' str2%}">По цене вниз </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% for item in object_list %}
-                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1 col-6">
-                        <div class="product-item bg-light mb-4">
-                            <div class="product-img position-relative overflow-hidden">
+                    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Товар</th>
+            <th scope="col">Цена</th>
+        </tr>
+        </thead>
+        {% for item in object_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td style="display: grid; word-wrap: break-word;" >
+                <div class="col-lg-4 col-md-4 col-sm-6 pb-1 col-9">
+                    <div class="bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
                                 <a href="{{ item.get_absolute_url }}">
                                     <img class="img" src="{{ item.image.url }}" alt="">
                                 </a>
                             </div>
-                            <div class="text-center py-4" style="word-break: break-word;">
-                                <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6">{{ item.title }}</p></a>
-
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>{{ item.get_price }}₸</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
-                                <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart"></i></button>
-                            </div>
+                        <div class="text-center py-4" style="word-break: break-word; height: 130px;">
+                            <a class="text-decoration-none" href="{{ item.get_absolute_url }}"><p class="h6" style="word-break: break-word;">{{ item.title }}</p></a>
+                            <input type="hidden" value="{{ item.slug }}" id="slug" name="slug" class='slug'>
+                            <button style="border-radius: 15px" class="btn btn-outline-dark" id="add_to_card"  value="{{ item.slug }}" type="button"><i class="fa fa-shopping-cart mr-1"></i>Добавить</button>
                         </div>
                     </div>
-                    {% endfor %}
+                </div>
+            </td>
+            <td>
+                <div style="align-items: center; justify-items: center">
+                    <h5>{{ item.get_price }}₸</h5>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{#                    {% endfor %}#}
                     <div class="col-12">
                         {% if object_list.has_other_pages %}
                           <nav class="d-flex justify-content-center wow fadeIn">

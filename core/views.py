@@ -164,7 +164,7 @@ def SuccesPayment(request):
 
 
 @csrf_exempt
-def home1(request, ctg, ctg2):
+def home1(request, ctg, ctg2, ctg3):
     brandy = []
     if ctg2 == 'all':
         object_list = Item.objects.filter(category__title=ctg).order_by('title')
@@ -199,12 +199,14 @@ def home1(request, ctg, ctg2):
         'brandy': brandy,
         'str1': ctg2,
         'str': ctg,
+        'str2': ctg3,
         'object_list': page_obj,
         'brands': brands,
     }
-    return render(request, 'shopping_page.html', context)
-
-
+    if ctg3 == "row":
+        return render(request, 'shpping_page_row.html', context)
+    else:
+        return render(request, 'shopping_page.html', context)
 
 @csrf_exempt
 def home(request):
