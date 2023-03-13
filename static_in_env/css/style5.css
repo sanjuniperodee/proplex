@@ -4,18 +4,27 @@
     padding: 20px 20px;
 }
 
-.logo-mamc,.logo-zakaz{
-    height: 69px;
-    width: 270px;
+.logo-mamc{
+    width: 10%;
+    height: 10%;
+    padding-top: 1%;
 }
+
+.logo-zakaz{
+    width: 8%;
+    height: 10%;
+    padding-top: 1%;
+}
+
+
 
 .desc{
     text-align: center;
     margin-bottom: 20px;
 }
+
 .title{
     margin-bottom: 10px;
-  background: #b1bace;
 }
 
 #chartdiv1,#chartdiv,#chartdiv2,#chartdiv3{
@@ -27,11 +36,12 @@
 }
 
 .title-ucell{
-    margin-top: 1%;
-    color: #7c7b7b;
+    margin-top: 3%;
+
     text-align: center;
-    padding-left: 57px
+    padding-left: 38%;
 }
+
 .general-indicator{
     width: 88%;
     display: flex;
@@ -44,11 +54,10 @@
 }
 
 .general-wrap{
-    min-width: 100%;
     display: grid;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
+    justify-content: center;
+
+
 }
 
 .img-wrap {
@@ -91,15 +100,17 @@
 }
 
 .sample-container{
-   /*display: grid;*/
     justify-content: center;
     align-items: center;
 }
 
 .sample-wrap{
-    /*display: flex;*/
-    justify-content: center;
-    margin: -2% 0%;
+    margin-left: 38%;
+    margin-right: 38%;
+    /*width: 30%;*/
+    align-items: center;
+    justify-content: space-between;
+
 }
 
 
@@ -110,17 +121,50 @@
 }
 
 .sample-desc{
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     gap: 40px;
     font-size: 30px;
+
 }
 
-.img-uceel,.img-beeline,.img-mobiuz,.img-uzmobil{
-    width: 48%;
-    height: 46%;
+
+
+.img-selection{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /*margin: -6%;*/
+    /*  position: relative;*/
 }
+
+.img-logo{
+    width: 50%;
+}
+
+.psevdo1{
+    position: relative;
+}
+
+.psevdo1::after{
+    content: '';
+    position: absolute;
+    width: 5%;
+    height: 3%;
+    color: red;
+    top: 10%;
+    left: 10%;
+}
+
+
+
+
+
+
+
+
+
 
 .ucel{
     color: #f355f3;
@@ -141,28 +185,107 @@
      display: flex;
      gap: 5px;
      margin-top: 1%;
+     position: relative;
  }
 
  .wrap{
-     width: 50%;
+     width: 30%;
  }
+
+ .wrap-reg{
+     width: 40%;
+ }
+
  .age-title{
      text-align: center;
      margin-bottom: 2%;
  }
 
- .container-region{
-     margin-top: 5%;
+ .ucell-age,.beeline-age,.uzmob-age,.mobiuz-age{
+     position: absolute;
+    width: 5%;
+    height: 4%;
+    top: 93%;
+ }
+
+ .ucell-age{
+     left: 2%;
+ }
+
+ .beeline-age{
+    left: 9%;
+ }
+
+ .uzmob-age{
+
+    left: 16%;
+ }
+
+ .mobiuz-age{
+     left: 23.8%;
+ }
+
+ .ucell-age1,.beeline-age2,.uzmob-age3,.mobiuz-age4{
+     position: absolute;
+    width: 5%;
+    height: 4%;
+    top: 93%;
+ }
+
+ .ucell-age1{
+     left: 32%;
+ }
+
+ .beeline-age2{
+    left: 39%;
+ }
+
+ .uzmob-age3{
+    left: 46.5%;
+ }
+
+ .mobiuz-age4{
+     left: 54%;
+ }
+
+ .ucell-reg,.beeline-reg,.uzmob-reg,.mobiuz-reg{
+     position: absolute;
+     width: 4.5%;
+     height: 3.9%;
+ }
+
+ .ucell-reg{
+     top: 33%;
+     left: 60%;
+ }
+
+ .beeline-reg{
+     top: 50%;
+    left: 60%;
+ }
+
+ .uzmob-reg{
+     left: 60%;
+    top: 68%;
+ }
+
+ .mobiuz-reg{
+     top:85.5%;
+     left: 60%;
  }
 
 
- .box-region{
-     width: 100%;
-     height: 80%;
+ .desc-text {
+     font-size: 30px;
+     margin-top: 20px;
+     text-align: center;
+     padding-bottom: 14px;
  }
 
  .region-title{
      text-align: center;
+     font-size: 18px;
+     padding: 1% 0px;
  }
 
  .desc-indic{
@@ -170,9 +293,128 @@
      justify-content: center;
      align-items: center;
      gap: 47px;
+     position: relative;
  }
 
- .box2{
+ .ucell-indic,.beeline-indic,.uzmob-indic,.mobiuz-indic,.ucell-indic1,.beeline-indic2,.uzmob-indic3,.mobiuz-indic4{
+     width: 4%;
+     height: 5%;
+     position: absolute;
+     top:93%;
+     /*transform: rotateZ(339deg);*/
+ }
+
+ .ucell-indic{
+     left:4.5%;
+ }
+
+ .beeline-indic{
+     left:9%;
+ }
+
+ .uzmob-indic{
+     left:14.5%;
+ }
+
+ .mobiuz-indic{
+     left:19.7%;
+ }
+
+ .ucell-indic1{
+     left: 28.5%;
+ }
+
+ .beeline-indic2{
+     left: 34%;
+ }
+
+ .uzmob-indic3{
+    left:  39%
+ }
+
+ .mobiuz-indic4{
+     left: 44%;
+ }
+
+ .ucell-indic11,.beeline-indic22,.uzmob-indic33,.mobiuz-indic44,.ucell-indic11-1,.beeline-indic22-2,.uzmob-indic33-3,.mobiuz-indic44-4{
+     width: 4%;
+     height: 5%;
+     position: absolute;
+     top:93%;
+ }
+
+ .ucell-indic11{
+     left: 52.8%;
+ }
+
+ .beeline-indic22{
+      left: 58%;
+ }
+
+ .uzmob-indic33{
+     left: 63%;
+ }
+
+ .mobiuz-indic44{
+     left: 68%;
+ }
+
+  .ucell-indic11-1{
+     left: 77%;
+ }
+
+ .beeline-indic22-2{
+      left: 82%;
+ }
+
+ .uzmob-indic33-3{
+     left: 87%;
+ }
+
+ .mobiuz-indic44-4{
+     left: 92.5%;
+ }
+
+ .ucell-sim1,.beeline-sim1,.uzmob-sim1,.mobiuz-sim1,.ucell-sim2,.beeline-sim2,.uzmob-sim2,.mobiuz-sim2{
+     width: 4.5%;
+     height: 3%;
+     position: absolute;
+     top: 96%;
+ }
+
+ .ucell-sim1{
+     left: 4.5%;
+ }
+
+ .beeline-sim1{
+     left:17%;
+ }
+
+ .uzmob-sim1{
+     left: 29.5%;
+ }
+
+ .mobiuz-sim1{
+     left: 41.5%;
+ }
+
+  .ucell-sim2{
+     right:  40.5%;
+ }
+
+ .beeline-sim2{
+     right:28%;
+ }
+
+ .uzmob-sim2{
+    right:  15.8%;
+ }
+
+ .mobiuz-sim2{
+     right: 3.8%;
+ }
+
+.box2{
      width: 21%;
      height: 100%;
  }
@@ -188,6 +430,7 @@
      align-items: center;
      gap: 10px;
      margin-top: 40px;
+     position: relative;
  }
 
  .sim-style{
@@ -200,7 +443,39 @@
 
 
 
+@media  screen and (max-width: 991px){
+    .logo-mamc, .logo-zakaz {
+                width: 10%;
+                height: 40px;
+                padding-top: 10px;
+    }
 
+    .general-indicator{
+                display: flex;
+                width: 98%;
+                margin: 0 0%;
+                padding-right: 3%;
+    }
+
+    .title-ucell.ucell1{
+        width: 10%;
+        padding-left: 28%;
+    }
+
+    .desc-indic {
+    gap: 1px;
+    }
+
+
+    .box2{
+        width: 100%;
+    }
+
+    .desc-title {
+     text-align: center;
+     font-size: 16px;
+    }
+}
 
 
 

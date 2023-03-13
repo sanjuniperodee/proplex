@@ -214,7 +214,6 @@ def home(request):
     return render(request, 'carousel.html', context)
 
 
-@login_required
 def add_to_cart1(request):
     # with open('core/Mika.csv', encoding="utf-16") as f:
     #     reader = csv.reader(f, delimiter='\t')
@@ -458,11 +457,24 @@ def dashboards(request):
     return render(request, 'dashboards.html', context)
 
 
-
-@login_required
-def order_summary(request):
+def _user_is_authenticated(user):
+    # django < 2.0
     try:
-        order = Order.objects.get_queryset().filter(user=request.user, payment=False)
+        return user.is_authenticated()
+    except TypeError:
+        # django >= 2.0
+        return user.is_authenticated
+def order_summary(request):
+    if _user_is_authenticated(request.user):
+        user = request.user
+    else:
+        # print(request.COOKIES)
+        request.session.save()
+        device = request.session.session_key
+        print(device)
+        user = UserProfile.objects.get_or_create(stripe_customer_id=device)[0]
+    try:
+        order = Order.objects.get_queryset().filter(user=user, payment=False)
         context = {
             'objects': order
         }
@@ -489,8 +501,12 @@ class ItemDetailView(DetailView):
     template_name = "detail.html"
 
 
-@login_required
 def add_to_cart(request, slug):
+    try:
+        user = request.user
+    except:
+        device = request.COOKIES['device']
+        user = UserProfile.objects.get_or_create(stripe_customer_id=device)
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
@@ -498,7 +514,7 @@ def add_to_cart(request, slug):
         ordered=False
 
     )
-    order_qs = Order.objects.filter(user=request.user, payment=False)
+    order_qs = Order.objects.filter(user=user, payment=False)
     if order_qs.exists():
         order = order_qs[0]
         # check if the order item is in the order
@@ -521,7 +537,6 @@ def add_to_cart(request, slug):
         return redirect("/")
 
 
-@login_required
 def remove_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
     order_qs = Order.objects.filter(
@@ -549,7 +564,6 @@ def remove_from_cart(request, slug):
         return redirect("core:product", slug=slug)
 
 
-@login_required
 def remove_single_item_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
     order_qs = Order.objects.filter(

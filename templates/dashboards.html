@@ -533,119 +533,133 @@ chart.appear(3000);
 <main>
     <div class="desc">
         <div style="display:flex; justify-content: space-around">
-            <img src="{% static 'img/logo-mamc.png' %}" class="logo-mamc">
+            <img src="{% static 'img/logo-mamc.png' %}" class="logo-mamc" >
             <h1 class="title">Metricalist | Net Promoter Score</h1>
-            <img src="{% static 'img/logo-zakaz.png' %}" class="logo-zakaz">
+            <img src="{% static 'img/logo-zakaz.png' %}" class="logo-zakaz" >
         </div>
         <p class="text">Get insights from your survey.Analyze your NPS,Csat and Customer Sentiments</p>
     </div>
+
     <div class="sample-container" style="margin-bottom: 100px">
             <h2 class="sample-title">Выборка</h2>
-            <div class="sample-wrap" >
-               <div class="sample-desc usel">
+            <div class="sample-wrap">
+               <div style="display:flex; justify-content: space-between; ">
                     <h3 >{{ ucell }}</h3>
                    <p>--------------</p>
-                   <img src ="{% static 'img/ucell.png' %}" class="img-uceel" style="width: 200px;">
+                   <img src ="{% static 'img/ucell.png' %}" class="img-uceel" width="150px" height="50px">
                </div>
-                <div class="sample-desc beeline">
+               <div style="display:flex; justify-content: space-between; ">
                     <h3>{{ beeline }}</h3>
                     <p>--------------</p>
-                   <img src="{% static 'img/beeline.png' %}" class="img-beeline" style="width: 200px;">
+                   <img src="{% static 'img/beeline.png' %}" class="img-beeline" width="150px" height="50px">
                </div>
-                <div class="sample-desc mobiuz" style="margin-left: 1%">
+               <div style="display:flex; justify-content: space-between; ">
                     <h3>{{ mobiuz }}</h3>
                     <p>--------------</p>
-                   <img src="{% static 'img/mobiuz.png' %}" class="img-mobiuz " style="width: 200px;">
+                   <img src="{% static 'img/mobiuz.png' %}" class="img-mobiuz "width="150px" height="50px">
                </div>
-                <div class="sample-desc uzmob">
+               <div style="display:flex; justify-content: space-between; ">
                     <h3>{{ uzmobile }}</h3>
                     <p>--------------</p>
-                   <img src="{% static 'img/uzmob.png' %}" class="img-uzmobil" style="width: 200px;">
+                   <img src="{% static 'img/uzmob.png' %}" class="img-uzmobil" width="150px" height="50px">
                </div>
             </div>
         </div>
+
     <div class="general-indicator">
-        <div class="general-wrap" style="width: 25%">
+        <div class="general-wrap">
             <div id="chartdiv1"></div>
-            <img class="title-ucell" src="{% static 'img/ucell.png' %}">
+            <img class="title-ucell ucell1" src="{% static 'img/ucell.png' %}">
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
                     <h3 class="img-text">Promoters ({{ ucell_p }})</h3>
+                    <p class="text%">{{ ucell_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
                     <h3 class="img-text">Passives ({{ ucell_n }})</h3>
+                    <p class="text%">{{ ucell_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
                     <h3 class="img-text">Detractors ({{ ucell_k }})</h3>
+                    <p class="text%">{{ ucell_k_p }}%</p>
                 </div>
             </div>
         </div>
 
-        <div class="general-wrap" style="width: 25%">
+        <div class="general-wrap">
             <div id="chartdiv"></div>
             <img class="title-ucell" src="{% static 'img/beeline.png' %}">
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
                     <h3 class="img-text">Promoters ({{ beeline_p }})</h3>
+                    <p class="text%">{{ beeline_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ beeline_n }})</h3>
+                    <h3 class="img-text">Passives({{ beeline_n }})</h3>
+                    <p class="text%">{{ beeline_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ beeline_k }})</h3>
+                    <h3 class="img-text">Detractors({{ beeline_k }})</h3>
+                    <p class="text%">{{ beeline_k_p }}%</p>
                 </div>
             </div>
         </div>
 
-        <div class="general-wrap" style="width: 25%">
+        <div class="general-wrap">
             <div id="chartdiv2"></div>
             <img class="title-ucell" src="{% static 'img/uzmob.png' %}">
-            <div style="padding: 0; margin: 0">
+            <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ uzmobile_p }})</h3>
+                    <h3 class="img-text">Promoters({{ uzmobile_p }})</h3>
+                    <p class="text%">{{ uzmobile_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ uzmobile_n }})</h3>
+                    <h3 class="img-text">Passives({{ uzmobile_n }})</h3>
+                    <p class="text%">{{ uzmobile_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ uzmobile_k }})</h3>
+                    <h3 class="img-text">Detractors({{ uzmobile_k }})</h3>
+                    <p class="text%">{{ uzmobile_k_p }}%</p>
                 </div>
             </div>
         </div>
 
-        <div class="general-wrap" style="width: 25%">
+        <div class="general-wrap">
             <div id="chartdiv3"></div>
-            <img class="title-ucell mobiuz" src="{% static 'img/mobiuz.png' %}" style="width: 100px">
+            <img class="title-ucell mobiuz" src="{% static 'img/mobz.png' %}" style="width: 100px">
 
             <div class="img-wrap">
                 <div class="img-desc green">
                     <img src="{% static 'img/green.png' %}" class="img-img" >
-                    <h3 class="img-text">Promoters ({{ mobiuz_p }})</h3>
+                    <h3 class="img-text">Promoters({{ mobiuz_p }})</h3>
+                    <p class="text%">{{ mobiuz_p_p }}%</p>
                 </div>
 
                 <div class="img-desc yellow">
                     <img src="{% static 'img/yellow.png' %}" class="img-img">
-                    <h3 class="img-text">Passives ({{ mobiuz_n }})</h3>
+                    <h3 class="img-text">Passives({{ mobiuz_n }})</h3>
+                    <p class="text%">{{ mobiuz_n_p }}%</p>
                 </div>
 
                 <div class="img-desc red">
                     <img src="{% static 'img/red.png' %}" class="img-img">
-                    <h3 class="img-text">Detractors ({{ mobiuz_k }})</h3>
+                    <h3 class="img-text">Detractors({{ mobiuz_k }})</h3>
+                    <p class="text%">{{ mobiuz_k_p }}%</p>
                 </div>
             </div>
         </div>
@@ -719,27 +733,47 @@ chart.appear(3000);
         });
     </script>
     <section>
+
         <div class="age-container">
+            <img src="{% static 'img/ucell.png' %}" class="ucell-age">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-age">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-age">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-age">
             <div class="chartBox wrap">
                 <h2 class="age-title">Пол абонентов</h2>
                 <canvas id="SexGroup" height="200px"></canvas>
             </div>
+            <img src="{% static 'img/ucell.png' %}" class="ucell-age1">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-age2">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-age3">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-age4">
             <div class="chartBox wrap">
               <h2 class="age-title">Возрастные группы</h2>
               <canvas id="YearGroup" height="200px"></canvas>
             </div>
-        </div>
 
-        <div class="container-region">
-           <div class="chartBox"  class="box-region">
+
+             <img src="{% static 'img/ucell.png' %}" class="ucell-reg">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-reg">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-reg">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-reg">
+             <div class="chartBox wrap-reg"  >
                <h2 class="region-title">ТИП НАСЕЛЕННОГО ПУНКТА</h2>
                <canvas id="CityType"></canvas>
            </div>
         </div>
 
 
-        <h1 class="title" style="width: 100%; align-items: center; text-align: center">ЦЕЛИ ИСПОЛЬЗОВАНИЯ СИМ КАРТЫ</h1>
+
+
+        <div class="desc-text">
+                ЦЕЛИ ИСПОЛЬЗОВАНИЯ СИМ КАРТЫ
+        </div>
         <div class="desc-indic">
+             <img src="{% static 'img/ucell.png' %}" class="ucell-indic">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-indic">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-indic">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-indic">
 
 
             <div class="chartBox box2 ">
@@ -747,16 +781,30 @@ chart.appear(3000);
                <canvas id="Work" height="200px"></canvas>
            </div>
 
+            <img src="{% static 'img/ucell.png' %}" class="ucell-indic1">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-indic2">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-indic3">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-indic4">
+
             <div class="chartBox box2">
                <h2 class="desc-title">Для общения (личный номер)</h2>
                <canvas id="Conversations" height="200px"></canvas>
             </div>
 
-
+            <img src="{% static 'img/ucell.png' %}" class="ucell-indic11">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-indic22">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-indic33">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-indic44">
             <div class="chartBox box2">
               <h2 class="desc-title">Для звонков</h2>
               <canvas id="Calls" height="200px"></canvas>
             </div>
+
+
+             <img src="{% static 'img/ucell.png' %}" class="ucell-indic11-1">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-indic22-2">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-indic33-3">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-indic44-4">
 
 
             <div class="chartBox box2">
@@ -766,10 +814,20 @@ chart.appear(3000);
         </div>
 
         <div class="sim-container">
+            <img src="{% static 'img/ucell.png' %}" class="ucell-sim1">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-sim1">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-sim1">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-sim1 ">
+
             <div class="chartBox sim-style" >
               <h2 class="sim-title">КОЛИЧЕСТВО СИМ-КАРТ</h2>
               <canvas id="NumberOfSims"></canvas>
             </div>
+
+             <img src="{% static 'img/ucell.png' %}" class="ucell-sim2">
+            <img src="{% static 'img/beeline.png' %}" class="beeline-sim2">
+            <img src="{% static 'img/uzmob.png' %}" class="uzmob-sim2">
+            <img src="{% static 'img/mobz.png' %}" class="mobiuz-sim2 ">
 
             <div class="chartBox sim-style" >
                  <h2 class="sim-title">ПЕРИОД ИСПОЛЬЗОВАНИЯ СИМ-КАРТ</h2>
