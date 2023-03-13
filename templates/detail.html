@@ -102,8 +102,8 @@
             <div class="col-12">
                 <nav class="breadcrumb mb-30">
                     <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home' %}">В Начало</a>
-                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title 'all'%}">{{ object.category.title }}</a>
-                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title object.category.subcategory%}">{{ object.category.subcategory }}</a>
+                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title 'all' 'block'%}">{{ object.category.title }}</a>
+                    <a class="breadcrumb-item text-decoration-none" style="color: dodgerblue" href="{% url 'core:home1' object.category.title object.category.subcategory 'block'%}">{{ object.category.subcategory }}</a>
                     <span class="breadcrumb-item active" style="color: darkblue">{{ object.title }}</span>
                 </nav>
             </div>
